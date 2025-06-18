@@ -289,7 +289,7 @@ function renderPagination(page) {
     return nav;
 }
 
-// Hiệu ứng trái tim và đống phân
+// Hiệu ứng trái tim, đống phân, mặt cười chảy nước mắt
 function showEffect(type, parent) {
     // Xóa hiệu ứng cũ nếu có
     const old = parent.querySelector('.answer-effect');
@@ -306,7 +306,7 @@ function showEffect(type, parent) {
     effect.style.opacity = '1';
     effect.style.transition = 'transform 0.7s cubic-bezier(.17,.67,.83,.67), opacity 0.7s';
     effect.style.zIndex = '10';
-    effect.textContent = type === 'heart' ? '💖' : '💩';
+    effect.textContent = type === 'heart' ? '💖' : (type === 'laugh' ? '😂' : '💩');
     parent.appendChild(effect);
     setTimeout(() => {
         effect.style.transform = 'translate(-50%, -50%) scale(2.5)';
@@ -320,11 +320,19 @@ function showEffect(type, parent) {
     if (type === 'heart') {
         createFloatingHearts();
     }
+    // Hiệu ứng bay trên background cho mặt cười
+    if (type === 'laugh') {
+        createFloatingLaughs();
+    }
+    // Hiệu ứng con heo chạy vòng quanh cho đáp án sai
+    if (type === 'poop') {
+        createRunningPig();
+    }
 }
 
 // Tạo hiệu ứng trái tim bay trên background
 function createFloatingHearts() {
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 24; i++) { // tăng số lượng lên 24
         setTimeout(() => {
             const heart = document.createElement('div');
             heart.textContent = '💖';
@@ -349,8 +357,79 @@ function createFloatingHearts() {
             setTimeout(() => {
                 heart.remove();
             }, 3200);
-        }, i * 100);
+        }, i * 60);
     }
+}
+
+// Tạo hiệu ứng mặt cười chảy nước mắt bay trên background
+function createFloatingLaughs() {
+    for (let i = 0; i < 24; i++) { // tăng số lượng lên 24
+        setTimeout(() => {
+            const laugh = document.createElement('div');
+            laugh.textContent = '😂';
+            laugh.style.position = 'fixed';
+            laugh.style.fontSize = '2rem';
+            laugh.style.pointerEvents = 'none';
+            laugh.style.zIndex = '3000';
+            laugh.style.left = Math.random() * window.innerWidth + 'px';
+            laugh.style.top = window.innerHeight + 'px';
+            laugh.style.opacity = '0.85';
+            laugh.style.transition = 'transform 3s ease-out, opacity 3s ease-out';
+            document.body.appendChild(laugh);
+            
+            setTimeout(() => {
+                laugh.style.transform = `translateY(-${window.innerHeight + 200}px) rotate(${Math.random() * 360}deg) scale(${0.5 + Math.random() * 0.5})`;
+                laugh.style.opacity = '0';
+            }, 10);
+            
+            setTimeout(() => {
+                laugh.remove();
+            }, 3200);
+        }, i * 60);
+    }
+}
+
+// Hiệu ứng con heo chạy vòng quanh màn hình
+function createRunningPig() {
+    const pig = document.createElement('div');
+    pig.textContent = '🐖';
+    pig.style.position = 'fixed';
+    pig.style.left = '-60px';
+    pig.style.top = '50%';
+    pig.style.fontSize = '3rem';
+    pig.style.zIndex = '2000';
+    pig.style.transition = 'none';
+    pig.style.pointerEvents = 'none';
+
+    document.body.appendChild(pig);
+
+    // Các điểm để chạy vòng quanh màn hình (theo chiều kim đồng hồ)
+    const path = [
+        { left: -60, top: window.innerHeight / 2 - 40, rotate: 0 },
+        { left: window.innerWidth - 40, top: window.innerHeight / 2 - 40, rotate: 0 },
+        { left: window.innerWidth - 40, top: window.innerHeight - 60, rotate: 90 },
+        { left: -60, top: window.innerHeight - 60, rotate: 180 },
+        { left: -60, top: -40, rotate: 270 },
+        { left: window.innerWidth - 40, top: -40, rotate: 0 },
+        { left: window.innerWidth - 40, top: window.innerHeight / 2 - 40, rotate: 90 },
+        { left: -60, top: window.innerHeight / 2 - 40, rotate: 180 }
+    ];
+
+    let i = 0;
+    function moveNext() {
+        if (i >= path.length) {
+            pig.remove();
+            return;
+        }
+        const p = path[i];
+        pig.style.transition = 'left 0.5s linear, top 0.5s linear, transform 0.5s linear';
+        pig.style.left = p.left + 'px';
+        pig.style.top = p.top + 'px';
+        pig.style.transform = `rotate(${p.rotate}deg)`;
+        i++;
+        setTimeout(moveNext, 400);
+    }
+    setTimeout(moveNext, 10);
 }
 
 function renderPage(page) {
@@ -384,9 +463,8 @@ function renderPage(page) {
                 // Hiệu ứng trước khi lưu và render lại
                 if (letter === correctAnswer) {
                     showEffect('heart', block);
-                    createFloatingHearts();
                 } else {
-                    showEffect('poop', block);
+                    showEffect('laugh', block);
                 }
                 
                 // Tăng delay để hiệu ứng có thể thấy rõ hơn
