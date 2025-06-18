@@ -263,6 +263,70 @@ function renderPagination(page) {
     return nav;
 }
 
+// Hiệu ứng trái tim và đống phân
+function showEffect(type, parent) {
+    // Xóa hiệu ứng cũ nếu có
+    const old = parent.querySelector('.answer-effect');
+    if (old) old.remove();
+
+    const effect = document.createElement('span');
+    effect.className = 'answer-effect';
+    effect.style.position = 'absolute';
+    effect.style.left = '50%';
+    effect.style.top = '50%';
+    effect.style.transform = 'translate(-50%, -50%) scale(1)';
+    effect.style.pointerEvents = 'none';
+    effect.style.fontSize = '3rem';
+    effect.style.opacity = '1';
+    effect.style.transition = 'transform 0.7s cubic-bezier(.17,.67,.83,.67), opacity 0.7s';
+    effect.style.zIndex = '10';
+    effect.textContent = type === 'heart' ? '💖' : '💩';
+    parent.appendChild(effect);
+    setTimeout(() => {
+        effect.style.transform = 'translate(-50%, -50%) scale(2.5)';
+        effect.style.opacity = '0';
+    }, 10);
+    setTimeout(() => {
+        effect.remove();
+    }, 800);
+
+    // Hiệu ứng bay trên background cho trái tim
+    if (type === 'heart') {
+        createFloatingHearts();
+    }
+}
+
+// Tạo hiệu ứng trái tim bay trên background
+function createFloatingHearts() {
+    for (let i = 0; i < 8; i++) {
+        setTimeout(() => {
+            const heart = document.createElement('div');
+            heart.textContent = '💖';
+            heart.style.position = 'fixed';
+            heart.style.fontSize = '1.5rem';
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '1000';
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.top = window.innerHeight + 'px';
+            heart.style.opacity = '0.8';
+            heart.style.transition = 'transform 3s ease-out, opacity 3s ease-out';
+            
+            document.body.appendChild(heart);
+            
+            // Animate upwards
+            setTimeout(() => {
+                heart.style.transform = `translateY(-${window.innerHeight + 200}px) rotate(${Math.random() * 360}deg) scale(${0.5 + Math.random() * 0.5})`;
+                heart.style.opacity = '0';
+            }, 10);
+            
+            // Remove after animation
+            setTimeout(() => {
+                heart.remove();
+            }, 3200);
+        }, i * 100);
+    }
+}
+
 function renderPage(page) {
     renderSidebar(page);
     container.innerHTML = '';
@@ -273,6 +337,7 @@ function renderPage(page) {
         const q = quizData[i];
         const block = document.createElement('div');
         block.className = 'question-block';
+        block.style.position = 'relative';
         block.innerHTML = `<div class="question-text">Q${i + 1}: ${q.question}</div>`;
 
         const buttons = {};
@@ -283,7 +348,6 @@ function renderPage(page) {
             const btn = document.createElement('button');
             btn.textContent = `${letter}. ${opts[idx].value}`;
             btn.className = 'option-btn';
-            // Nếu đã chọn đáp án, disable và highlight luôn
             if (userAnswers[i]) {
                 btn.disabled = true;
                 btn.classList.remove('correct', 'incorrect');
@@ -291,9 +355,20 @@ function renderPage(page) {
                 if (letter === userAnswers[i] && userAnswers[i] !== correctAnswer) btn.classList.add('incorrect');
             }
             btn.onclick = () => {
-                userAnswers[i] = letter;
-                saveUserAnswers();
-                renderPage(currentPage);
+                // Hiệu ứng trước khi lưu và render lại
+                if (letter === correctAnswer) {
+                    showEffect('heart', block);
+                    createFloatingHearts();
+                } else {
+                    showEffect('poop', block);
+                }
+                
+                // Tăng delay để hiệu ứng có thể thấy rõ hơn
+                setTimeout(() => {
+                    userAnswers[i] = letter;
+                    saveUserAnswers();
+                    renderPage(currentPage);
+                }, 600);
             };
             buttons[letter] = btn;
             block.appendChild(btn);
