@@ -314,38 +314,75 @@ function renderPage(page) {
         const block = document.createElement('div');
         block.className = 'question-block';
         block.style.position = 'relative';
-        block.innerHTML = `<div class="question-text">Q${i + 1}: ${q.question}</div>`;
+        block.innerHTML = `<div class="question-text" style="white-space: pre-line; text-align: left;">Câu ${i + 1}: ${marked.parseInline(q.question)}</div>`;
 
         const buttons = {};
         const opts = shuffledOptions[i].options;
         const correctAnswer = shuffledOptions[i].answer;
 
-        ['A', 'B', 'C', 'D'].forEach((letter, idx) => {
-            const btn = document.createElement('button');
-            btn.textContent = `${letter}. ${opts[idx].value}`;
-            btn.className = 'option-btn';
-            if (userAnswers[i]) {
-                btn.disabled = true;
-                btn.classList.remove('correct', 'incorrect');
-                if (letter === correctAnswer) btn.classList.add('correct');
-                if (letter === userAnswers[i] && userAnswers[i] !== correctAnswer) btn.classList.add('incorrect');
-            }
-            btn.onclick = () => {
-                if (letter === correctAnswer) {
-                    showEffect('heart', block);
-                    createFloatingHearts();
-                } else {
-                    showEffect('poop', block);
+        // Kiểm tra câu hỏi đặc biệt
+        if (q.question.trim().toLowerCase().includes('m-xylene')) {
+            // Đáp án đúng luôn là B (mxylene_B.png)
+            const correctLetter = 'B';
+            ['A', 'B', 'C', 'D'].forEach((letter, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.style.display = 'flex';
+                btn.style.alignItems = 'center';
+                btn.style.justifyContent = 'center';
+                btn.style.padding = '8px';
+                btn.style.height = 'auto';
+                btn.innerHTML = `<img src="images/mxylene_${letter}.png" alt="Đáp án ${letter}" style="max-width:180px;max-height:90px;display:block;">`;
+                if (userAnswers[i]) {
+                    btn.disabled = true;
+                    btn.classList.remove('correct', 'incorrect');
+                    if (letter === correctLetter) btn.classList.add('correct');
+                    if (letter === userAnswers[i] && userAnswers[i] !== correctLetter) btn.classList.add('incorrect');
                 }
-                setTimeout(() => {
-                    userAnswers[i] = letter;
-                    saveUserAnswers();
-                    renderPage(currentPage);
-                }, 600);
-            };
-            buttons[letter] = btn;
-            block.appendChild(btn);
-        });
+                btn.onclick = () => {
+                    if (letter === correctLetter) {
+                        showEffect('heart', block);
+                        createFloatingHearts();
+                    } else {
+                        showEffect('poop', block);
+                    }
+                    setTimeout(() => {
+                        userAnswers[i] = letter;
+                        saveUserAnswers();
+                        renderPage(currentPage);
+                    }, 600);
+                };
+                buttons[letter] = btn;
+                block.appendChild(btn);
+            });
+        } else {
+            ['A', 'B', 'C', 'D'].forEach((letter, idx) => {
+                const btn = document.createElement('button');
+                btn.textContent = `${letter}. ${opts[idx].value}`;
+                btn.className = 'option-btn';
+                if (userAnswers[i]) {
+                    btn.disabled = true;
+                    btn.classList.remove('correct', 'incorrect');
+                    if (letter === correctAnswer) btn.classList.add('correct');
+                    if (letter === userAnswers[i] && userAnswers[i] !== correctAnswer) btn.classList.add('incorrect');
+                }
+                btn.onclick = () => {
+                    if (letter === correctAnswer) {
+                        showEffect('heart', block);
+                        createFloatingHearts();
+                    } else {
+                        showEffect('poop', block);
+                    }
+                    setTimeout(() => {
+                        userAnswers[i] = letter;
+                        saveUserAnswers();
+                        renderPage(currentPage);
+                    }, 600);
+                };
+                buttons[letter] = btn;
+                block.appendChild(btn);
+            });
+        }
 
         container.appendChild(block);
     }
