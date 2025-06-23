@@ -1,7 +1,57 @@
-// Số câu kiểm tra
-const EXAM_QUESTION_COUNT = Math.min(10, quizDataTVD.length); // Adjust based on available questions
+const EXAM_QUESTION_COUNT = 40;
 const QUESTIONS_PER_PAGE = 20;
-const STORAGE_KEY = 'quiz_exam_answers_tvd_v1';
+const STORAGE_KEY = 'quiz_exam_tvd_answers_v1';
+const examIndexesKey = 'quiz_exam_tvd_indexes_v1';
+const shuffledOptionsKey = 'quiz_exam_tvd_shuffled_options_v1';
+
+// Chuyển đổi quizData theo chương thành mảng phẳng
+const quizDataTVD = [];
+window.quizData.forEach(test => {
+    test.questions.forEach(q => {
+        quizDataTVD.push({
+            ...q,
+            chapter: test.chapter,
+            test_name: test.test_name
+        });
+    });
+});
+
+// Lấy danh sách chương duy nhất
+const chapters = Array.from(new Set(quizDataTVD.map(q => q.chapter)));
+
+// Chia đều số câu cho các chương
+function getExamIndexes() {
+    let arr = [];
+    const perChapter = Math.floor(EXAM_QUESTION_COUNT / chapters.length);
+    let remain = EXAM_QUESTION_COUNT - perChapter * chapters.length;
+    chapters.forEach((chapter, idx) => {
+        const chapterQuestions = quizDataTVD
+            .map((q, i) => ({ ...q, idx: i }))
+            .filter(q => q.chapter === chapter);
+        let count = perChapter + (remain > 0 ? 1 : 0);
+        if (remain > 0) remain--;
+        // Shuffle chapter questions
+        for (let i = chapterQuestions.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [chapterQuestions[i], chapterQuestions[j]] = [chapterQuestions[j], chapterQuestions[i]];
+        }
+        arr.push(...chapterQuestions.slice(0, count).map(q => q.idx));
+    });
+    // Shuffle toàn bộ arr để không bị theo thứ tự chương
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    localStorage.setItem(examIndexesKey, JSON.stringify(arr));
+    return arr;
+}
+
+// Khi vào trang này (hoặc reload), luôn random lại bộ đề và xóa hết dữ liệu cũ
+localStorage.removeItem(shuffledOptionsKey);
+localStorage.removeItem(STORAGE_KEY);
+
+const examIndexes = getExamIndexes();
+const examQuizData = examIndexes.map(i => quizDataTVD[i]);
 
 function shuffleArray(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
@@ -10,31 +60,19 @@ function shuffleArray(arr) {
     }
 }
 
-// Khi vào trang này (hoặc reload), luôn random lại bộ đề và xóa hết dữ liệu cũ
-const examIndexesKey = 'quiz_exam_indexes_tvd_v1';
-const shuffledOptionsKey = 'quiz_exam_shuffled_options_tvd_v1';
-localStorage.removeItem(examIndexesKey);
-localStorage.removeItem(shuffledOptionsKey);
-localStorage.removeItem(STORAGE_KEY);
-
-function getExamIndexes() {
-    let arr = Array.from({length: quizDataTVD.length}, (_, i) => i);
-    shuffleArray(arr);
-    arr = arr.slice(0, EXAM_QUESTION_COUNT);
-    localStorage.setItem(examIndexesKey, JSON.stringify(arr));
-    return arr;
-}
-const examIndexes = getExamIndexes();
-const examQuizData = examIndexes.map(i => quizDataTVD[i]);
-
 function getShuffledOptions() {
     const arr = examQuizData.map(q => {
-        const options = q.options.map((opt, idx) => ({ key: idx, value: opt }));
+        const options = [
+            { key: 'A', value: q.option_a },
+            { key: 'B', value: q.option_b },
+            { key: 'C', value: q.option_c },
+            { key: 'D', value: q.option_d }
+        ];
         shuffleArray(options);
-        const correctIdx = options.findIndex(opt => opt.key === q.answer);
+        const correctKey = options.find(opt => opt.key === q.answer);
         return {
             options,
-            answer: correctIdx
+            answer: String.fromCharCode(65 + options.indexOf(correctKey))
         };
     });
     localStorage.setItem(shuffledOptionsKey, JSON.stringify(arr));
@@ -52,19 +90,23 @@ function resetUserAnswers() {
     localStorage.removeItem(STORAGE_KEY);
     localStorage.removeItem(shuffledOptionsKey);
     userAnswers.fill(null);
-
+    // Tạo lại shuffledOptions mới với câu hỏi cũ
     const newShuffledOptions = examQuizData.map(q => {
-        const options = q.options.map((opt, idx) => ({ key: idx, value: opt }));
+        const options = [
+            { key: 'A', value: q.option_a },
+            { key: 'B', value: q.option_b },
+            { key: 'C', value: q.option_c },
+            { key: 'D', value: q.option_d }
+        ];
         shuffleArray(options);
-        const correctIdx = options.findIndex(opt => opt.key === q.answer);
+        const correctKey = options.find(opt => opt.key === q.answer);
         return {
             options,
-            answer: correctIdx
+            answer: String.fromCharCode(65 + options.indexOf(correctKey))
         };
     });
     localStorage.setItem(shuffledOptionsKey, JSON.stringify(newShuffledOptions));
     Object.assign(shuffledOptions, newShuffledOptions);
-
     renderPage(currentPage);
 }
 
@@ -106,8 +148,8 @@ function renderSidebar(selectedPage) {
                 let td_num = document.createElement('td');
                 td_num.textContent = idx + 1;
                 let td_ans = document.createElement('td');
-                td_ans.textContent = answer !== null && answer !== undefined ? String.fromCharCode(65 + answer) : '';
-                if (answer !== null && answer !== undefined) {
+                td_ans.textContent = answer ? answer : '';
+                if (answer) {
                     td_ans.classList.add('answered');
                     if (answer === shuffledOptions[idx].answer) {
                         td_ans.classList.add('correct');
@@ -273,6 +315,7 @@ function renderPagination(page) {
     return nav;
 }
 
+// Hiệu ứng trái tim và đống phân
 function showEffect(type, parent) {
     const old = parent.querySelector('.answer-effect');
     if (old) old.remove();
@@ -288,7 +331,7 @@ function showEffect(type, parent) {
     effect.style.opacity = '1';
     effect.style.transition = 'transform 0.7s cubic-bezier(.17,.67,.83,.67), opacity 0.7s';
     effect.style.zIndex = '10';
-    effect.textContent = type === 'heart' ? '💖' : (type === 'laugh' ? '😂' : '💩');
+    effect.textContent = type === 'heart' ? '💖' : '💩';
     parent.appendChild(effect);
     setTimeout(() => {
         effect.style.transform = 'translate(-50%, -50%) scale(2.5)';
@@ -301,16 +344,10 @@ function showEffect(type, parent) {
     if (type === 'heart') {
         createFloatingHearts();
     }
-    if (type === 'laugh') {
-        createFloatingLaughs();
-    }
-    if (type === 'poop') {
-        createRunningPig();
-    }
 }
 
 function createFloatingHearts() {
-    for (let i = 0; i < 24; i++) {
+    for (let i = 0; i < 8; i++) {
         setTimeout(() => {
             const heart = document.createElement('div');
             heart.textContent = '💖';
@@ -322,87 +359,16 @@ function createFloatingHearts() {
             heart.style.top = window.innerHeight + 'px';
             heart.style.opacity = '0.8';
             heart.style.transition = 'transform 3s ease-out, opacity 3s ease-out';
-            
             document.body.appendChild(heart);
-            
             setTimeout(() => {
                 heart.style.transform = `translateY(-${window.innerHeight + 200}px) rotate(${Math.random() * 360}deg) scale(${0.5 + Math.random() * 0.5})`;
                 heart.style.opacity = '0';
             }, 10);
-            
             setTimeout(() => {
                 heart.remove();
             }, 3200);
-        }, i * 60);
+        }, i * 100);
     }
-}
-
-function createFloatingLaughs() {
-    for (let i = 0; i < 24; i++) {
-        setTimeout(() => {
-            const laugh = document.createElement('div');
-            laugh.textContent = '😂';
-            laugh.style.position = 'fixed';
-            laugh.style.fontSize = '2rem';
-            laugh.style.pointerEvents = 'none';
-            laugh.style.zIndex = '3000';
-            laugh.style.left = Math.random() * window.innerWidth + 'px';
-            laugh.style.top = window.innerHeight + 'px';
-            laugh.style.opacity = '0.85';
-            laugh.style.transition = 'transform 3s ease-out, opacity 3s ease-out';
-            document.body.appendChild(laugh);
-            
-            setTimeout(() => {
-                laugh.style.transform = `translateY(-${window.innerHeight + 200}px) rotate(${Math.random() * 360}deg) scale(${0.5 + Math.random() * 0.5})`;
-                laugh.style.opacity = '0';
-            }, 10);
-            
-            setTimeout(() => {
-                laugh.remove();
-            }, 3200);
-        }, i * 60);
-    }
-}
-
-function createRunningPig() {
-    const pig = document.createElement('div');
-    pig.textContent = '🐖';
-    pig.style.position = 'fixed';
-    pig.style.left = '-60px';
-    pig.style.top = '50%';
-    pig.style.fontSize = '3rem';
-    pig.style.zIndex = '2000';
-    pig.style.transition = 'none';
-    pig.style.pointerEvents = 'none';
-
-    document.body.appendChild(pig);
-
-    const path = [
-        { left: -60, top: window.innerHeight / 2 - 40, rotate: 0 },
-        { left: window.innerWidth - 40, top: window.innerHeight / 2 - 40, rotate: 0 },
-        { left: window.innerWidth - 40, top: window.innerHeight - 60, rotate: 90 },
-        { left: -60, top: window.innerHeight - 60, rotate: 180 },
-        { left: -60, top: -40, rotate: 270 },
-        { left: window.innerWidth - 40, top: -40, rotate: 0 },
-        { left: window.innerWidth - 40, top: window.innerHeight / 2 - 40, rotate: 90 },
-        { left: -60, top: window.innerHeight / 2 - 40, rotate: 180 }
-    ];
-
-    let i = 0;
-    function moveNext() {
-        if (i >= path.length) {
-            pig.remove();
-            return;
-        }
-        const p = path[i];
-        pig.style.transition = 'left 0.5s linear, top 0.5s linear, transform 0.5s linear';
-        pig.style.left = p.left + 'px';
-        pig.style.top = p.top + 'px';
-        pig.style.transform = `rotate(${p.rotate}deg)`;
-        i++;
-        setTimeout(moveNext, 400);
-    }
-    setTimeout(moveNext, 10);
 }
 
 function renderPage(page) {
@@ -416,47 +382,35 @@ function renderPage(page) {
         const block = document.createElement('div');
         block.className = 'question-block';
         block.style.position = 'relative';
+        block.innerHTML = `<div class="question-text">Q${i + 1}: <span style="color:#007bff;font-weight:bold">${q.chapter}</span> - ${q.question}</div>`;
 
-        // Hiển thị thông tin chương
-        const chapterLabel = document.createElement('div');
-        chapterLabel.textContent = chapterInfo[q.chapter];
-        chapterLabel.style.fontSize = '0.8rem';
-        chapterLabel.style.color = '#666';
-        chapterLabel.style.marginBottom = '5px';
-        chapterLabel.style.fontStyle = 'italic';
-        block.appendChild(chapterLabel);
-
-        const questionDiv = document.createElement('div');
-        questionDiv.className = 'question-text';
-        questionDiv.textContent = `Q${i + 1}: ${q.question}`;
-        block.appendChild(questionDiv);
-
+        const buttons = {};
         const opts = shuffledOptions[i].options;
-        const correctAnswerIdx = shuffledOptions[i].answer;
-        const userAns = userAnswers[i];
+        const correctAnswer = shuffledOptions[i].answer;
 
-        opts.forEach((opt, idx) => {
+        ['A', 'B', 'C', 'D'].forEach((letter, idx) => {
             const btn = document.createElement('button');
-            btn.textContent = String.fromCharCode(65 + idx) + '. ' + opt.value;
+            btn.textContent = `${letter}. ${opts[idx].value}`;
             btn.className = 'option-btn';
-            if (userAns !== null && userAns !== undefined) {
+            if (userAnswers[i]) {
                 btn.disabled = true;
                 btn.classList.remove('correct', 'incorrect');
-                if (idx === correctAnswerIdx) btn.classList.add('correct');
-                if (idx === userAns && userAns !== correctAnswerIdx) btn.classList.add('incorrect');
+                if (letter === correctAnswer) btn.classList.add('correct');
+                if (letter === userAnswers[i] && userAnswers[i] !== correctAnswer) btn.classList.add('incorrect');
             }
             btn.onclick = () => {
-                if (idx === correctAnswerIdx) {
+                if (letter === correctAnswer) {
                     showEffect('heart', block);
                 } else {
-                    showEffect('laugh', block);
+                    showEffect('poop', block);
                 }
                 setTimeout(() => {
-                    userAnswers[i] = idx;
+                    userAnswers[i] = letter;
                     saveUserAnswers();
                     renderPage(currentPage);
                 }, 600);
             };
+            buttons[letter] = btn;
             block.appendChild(btn);
         });
 

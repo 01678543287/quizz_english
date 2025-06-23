@@ -10,25 +10,40 @@ window.quizData.forEach(test => {
     });
 });
 
+// Lấy danh sách chương duy nhất
+const chapters = Array.from(new Set(quizDataTVD.map(q => q.chapter)));
+let selectedChapter = chapters[0];
+
+// Tạo danh sách câu hỏi theo chương
+function getFilteredQuestions() {
+    return quizDataTVD.filter(q => q.chapter === selectedChapter);
+}
+
 const container = document.getElementById('quiz-container');
 const sidebar = document.getElementById('sidebar');
+const chapterSelect = document.getElementById('chapter-select');
 const QUESTIONS_PER_PAGE = 20;
 let currentPage = 1;
-const totalPages = Math.ceil(quizDataTVD.length / QUESTIONS_PER_PAGE);
 
 const STORAGE_KEY = 'quiz_user_answers_tvd_v1';
+
+// Lưu đáp án cho từng chương riêng biệt
+function getStorageKey() {
+    return STORAGE_KEY + '_' + encodeURIComponent(selectedChapter);
+}
 function loadUserAnswers() {
     try {
-        const data = localStorage.getItem(STORAGE_KEY);
+        const data = localStorage.getItem(getStorageKey());
+        const filtered = getFilteredQuestions();
         if (data) {
             const arr = JSON.parse(data);
-            if (Array.isArray(arr) && arr.length === quizDataTVD.length) return arr;
+            if (Array.isArray(arr) && arr.length === filtered.length) return arr;
         }
     } catch {}
-    return Array(quizDataTVD.length).fill(null);
+    return Array(getFilteredQuestions().length).fill(null);
 }
 function saveUserAnswers() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(userAnswers));
+    localStorage.setItem(getStorageKey(), JSON.stringify(userAnswers));
 }
 function resetUserAnswers() {
     userAnswers.fill(null);
@@ -36,8 +51,9 @@ function resetUserAnswers() {
     renderPage(currentPage);
 }
 
-const userAnswers = loadUserAnswers();
+let userAnswers = loadUserAnswers();
 
+// Hàm trộn mảng
 function shuffleArray(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -45,24 +61,51 @@ function shuffleArray(arr) {
     }
 }
 
-// Trộn đáp án cho từng câu
-const shuffledOptions = quizDataTVD.map(q => {
-    const options = [
-        { key: 'A', value: q.option_a },
-        { key: 'B', value: q.option_b },
-        { key: 'C', value: q.option_c },
-        { key: 'D', value: q.option_d }
-    ];
-    shuffleArray(options);
-    const correctKey = options.find(opt => opt.key === q.answer);
-    return {
-        options,
-        answer: correctKey ? String.fromCharCode(65 + options.indexOf(correctKey)) : ''
+// Trộn đáp án cho từng câu, lưu theo chương
+const shuffledOptionsMap = {};
+function getShuffledOptionsForChapter(chapter) {
+    if (shuffledOptionsMap[chapter]) return shuffledOptionsMap[chapter];
+    const filtered = quizDataTVD.filter(q => q.chapter === chapter);
+    const arr = filtered.map(q => {
+        const options = [
+            { key: 'A', value: q.option_a },
+            { key: 'B', value: q.option_b },
+            { key: 'C', value: q.option_c },
+            { key: 'D', value: q.option_d }
+        ];
+        shuffleArray(options);
+        const correctKey = options.find(opt => opt.key === q.answer);
+        return {
+            options,
+            answer: correctKey ? String.fromCharCode(65 + options.indexOf(correctKey)) : ''
+        };
+    });
+    shuffledOptionsMap[chapter] = arr;
+    return arr;
+}
+
+function renderChapterSelect() {
+    chapterSelect.innerHTML = '';
+    chapters.forEach(chap => {
+        const opt = document.createElement('option');
+        opt.value = chap;
+        opt.textContent = chap;
+        chapterSelect.appendChild(opt);
+    });
+    chapterSelect.value = selectedChapter;
+    chapterSelect.onchange = () => {
+        selectedChapter = chapterSelect.value;
+        currentPage = 1;
+        userAnswers = loadUserAnswers();
+        renderPage(currentPage);
     };
-});
+}
 
 function renderSidebar(selectedPage) {
     sidebar.innerHTML = '';
+    const filtered = getFilteredQuestions();
+    const shuffledOptions = getShuffledOptionsForChapter(selectedChapter);
+
     const title = document.createElement('h2');
     title.textContent = 'Câu hỏi';
     sidebar.appendChild(title);
@@ -72,7 +115,7 @@ function renderSidebar(selectedPage) {
     let COLS = Math.floor((sidebarWidth * 0.9) / cellWidth);
     if (COLS < 10) COLS = 10;
     if (COLS > 20) COLS = 20;
-    const total = quizDataTVD.length;
+    const total = filtered.length;
     const ROWS = Math.ceil(total / COLS);
 
     const tableWrapper = document.createElement('div');
@@ -128,7 +171,7 @@ function renderSidebar(selectedPage) {
 
     const score = document.createElement('div');
     score.className = 'score';
-    score.textContent = `Đúng: ${correctCount} / ${quizDataTVD.length}`;
+    score.textContent = `Đúng: ${correctCount} / ${filtered.length}`;
     sidebar.appendChild(score);
 
     const resetBtn = document.createElement('button');
@@ -141,6 +184,7 @@ function renderSidebar(selectedPage) {
 }
 
 function renderJumpToQuestion() {
+    const filtered = getFilteredQuestions();
     const nav = document.createElement('div');
     nav.style.display = 'flex';
     nav.style.justifyContent = 'center';
@@ -151,7 +195,7 @@ function renderJumpToQuestion() {
     const indexInput = document.createElement('input');
     indexInput.type = 'number';
     indexInput.min = 1;
-    indexInput.max = quizDataTVD.length;
+    indexInput.max = filtered.length;
     indexInput.placeholder = 'Câu #';
     indexInput.style.width = '70px';
     indexInput.style.fontSize = '1rem';
@@ -163,7 +207,7 @@ function renderJumpToQuestion() {
     gotoIndexBtn.className = 'reset-btn';
     gotoIndexBtn.onclick = () => {
         let idx = parseInt(indexInput.value, 10);
-        if (!isNaN(idx) && idx >= 1 && idx <= quizDataTVD.length) {
+        if (!isNaN(idx) && idx >= 1 && idx <= filtered.length) {
             const pageToGo = Math.ceil(idx / QUESTIONS_PER_PAGE);
             currentPage = pageToGo;
             renderPage(currentPage);
@@ -185,6 +229,9 @@ function renderJumpToQuestion() {
 }
 
 function renderPagination(page) {
+    const filtered = getFilteredQuestions();
+    const totalPages = Math.ceil(filtered.length / QUESTIONS_PER_PAGE);
+
     const nav = document.createElement('div');
     nav.style.display = 'flex';
     nav.style.justifyContent = 'center';
@@ -315,13 +362,18 @@ function createFloatingHearts() {
 }
 
 function renderPage(page) {
+    renderChapterSelect();
+    const filtered = getFilteredQuestions();
+    const shuffledOptions = getShuffledOptionsForChapter(selectedChapter);
+    const totalPages = Math.ceil(filtered.length / QUESTIONS_PER_PAGE);
+
     renderSidebar(page);
     container.innerHTML = '';
     container.appendChild(renderJumpToQuestion());
     const start = (page - 1) * QUESTIONS_PER_PAGE;
-    const end = Math.min(start + QUESTIONS_PER_PAGE, quizDataTVD.length);
+    const end = Math.min(start + QUESTIONS_PER_PAGE, filtered.length);
     for (let i = start; i < end; i++) {
-        const q = quizDataTVD[i];
+        const q = filtered[i];
         const block = document.createElement('div');
         block.className = 'question-block';
         block.style.position = 'relative';

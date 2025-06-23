@@ -3,20 +3,31 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kiểm Tra Thực Vật Dược</title>
+    <title>Kiểm tra Giải phẫu</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div style="text-align:center; margin-bottom: 20px;">
-        <button class="reset-btn" onclick="window.location.href='index_tvd.html'">Về trang chính TVD</button>
         <button class="reset-btn" onclick="window.location.href='menu.html'">Về menu chọn môn</button>
     </div>
-    <h1>KIỂM TRA THỰC VẬT DƯỢC</h1>
+    <h1>KIỂM TRA GIẢI PHẪU (40 câu ngẫu nhiên, đều các chương)</h1>
+    <div style="text-align:center; margin-bottom: 20px;">
+        <button class="reset-btn" onclick="window.location.href='index_tvd.html'">Về trang luyện tập</button>
+        <button class="reset-btn" onclick="createNewExam()" style="margin-left:10px;">Tạo đề mới</button>
+    </div>
     <div id="main-layout">
         <aside id="sidebar"></aside>
         <div id="quiz-container"></div>
     </div>
-    <script src="quiz-data-tvd.js"></script>
+    <script src="quiz-data-giaiphau.js"></script>
+    <script>
+        function createNewExam() {
+            localStorage.removeItem('quiz_exam_tvd_indexes_v1');
+            localStorage.removeItem('quiz_exam_tvd_shuffled_options_v1');
+            localStorage.removeItem('quiz_exam_tvd_answers_v1');
+            window.location.reload();
+        }
+    </script>
     <script src="exam_tvd.js"></script>
 </body>
 </html>
