@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz Giải Phẫu</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2em; }
+    .question { font-weight: bold; }
+    .options { list-style: none; padding: 0; }
+    .options li { margin: 0.5em 0; }
+    .result { font-size: 1.2em; color: green; }
+    button { margin-top: 1em; }
+  </style>
+</head>
+<body>
+  <div id="quiz-container"></div>
+  <script src="./quiz-data-giaiphau.js"></script>
+  <script>
+    // Lấy chương đầu tiên, bạn có thể thay đổi index để chọn chương khác
+    const questions = window.quizData[0].questions;
+    let current = 0;
+    let answers = [];
+
+    function renderQuestion() {
+      const q = questions[current];
+      const container = document.getElementById('quiz-container');
+      if (!q) return;
+      container.innerHTML = `
+        <div class="question">Câu ${current + 1}: ${q.question}</div>
+        <ul class="options">
+          ${["a", "b", "c", "d"].map(opt => `
+            <li>
+              <label>
+                <input type="radio" name="answer" value="${opt.toUpperCase()}" ${answers[current] === opt.toUpperCase() ? "checked" : ""}>
+                ${q["option_" + opt]}
+              </label>
+            </li>
+          `).join('')}
+        </ul>
+        <button id="next-btn" disabled>Tiếp theo</button>
+      `;
+      // Enable button if answered
+      const radios = container.querySelectorAll('input[type=radio]');
+      radios.forEach(radio => {
+        radio.addEventListener('change', function() {
+          answers[current] = this.value;
+          document.getElementById('next-btn').disabled = false;
+        });
+      });
+      if (answers[current]) document.getElementById('next-btn').disabled = false;
+      document.getElementById('next-btn').onclick = nextQuestion;
+    }
+
+    function nextQuestion() {
+      if (current < questions.length - 1) {
+        current++;
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      const container = document.getElementById('quiz-container');
+      let score = 0;
+      questions.forEach((q, idx) => {
+        if (answers[idx] === q.answer) score++;
+      });
+      container.innerHTML = `
+        <div class="result">Kết quả: ${score} / ${questions.length}</div>
+        <button onclick="restartQuiz()">Làm lại</button>
+      `;
+    }
+
+    function restartQuiz() {
+      current = 0;
+      answers = [];
+      renderQuestion();
+    }
+
+    renderQuestion();
+  </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chọn Môn Học</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .menu-container {
+            max-width: 500px;
+            margin: 60px auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+            padding: 40px 24px 32px 24px;
+            text-align: center;
+        }
+        .menu-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 32px;
+        }
+        .subject-btn {
+            display: block;
+            width: 100%;
+            margin: 18px 0;
+            padding: 18px 0;
+            font-size: 1.25rem;
+            border-radius: 8px;
+            border: none;
+            background: #007bff;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .subject-btn:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <div class="menu-title">Chọn Môn Học</div>
+        <button class="subject-btn" onclick="window.location.href='index.html'">Tiếng Anh</button>
+        <button class="subject-btn" onclick="window.location.href='index2.html'">Hóa Học</button>
+        <button class="subject-btn" onclick="window.location.href='index_tvd.html'">Giải phẫu</button>
+        <!-- Thêm các môn khác ở đây nếu có -->
+    </div>
+</body>
+</html>
