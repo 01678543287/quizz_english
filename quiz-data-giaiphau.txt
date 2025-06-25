@@ -73,7 +73,7 @@ window.quizData = [
                 "option_b": "Khoang dưới màng cứng.",
                 "option_c": "Khoang dưới nhện.",
                 "option_d": "Giữa màng mềm và nhu mô não.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 9,
@@ -109,7 +109,7 @@ window.quizData = [
                 "option_b": "Củ não sinh tư.",
                 "option_c": "Hành não.",
                 "option_d": "Tùy gai.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 13,
@@ -118,7 +118,7 @@ window.quizData = [
                 "option_b": "Phần giao cảm có trung khu là hạch trước sống hoặc cạnh sống.",
                 "option_c": "Bao gồm 2 phần hoạt động đối lập nhau: thần kinh giao cảm và đối giao cảm.",
                 "option_d": "Là hệ thần kinh điều khiển bởi võ não, chi phối cho tạng, tuyến và mạch máu.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 14,
@@ -154,7 +154,7 @@ window.quizData = [
                 "option_b": "Chỉ có chức năng phản xạ, không có chức năng dẫn truyền và chức năng dinh dưỡng.",
                 "option_c": "Chỉ có chức năng phản xạ và chức năng dẫn truyền không có chức năng dinh dưỡng.",
                 "option_d": "Chức năng phản xạ, chức năng dẫn truyền, chức năng dinh dưỡng và chức năng vận động.",
-                "answer": "A"
+                "answer": "C"
             },
             {
                 "id": 18,
@@ -406,7 +406,7 @@ window.quizData = [
                 "option_b": "Nơron chỉ phát xung động khi chịu kích thích từ môi trường ngoài.",
                 "option_c": "Nơron có ngưỡng kích thích cao.",
                 "option_d": "Nơron có khả năng đáp ứng với các kích thích có tần số thấp.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 46,
@@ -433,7 +433,7 @@ window.quizData = [
                 "option_b": "Nhận cảm giác và chi phối vận động nửa người đối bên.",
                 "option_c": "Nhận cảm giác đối bên, chi phối vận động nửa người cùng bên.",
                 "option_d": "Nhận cảm giác cùng bên, chi phối vận động nửa người đối bên.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 49,
@@ -735,7 +735,7 @@ window.quizData = [
                 "option_b": "Hai đầu sau và trước bám vào xương ức và đốt sống.",
                 "option_c": "Đầu sau bám vào cột sống, đầu trước bám vào xương ức.",
                 "option_d": "Đầu sau bám vào đốt sống ngực, đầu trước bám vào xương ức.",
-                "answer": "D"
+                "answer": "C"
             },
             {
                 "id": 31,
@@ -789,7 +789,7 @@ window.quizData = [
                 "option_b": "Tiếp khớp với xương vai bằng một chỏm hướng ra ngoài.",
                 "option_c": "Không sờ thấy được qua da.",
                 "option_d": "Có một hõm cho cơ delta bám.",
-                "answer": "A"
+                "answer": "D"
             },
             {
                 "id": 37,
@@ -816,7 +816,7 @@ window.quizData = [
                 "option_b": "Có một mỏm gai nhô ra từ giữa mặt sau thân.",
                 "option_c": "Có một lỗ gian đốt sống nằm giữa cuống và mảnh của cung đốt sống.",
                 "option_d": "Liên kiết với các đốt sống kế cận bằng ba loại khớp.",
-                "answer": "D"
+                "answer": "C"
             },
             {
                 "id": 40,
@@ -825,7 +825,7 @@ window.quizData = [
                 "option_b": "Có một xoang nằm trong ngành hàm dưới.",
                 "option_c": "Tiếp khớp với xương thái dương tại mỏm vẹt.",
                 "option_d": "Có mỏm lồi cầu nằm giữa thân và ngành hàm dưới.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 41,
@@ -834,7 +834,7 @@ window.quizData = [
                 "option_b": "Có một chỏm tiếp khớp với lỗ bịt xương chậu.",
                 "option_c": "Có một thân hình lăng trụ tam giác",
                 "option_d": "Có hai lồi cầu ở đầu dưới tiếp khớp với xương chày và xương mác.",
-                "answer": "A"
+                "answer": "C"
             },
             {
                 "id": 42,
@@ -843,7 +843,7 @@ window.quizData = [
                 "option_b": "Do xương mu và xương ngồi hợp lại tạo nên.",
                 "option_c": "Có hình thể giống nhau giữa nam và nữ.",
                 "option_d": "Tiếp khớp với xương cùng bằng một khớp sợi.",
-                "answer": "A"
+                "answer": "C"
             },
             {
                 "id": 43,
@@ -852,7 +852,7 @@ window.quizData = [
                 "option_b": "Một bao khớp gồm ba lớp.",
                 "option_c": "Các mặt khớp được phủ sụn khớp.",
                 "option_d": "Sụn viền, sụn chêm và đĩa sống (ở một số khớp).",
-                "answer": "C"
+                "answer": "C, D"
             },
             {
                 "id": 44,
@@ -915,7 +915,7 @@ window.quizData = [
                 "option_b": "Cơ đối kháng với cơ thắt lưng - chậu.",
                 "option_c": "Cơ sâu nhất của vùng mông.",
                 "option_d": "Cơ bé nhất của vùng mông.",
-                "answer": "B"
+                "answer": "A"
             },
             {
                 "id": 51,
@@ -933,7 +933,7 @@ window.quizData = [
                 "option_b": "Cảm giác cho phần trong mu tay.",
                 "option_c": "Chi phối các cơ duỗi bàn tay và ngón tay.",
                 "option_d": "Chi phối cơ nhị đầu cánh tay.",
-                "answer": " C"
+                "answer": "B, C"
             },
             {
                 "id": 53,
@@ -969,7 +969,7 @@ window.quizData = [
                 "option_b": "Thắt lưng 2.",
                 "option_c": "Cùng 1.",
                 "option_d": "Cùng 2.",
-                "answer": "C"
+                "answer": "C, D"
             },
             {
                 "id": 57,
@@ -978,7 +978,7 @@ window.quizData = [
                 "option_b": "Thắt lưng 2.",
                 "option_c": "Cùng 1.",
                 "option_d": "Cùng 2.",
-                "answer": "D"
+                "answer": "C, D"
             },
             {
                 "id": 58,
@@ -1005,7 +1005,7 @@ window.quizData = [
                 "option_b": "Lồi cầu trong.",
                 "option_c": "Khuyết mác.",
                 "option_d": "Lồi củ chày.",
-                "answer": "C"
+                "answer": "D"
             },
             {
                 "id": 61,
@@ -1110,7 +1110,7 @@ window.quizData = [
                 "option_b": "Bên trái cột sống.",
                 "option_c": "Phía trước cột sống.",
                 "option_d": "Áp sát cột sống.",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 10,
@@ -1155,7 +1155,7 @@ window.quizData = [
                 "option_b": "Ông tuyến dưới hàm đổ vào mặt lưng lưỡi.",
                 "option_c": "Ông tuyến mang tai đổ vào ổ miệng chính thức.",
                 "option_d": "Tuyến dưới lưỡi có ống tuyến đổ vào cục dưới lưỡi.",
-                "answer": "A"
+                "answer": "D"
             },
             {
                 "id": 15,
@@ -1191,7 +1191,7 @@ window.quizData = [
                 "option_b": "Đi qua ngực ở sau tâm nhĩ trái.",
                 "option_c": "Được lót bằng thượng mô trụ đơn.",
                 "option_d": "Đi qua cổ ở giữa hai động mạch cảnh trong.",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 19,
@@ -1200,7 +1200,7 @@ window.quizData = [
                 "option_b": "Liên quan sau với đầu tụy và thận phải.",
                 "option_c": "Có lớp cơ gồm hai tầng: tầng dọc và tầng vòng.",
                 "option_d": "Được cấp máu bằng các nhánh của động mạch mạc treo tràng trên.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 20,
@@ -1227,7 +1227,7 @@ window.quizData = [
                 "option_b": "Ba lớp: hai lớp cơ vòng kẹp giữa là lớp cơ dọc.",
                 "option_c": "Ba lớp: cơ dọc, cơ vòng và cơ chéo.",
                 "option_d": "Ba lớp: cơ dọc, cơ chéo, cơ vòng.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 23,
@@ -1308,7 +1308,7 @@ window.quizData = [
                 "option_b": "Có thể đi động.",
                 "option_c": "Bị ống mật chủ xuyên qua.",
                 "option_d": "Cùng với hành tá tràng tạo nên một khối có liên quan chung.",
-                "answer": "A"
+                "answer": "C"
             },
             {
                 "id": 32,
@@ -1317,7 +1317,7 @@ window.quizData = [
                 "option_b": "Phần lên.",
                 "option_c": "Phần ngang.",
                 "option_d": "Hành tá tràng.",
-                "answer": "D"
+                "answer": "A"
             },
             {
                 "id": 33,
@@ -1353,7 +1353,7 @@ window.quizData = [
                 "option_b": "Thân tụy.",
                 "option_c": "Đầu tụy và thân tụy.",
                 "option_d": "Thân tụy và đuôi tụy.",
-                "answer": "C"
+                "answer": "A"
             },
             {
                 "id": 37,
@@ -1389,7 +1389,7 @@ window.quizData = [
                 "option_b": "Thành bụng trước.",
                 "option_c": "Manh tràng.",
                 "option_d": "Hồi tràng.",
-                "answer": "C"
+                "answer": "D"
             },
             {
                 "id": 41,
@@ -1398,7 +1398,7 @@ window.quizData = [
                 "option_b": "Đốt sống ngực XI.",
                 "option_c": "Đốt sống ngực XII.",
                 "option_d": "Đốt sống thắt lưng I.",
-                "answer": "B"
+                "answer": "A"
             },
             {
                 "id": 42,
@@ -1479,7 +1479,7 @@ window.quizData = [
                 "option_b": "Rốn lách nằm ở mặt dạ dày.",
                 "option_c": "Lách có 2 đầu: đầu trên và đầu dưới.",
                 "option_d": "Lách nằm sau phúc mạc.",
-                "answer": "C"
+                "answer": "B"
             },
             {
                 "id": 51,
@@ -1497,7 +1497,7 @@ window.quizData = [
                 "option_b": "Động mạch gan phải.",
                 "option_c": "Động mạch gan riêng.",
                 "option_d": "Động mạch gan chung.",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 53,
@@ -1515,7 +1515,7 @@ window.quizData = [
                 "option_b": "Động mạch gan, tĩnh mạch gan, ống mật.",
                 "option_c": "Động mạch gan, tĩnh mạch gan. tĩnh mạch cửa, ống mật.",
                 "option_d": "Tất cả đều sai.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 55,
@@ -1533,7 +1533,7 @@ window.quizData = [
                 "option_b": "Tĩnh mạch cửa và tĩnh mạch mạc treo tràng trên.",
                 "option_c": "Tĩnh mạch chủ dưới và tĩnh mạch mạc treo tràng trên.",
                 "option_d": "Tĩnh mạch lách và tĩnh mạch chủ dưới.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 57,
@@ -1569,7 +1569,7 @@ window.quizData = [
                 "option_b": "Trypsin - Amylaza - Lactaza.",
                 "option_c": "Trypsin - Amylaza - Lipaza.",
                 "option_d": "Lipaza - Erepsin - Amylaza.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 61,
@@ -1614,7 +1614,7 @@ window.quizData = [
                 "option_b": "Nước bọt được bài tiết bằng phản xạ có điều kiện và tự động.",
                 "option_c": "Chất nhày của nước bọt chỉ có tác dụng làm cho thức ăn dễ nuốt.",
                 "option_d": "Men amylase tiêu hoá cả tinh bột sống và chín.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 66,
@@ -1641,7 +1641,7 @@ window.quizData = [
                 "option_b": "Dịch tuy được điều hoà bằng cơ chế thần kinh không qua dây X.",
                 "option_c": "Secretin làm tăng bài tiết nước.",
                 "option_d": "CCK (cholecystokinin )làm giảm bài tiết men.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 69,
@@ -1650,7 +1650,7 @@ window.quizData = [
                 "option_b": "Thành phần có tác dụng tiêu hoá của dịch mật là sắc tố mật.",
                 "option_c": "Tiêu hóa chất xơ.",
                 "option_d": "Bài xuất mật được điều hoà bằng cơ chế thần kinh và thể dịch.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 70,
@@ -1668,7 +1668,7 @@ window.quizData = [
                 "option_b": "Tiêu hoá protein.",
                 "option_c": "Hoạt hoá pepsinogen thành pepsin.",
                 "option_d": "Tạo pH cho pepsin hoạt động.",
-                "answer": "B"
+                "answer": "A"
             },
             {
                 "id": 72,
@@ -1686,7 +1686,7 @@ window.quizData = [
                 "option_b": "Dịch vị.",
                 "option_c": "Dịch ruột.",
                 "option_d": "Dịch tụy.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 74,
@@ -1773,7 +1773,7 @@ window.quizData = [
                 "option_b": "Thùy dưới phổi phải.",
                 "option_c": "Thùy giữa phổi phải.",
                 "option_d": "Thùy trên phổi trái.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 9,
@@ -1791,7 +1791,7 @@ window.quizData = [
                 "option_b": "Tâm nhĩ phải và tâm thất trái.",
                 "option_c": "Tâm nhĩ trái và tâm thất trái.",
                 "option_d": "Tâm nhĩ trái và tâm thất phải.",
-                "answer": "B"
+                "answer": "A"
             },
             {
                 "id": 11,
@@ -1845,7 +1845,7 @@ window.quizData = [
                 "option_b": "Ngoại tâm mạc sợi và ngoại tâm mạc thanh mạc.",
                 "option_c": "Lá thành và lá tạng của ngoại tâm mạc thanh mạc.",
                 "option_d": "Ngoại tâm mạc và nội tâm mạc.",
-                "answer": "B"
+                "answer": "C"
             },
             {
                 "id": 17,
@@ -1872,7 +1872,7 @@ window.quizData = [
                 "option_b": "Khoang gian sườn thứ hai bờ phải xương ức.",
                 "option_c": "Khoang gian sườn thứ 5 bờ trái xương ức.",
                 "option_d": "Khoang gian sườn thứ 5 bờ phải xương ức.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 20,
@@ -1881,7 +1881,7 @@ window.quizData = [
                 "option_b": "Ngang mức khoang gian sườn thứ hai bên trái.",
                 "option_c": "Ngang mức khoang gian sườn thứ năm bên phải.",
                 "option_d": "Ngang mức khoang gian sườn thứ năm bên trái.",
-                "answer": "B"
+                "answer": "D"
             },
             {
                 "id": 21,
@@ -1908,7 +1908,7 @@ window.quizData = [
                 "option_b": "Khí di chuyền từ nơi có áp suất cao đến nơi có áp suất thấp.",
                 "option_c": "Quá trình trao đổi khí giữa phế nang và các tiểu phế quản thùy.",
                 "option_d": "Tất cả đều đúng.",
-                "answer": "A"
+                "answer": "B"
             },
             {
                 "id": 24,
@@ -1962,7 +1962,7 @@ window.quizData = [
                 "option_b": "Động mạch phổi.",
                 "option_c": "Tĩnh mạch phổi.",
                 "option_d": "Động mạch phế quản.",
-                "answer": "C"
+                "answer": "D"
             },
             {
                 "id": 30,
@@ -1980,7 +1980,7 @@ window.quizData = [
                 "option_b": "Thành ngực và màng phổi thành.",
                 "option_c": "Màng phổi tạng và màng phổi thành.",
                 "option_d": "Hai phần màng phổi thành.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 32,
@@ -2007,7 +2007,7 @@ window.quizData = [
                 "option_b": "Tiểu thùy phổi.",
                 "option_c": "Ông phế nang.",
                 "option_d": "Túi phế nang.",
-                "answer": "B"
+                "answer": "D"
             },
             {
                 "id": 35,
@@ -2034,7 +2034,7 @@ window.quizData = [
                 "option_b": "Mũi, miệng, hầu, thanh quản.",
                 "option_c": "Mũi, miệng, hầu, thanh quản, khí quản.",
                 "option_d": "Khí quản, thanh quản, tiểu phế quản.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 38,
@@ -2043,7 +2043,7 @@ window.quizData = [
                 "option_b": "Hệ giao cảm làm giảm hoạt động.",
                 "option_c": "Hệ giao cảm làm giãn dạ dày - ruột.",
                 "option_d": "Hệ phó giao cảm làm giãn đường dẫn khí.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 39,
@@ -2106,7 +2106,7 @@ window.quizData = [
                 "option_b": "Rãnh gian thất trước.",
                 "option_c": "Rãnh gian thất sau.",
                 "option_d": "Rãnh tận cùng.",
-                "answer": "C"
+                "answer": "B"
             },
             {
                 "id": 46,
@@ -2151,7 +2151,7 @@ window.quizData = [
                 "option_b": "Tĩnh mạch bạch huyết phải.",
                 "option_c": "TM dưới đòn.",
                 "option_d": "Tĩnh mạch bạch huyết trái, mạch bạch huyết phải.",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 51,
@@ -2340,7 +2340,7 @@ window.quizData = [
                 "option_b": "Nhóm máu AB chiếm tỷ lệ ít nhất.",
                 "option_c": "Nhóm máu O không có kháng nguyên trên bề mặt hồng cầu.",
                 "option_d": "Trong trường hợp mất máu, truyền nhóm máu O là tốt nhất.",
-                "answer": "D"
+                "answer": "C"
             },
             {
                 "id": 72,
@@ -2376,7 +2376,7 @@ window.quizData = [
                 "option_b": "Globuline.",
                 "option_c": "Fibrinogene.",
                 "option_d": "Cetone.",
-                "answer": "D"
+                "answer": ""
             }
         ]
     },
@@ -2499,7 +2499,7 @@ window.quizData = [
                 "option_b": "ADH.",
                 "option_c": "T4.",
                 "option_d": "Glucagon.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 14,
@@ -2553,7 +2553,7 @@ window.quizData = [
                 "option_b": "Chuyển hóa cơ sở ở nam lớn hơn nữ.",
                 "option_c": "Chuyển hóa cơ sở ngày cao hơn đêm.",
                 "option_d": "Nồng độ thyroxine trong giới hạn bình thường.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 20,
@@ -2562,7 +2562,7 @@ window.quizData = [
                 "option_b": "Acide béo.",
                 "option_c": "Glycerol.",
                 "option_d": "Acide pyruvic.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 21,
@@ -2616,7 +2616,7 @@ window.quizData = [
                 "option_b": "Thân nhiệt sáng sớm thấp hơn so với thân nhiệt buổi chiều.",
                 "option_c": "Ở nữ khoảng ½ sau chu kỳ sinh dục thân nhiệt cao hơn mức bình thường (0.5-1°C).",
                 "option_d": "Thân nhiệt ở mọi lúc mọi nơi trên cơ thể là 370C.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 27,
@@ -2634,7 +2634,7 @@ window.quizData = [
                 "option_b": "15%.",
                 "option_c": "20%.",
                 "option_d": "40%.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 29,
@@ -2775,7 +2775,7 @@ window.quizData = [
                 "option_b": "Âm đạo.",
                 "option_c": "Đoạn gấp của trực tràng.",
                 "option_d": "Âm hộ.",
-                "answer": "D"
+                "answer": "C"
             },
             {
                 "id": 14,
@@ -2820,7 +2820,7 @@ window.quizData = [
                 "option_b": "Môi lớn.",
                 "option_c": "Môi bé.",
                 "option_d": "Âm hộ.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 19,
@@ -2883,7 +2883,7 @@ window.quizData = [
                 "option_b": "Mềm vì chứa nước.",
                 "option_c": "Có cảm giác đau đặc biệt.",
                 "option_d": "Nặng khoảng 120 gram.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 26,
@@ -2955,7 +2955,7 @@ window.quizData = [
                 "option_b": "Ống dẫn tinh.",
                 "option_c": "Dây chằng tròn.",
                 "option_d": "Đám rối tĩnh mạch.",
-                "answer": "B"
+                "answer": "C"
             },
             {
                 "id": 34,
@@ -3015,7 +3015,7 @@ window.quizData = [
                 "option_b": "Bao bọc ngoài bao mở.",
                 "option_c": "Bao ngoài lớp mỡ quanh thận.",
                 "option_d": "Còn gọi là mạc thận.",
-                "answer": "A"
+                "answer": "B"
             },
             {
                 "id": 2,
@@ -3024,7 +3024,7 @@ window.quizData = [
                 "option_b": "Đài thận là đỉnh các tháp thận.",
                 "option_c": "Tùy thận là phần nhu mô tạo nên bởi các tháp thận.",
                 "option_d": "Vỏ thận bao gồm phần tia và phần lượn.",
-                "answer": "C"
+                "answer": "D"
             },
             {
                 "id": 3,
@@ -3069,7 +3069,7 @@ window.quizData = [
                 "option_b": "Nơi có cuống mạch máu đi vào và đi ra khỏi thận.",
                 "option_c": "Nơi có bể thận.",
                 "option_d": "a, b, c đều đúng.",
-                "answer": "D"
+                "answer": "A"
             },
             {
                 "id": 8,
@@ -3078,7 +3078,7 @@ window.quizData = [
                 "option_b": "Niệu quản.",
                 "option_c": "Niệu đạo.",
                 "option_d": "Thận.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 9,
@@ -3132,7 +3132,7 @@ window.quizData = [
                 "option_b": "Động mạch chậu chung.",
                 "option_c": "Động mạch sinh dục.",
                 "option_d": "Động mạch mạc treo tràng trên.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 15,
@@ -3177,7 +3177,7 @@ window.quizData = [
                 "option_b": "Niệu đạo.",
                 "option_c": "Bàng quang.",
                 "option_d": "Âm đạo.",
-                "answer": "A"
+                "answer": "D"
             },
             {
                 "id": 20,
@@ -3186,7 +3186,7 @@ window.quizData = [
                 "option_b": "Ở ngang bờ dưới xương sườn XI.",
                 "option_c": "Ở ngang bờ trên xương sườn XII.",
                 "option_d": "Ở ngang bờ dưới xương sườn XII.",
-                "answer": "A"
+                "answer": "B"
             },
             {
                 "id": 21,
@@ -3195,7 +3195,7 @@ window.quizData = [
                 "option_b": "Nhu mô thận và xoang thận.",
                 "option_c": "Tháp thận và nhú thận.",
                 "option_d": "Tiểu thùy vỏ và cột thận.",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 22,
@@ -3228,7 +3228,7 @@ window.quizData = [
                 "option_b": "Cảm giác mặt gan tay của hơn ba ngón tay.",
                 "option_c": "Vận động tất cả các cơ gấp cổ tay.",
                 "option_d": "Do các nhánh của bó trong và bó sau tạo nên.",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 2,
@@ -3237,7 +3237,7 @@ window.quizData = [
                 "option_b": "Vận động các cơ có tác dụng duỗi đùi và duỗi cẳng chân.",
                 "option_c": "Là nhánh lớn nhất của đám rối thắt lưng.",
                 "option_d": "Chi phối tất cả các cơ khép đùi.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 3,
@@ -3246,7 +3246,7 @@ window.quizData = [
                 "option_b": "Từ chậu hông đi xuống qua các vùng mông và đùi trước.",
                 "option_c": "Vận động các cơ duỗi cẳng chân.",
                 "option_d": "Do các rễ có nguồn gốc từ hai thần kinh thắt lưng dưới và ba thần kinh cùng trên tạo nên.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 4,
@@ -3255,7 +3255,7 @@ window.quizData = [
                 "option_b": "Nơron chỉ phát xung động khi chịu kích thích từ môi trường ngoài.",
                 "option_c": "Nơron có ngưỡng kích thích cao.",
                 "option_d": "Nơron có khả năng đáp ứng với các kích thích có tần số thấp.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 5,
@@ -3264,7 +3264,7 @@ window.quizData = [
                 "option_b": "Cảm giác không có tính đặc hiệu.",
                 "option_c": "Vỏ não là nơi phân tích, tổng hợp cho ta cảm nghĩ.",
                 "option_d": "Cảm giác có tính hệ thống - không hệ thống.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 6,
@@ -3273,7 +3273,7 @@ window.quizData = [
                 "option_b": "Vỏ não vùng thái dương cho biết cảm giác xúc giác.",
                 "option_c": "Cảm giác xúc giác ở vỏ não chi phối nửa người cùng bên.",
                 "option_d": "Vùng nào có cảm giác tinh vi thì vùng đại diện ở vỏ não nhỏ.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 7,
@@ -3282,7 +3282,7 @@ window.quizData = [
                 "option_b": "Là trung tâm của các phản xạ có điều kiện.",
                 "option_c": "Là trung tâm của nhiều phản xạ thực vật.",
                 "option_d": "Chất xám là trung tâm của phản xạ, chất trắng là các bó sợi thần kinh.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 8,
@@ -3291,7 +3291,7 @@ window.quizData = [
                 "option_b": "Huyết áp giảm, mạch nhanh.",
                 "option_c": "Hết thời gian choáng tủy mất vận động có tính tự động.",
                 "option_d": "Hết choáng tủy gây liệt mềm.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 9,
@@ -3300,7 +3300,7 @@ window.quizData = [
                 "option_b": "Nhân tiền đình có tác dụng làm tăng trương lực cơ.",
                 "option_c": "Nhóm nhân lưới ở cầu não có tác dụng ức chế truyền xuống.",
                 "option_d": "Nhóm nhân lưới ở hành não có tác dụng tăng cường truyền lên.",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 10,
@@ -3309,7 +3309,7 @@ window.quizData = [
                 "option_b": "Đồi thị là trạm dừng của mọi cảm giác và giác quan.",
                 "option_c": "Vùng dưới đồi trước là trung tâm chống lạnh.",
                 "option_d": "Vùng dưới đồi sau là trung tâm chống nóng.",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 11,
@@ -3318,7 +3318,7 @@ window.quizData = [
                 "option_b": "Tiểu não mới điều hoà phối hợp các động tác đơn giản.",
                 "option_c": "Tiểu não chi phối nửa người đối bên.",
                 "option_d": "Tổn thương tiểu não rối loạn điều hoà trương lực cơ.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 12,
@@ -3327,7 +3327,7 @@ window.quizData = [
                 "option_b": "Hệ giao cảm làm giảm hoạt động.",
                 "option_c": "Hệ giao cảm làm giãn dạ dày - ruột.",
                 "option_d": "Hệ phó giao cảm làm giãn đường dẫn khí.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 13,
@@ -3336,7 +3336,7 @@ window.quizData = [
                 "option_b": "Phản xạ điều hoà tim mạch.",
                 "option_c": "Phản xạ tiêu hoá.",
                 "option_d": "Phản xạ căng cơ.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 14,
@@ -3345,7 +3345,7 @@ window.quizData = [
                 "option_b": "Trung tâm của cảm giác đau.",
                 "option_c": "Trạm dừng của mọi cảm giác và giác quan.",
                 "option_d": "Ức chế phản xạ ho.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 15,
@@ -3354,7 +3354,7 @@ window.quizData = [
                 "option_b": "Nhận cảm giác và chi phối vận động nửa người đối bên.",
                 "option_c": "Nhận cảm giác đối bên, chi phối vận động nửa người cùng bên.",
                 "option_d": "Nhận cảm giác cùng bên, chi phối vận động nửa người đối bên.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 16,
@@ -3363,7 +3363,7 @@ window.quizData = [
                 "option_b": "Tiểu não mới làm tăng trương lực cơ.",
                 "option_c": "Tiểu não tham gia giữ thăng bằng cơ thể.",
                 "option_d": "Tiểu não cổ nhận biết ý thức.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 17,
@@ -3372,7 +3372,7 @@ window.quizData = [
                 "option_b": "Ty lạp thể.",
                 "option_c": "Bào tâm.",
                 "option_d": "Lysosome.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 18,
@@ -3381,7 +3381,7 @@ window.quizData = [
                 "option_b": "Có Nhiễm sắc thể cấu tạo bởi AND",
                 "option_c": "Màng nhân là 1 màng kép",
                 "option_d": "Tạo năng lượng chính cho tế bào.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 19,
@@ -3390,7 +3390,7 @@ window.quizData = [
                 "option_b": "Hệ thần kinh ngoại biên.",
                 "option_c": "Hệ thần kinh trung ương.",
                 "option_d": "Hệ thần kinh thực vật.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 20,
@@ -3399,7 +3399,7 @@ window.quizData = [
                 "option_b": "Phù.",
                 "option_c": "Bạch cầu thoát mạch.",
                 "option_d": "Tăng tổng hợp lipide.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 21,
@@ -3417,7 +3417,7 @@ window.quizData = [
                 "option_b": "Mô sụn",
                 "option_c": "Mô xương",
                 "option_d": "Biểu mô",
-                "answer": "D"
+                "answer": "C"
             },
             {
                 "id": 23,
@@ -3426,7 +3426,7 @@ window.quizData = [
                 "option_b": "Nhân tế bào.",
                 "option_c": "Màng tế bào.",
                 "option_d": "Bào tương.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 24,
@@ -3435,7 +3435,7 @@ window.quizData = [
                 "option_b": "Bài tiết.",
                 "option_c": "Chống đỡ cho cơ thể.",
                 "option_d": "Che phủ và bài tiết.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 25,
@@ -3444,7 +3444,7 @@ window.quizData = [
                 "option_b": "Mô sụn.",
                 "option_c": "Mô xương.",
                 "option_d": "Mô liên kết chính thức.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 26,
@@ -3453,7 +3453,7 @@ window.quizData = [
                 "option_b": "Có tính thực bào.",
                 "option_c": "Có khả năng tổng hợp protéine.",
                 "option_d": "Tạo năng lượng nhờ các không bào.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 27,
@@ -3462,7 +3462,7 @@ window.quizData = [
                 "option_b": "Nhiễm sắc thể.",
                 "option_c": "Không bào.",
                 "option_d": "Lysosome.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 28,
@@ -3471,7 +3471,7 @@ window.quizData = [
                 "option_b": "180/70 mmHg.",
                 "option_c": "130/100 mmHg.",
                 "option_d": "120/70 mmHg.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 29,
@@ -3480,7 +3480,7 @@ window.quizData = [
                 "option_b": "Van 2 lá đóng lại.",
                 "option_c": "Van nhĩ thất cùng đóng lại.",
                 "option_d": "Van tổ chim đóng lại.",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 30,
@@ -3489,7 +3489,7 @@ window.quizData = [
                 "option_b": "Số năm.",
                 "option_c": "Số cm chiều cao.",
                 "option_d": "Số cm chiều cao và số năm.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 31,
@@ -3498,7 +3498,7 @@ window.quizData = [
                 "option_b": "Động mạch chủ ngực phần xuống.",
                 "option_c": "Thực quản.",
                 "option_d": "Phế quản gốc trái.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 32,
@@ -3507,7 +3507,7 @@ window.quizData = [
                 "option_b": "Động mạch chủ bụng.",
                 "option_c": "Động mạch hoành.",
                 "option_d": "Động mạch thân tạng.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 33,
@@ -3516,7 +3516,7 @@ window.quizData = [
                 "option_b": "Thân động mạch cánh tay đầu.",
                 "option_c": "Động mạch chủ ngực.",
                 "option_d": "Tùy theo cơ thể của mỗi người.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 34,
@@ -3525,7 +3525,7 @@ window.quizData = [
                 "option_b": "Tĩnh mạch mạc treo tràng trên.",
                 "option_c": "Tĩnh mạch lách.",
                 "option_d": "Tĩnh mạch mạc treo tràng dưới.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 35,
@@ -3534,7 +3534,7 @@ window.quizData = [
                 "option_b": "Nội tâm mạc.",
                 "option_c": "Ngoại tâm mạc.",
                 "option_d": "Lớp cơ.",
-                "answer": "D"
+                "answer": "A"
             },
             {
                 "id": 36,
@@ -3543,7 +3543,7 @@ window.quizData = [
                 "option_b": "Giảm sức co bóp của tim.",
                 "option_c": "Giảm khối lượng tuần hoàn.",
                 "option_d": "Tăng hoạt động giao cảm.",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 37,
@@ -3552,7 +3552,7 @@ window.quizData = [
                 "option_b": "Tĩnh mạch bạch huyết phải.",
                 "option_c": "Tĩnh mạch dưới đòn.",
                 "option_d": "Tĩnh mạch bạch huyết trái, mạch bạch huyết phải.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 38,
@@ -3561,7 +3561,7 @@ window.quizData = [
                 "option_b": "100/60 mmHg.",
                 "option_c": "120/90 mmHg.",
                 "option_d": "15 mmHg.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 39,
@@ -3570,7 +3570,7 @@ window.quizData = [
                 "option_b": "Van động mạch phổi đóng lại.",
                 "option_c": "Van nhĩ thất cùng đóng lại.",
                 "option_d": "Van tổ chim cùng đóng lại.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 40,
@@ -3579,7 +3579,7 @@ window.quizData = [
                 "option_b": "Không thể đo huyết áp ở hệ thống tĩnh mạch được.",
                 "option_c": "Huyết áp tâm thu xảy ra lúc tim giãn ra nghĩ.",
                 "option_d": "Huyết áp là áp lực của máu tác động vào thành mạch.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 41,
@@ -3588,7 +3588,7 @@ window.quizData = [
                 "option_b": "Cơ chế tiết dịch.",
                 "option_c": "Ảnh hưởng của vỏ đại não.",
                 "option_d": "Cơ chế vật lý.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 42,
@@ -3597,7 +3597,7 @@ window.quizData = [
                 "option_b": "Làm tăng nhịp tim.",
                 "option_c": "Làm giãn mạch.",
                 "option_d": "Làm tăng sức co bóp của tim.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 43,
@@ -3606,7 +3606,7 @@ window.quizData = [
                 "option_b": "Làm giảm nhịp tim.",
                 "option_c": "Làm giãn mạch.",
                 "option_d": "Làm giảm sức co bóp của tim.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 44,
@@ -3615,7 +3615,7 @@ window.quizData = [
                 "option_b": "Hiện tượng mạch đập không thấy trên tĩnh mạch.",
                 "option_c": "Mạch đập là do máu chảy đến nơi bắt mạch.",
                 "option_d": "Là do làn sóng rung động phát sinh ở động mạch chủ dưới ảnh hưởng của tâm thất thu lan truyền tới.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 45,
@@ -3624,7 +3624,7 @@ window.quizData = [
                 "option_b": "Nút Aschoff Tawara.",
                 "option_c": "Bó His.",
                 "option_d": "Mạng lưới Purkinje.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 46,
@@ -3633,7 +3633,7 @@ window.quizData = [
                 "option_b": "Tĩnh mạch phổi.",
                 "option_c": "Tĩnh mạch chủ.",
                 "option_d": "Động mạch phổi.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 47,
@@ -3642,7 +3642,7 @@ window.quizData = [
                 "option_b": "Tĩnh mạch phổi.",
                 "option_c": "Tĩnh mạch chủ.",
                 "option_d": "Động mạch phổi.",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 48,
@@ -3651,7 +3651,7 @@ window.quizData = [
                 "option_b": "Giai đoạn thành lập fibrinogène.",
                 "option_c": "Giai đoạn thành lập fibrine.",
                 "option_d": "Giai đoạn thành lập thrombine.",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 49,
@@ -3660,7 +3660,7 @@ window.quizData = [
                 "option_b": "Bệnh nhiễm trùng cấp tính.",
                 "option_c": "Bệnh dị ứng.",
                 "option_d": "Bệnh nhiễm hóa chất.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 50,
@@ -3669,7 +3669,7 @@ window.quizData = [
                 "option_b": "200.000-400.000/mm³",
                 "option_c": "900.000-1.200.000/mm³",
                 "option_d": "3.800.000-4.200.000/mm³",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 51,
@@ -3678,7 +3678,7 @@ window.quizData = [
                 "option_b": "200.000/mm³",
                 "option_c": "8.000/mm³",
                 "option_d": "6.000/mm³",
-                "answer": "A"
+                "answer": "B"
             },
             {
                 "id": 52,
@@ -3687,7 +3687,7 @@ window.quizData = [
                 "option_b": "Fibrinogène",
                 "option_c": "Thromboplastine",
                 "option_d": "Ca++",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 53,
@@ -3696,7 +3696,7 @@ window.quizData = [
                 "option_b": "200.000/mm³",
                 "option_c": "3.800.000/mm3",
                 "option_d": "500/mm³",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 54,
@@ -3705,7 +3705,7 @@ window.quizData = [
                 "option_b": "Prothrombine.",
                 "option_c": "Sérotonine.",
                 "option_d": "Fibrine.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 55,
@@ -3714,7 +3714,7 @@ window.quizData = [
                 "option_b": "TC",
                 "option_c": "Hb",
                 "option_d": "VS",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 56,
@@ -3723,7 +3723,7 @@ window.quizData = [
                 "option_b": "TC",
                 "option_c": "Нb",
                 "option_d": "VS",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 57,
@@ -3732,7 +3732,7 @@ window.quizData = [
                 "option_b": "Bệnh nhiễm trùng cấp tính.",
                 "option_c": "Bệnh nhiễm trùng mạn tính.",
                 "option_d": "Bệnh nhiễm hóa chất.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 58,
@@ -3741,7 +3741,7 @@ window.quizData = [
                 "option_b": "Nhóm máu AB chiếm tỷ lệ ít nhất.",
                 "option_c": "Nhóm máu O không có kháng nguyên trên bề mặt hồng cầu.",
                 "option_d": "Trong trường hợp mất máu, truyền nhóm máu O là tốt nhất.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 59,
@@ -3750,7 +3750,7 @@ window.quizData = [
                 "option_b": "Hồng cầu chứa Hb.",
                 "option_c": "Số lượng hồng cầu ở trẻ sơ sinh nhiều hơn ở người lớn.",
                 "option_d": "Chức năng chủ yếu của hồng cầu là cầm máu.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 60,
@@ -3759,7 +3759,7 @@ window.quizData = [
                 "option_b": "120 ngày",
                 "option_c": "160 ngày",
                 "option_d": "40 ngày",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 61,
@@ -3768,7 +3768,7 @@ window.quizData = [
                 "option_b": "Các chất hữu cơ",
                 "option_c": "Các chất vô cơ",
                 "option_d": "Dưỡng trấp",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 62,
@@ -3777,7 +3777,7 @@ window.quizData = [
                 "option_b": "Globuline.",
                 "option_c": "Fibrinogène.",
                 "option_d": "Cetone.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 63,
@@ -3786,7 +3786,7 @@ window.quizData = [
                 "option_b": "Hydrocortisone.",
                 "option_c": "Glucagon.",
                 "option_d": "Paratocmone.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 64,
@@ -3795,7 +3795,7 @@ window.quizData = [
                 "option_b": "Paratocmone.",
                 "option_c": "Hydrocortisone..",
                 "option_d": "ACTH.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 65,
@@ -3804,7 +3804,7 @@ window.quizData = [
                 "option_b": "Tiểu não.",
                 "option_c": "Vùng dưới đồi.",
                 "option_d": "Hành não.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 66,
@@ -3813,7 +3813,7 @@ window.quizData = [
                 "option_b": "STH",
                 "option_c": "DOC",
                 "option_d": "ADH",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 67,
@@ -3822,7 +3822,7 @@ window.quizData = [
                 "option_b": "ACTH.",
                 "option_c": "Androgène.",
                 "option_d": "Aldosterone.",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 68,
@@ -3831,7 +3831,7 @@ window.quizData = [
                 "option_b": "Tuyến giáp.",
                 "option_c": "Tuyến tụy.",
                 "option_d": "Tuyến cận giáp.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 69,
@@ -3840,7 +3840,7 @@ window.quizData = [
                 "option_b": "Buồng trứng.",
                 "option_c": "Tuyến bartholin.",
                 "option_d": "Tuyến yên.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 70,
@@ -3849,7 +3849,7 @@ window.quizData = [
                 "option_b": "Hydrocortisone.",
                 "option_c": "Cả Aldosterone, Hydrocortisone.",
                 "option_d": "Glucagon.",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 71,
@@ -3858,7 +3858,7 @@ window.quizData = [
                 "option_b": "Hydrocortisone.",
                 "option_c": "Cả Aldosterone, Hydrocortisone.",
                 "option_d": "Thyroxine.",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 72,
@@ -3867,7 +3867,7 @@ window.quizData = [
                 "option_b": "Hydrocortisone.",
                 "option_c": "Androgène.",
                 "option_d": "Cả hydrocortisone và androgène đều chịu ảnh hưởng.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 73,
@@ -3876,7 +3876,7 @@ window.quizData = [
                 "option_b": "Tuyến cận giáp.",
                 "option_c": "Tuyến thượng thận.",
                 "option_d": "Tinh hoàn.",
-                "answer": "B"
+                "answer": "D"
             },
             {
                 "id": 74,
@@ -3885,7 +3885,7 @@ window.quizData = [
                 "option_b": "Hydrocortisone.",
                 "option_c": "Androgène.",
                 "option_d": "Thyroxine.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 75,
@@ -3894,7 +3894,7 @@ window.quizData = [
                 "option_b": "ADH.",
                 "option_c": "T4.",
                 "option_d": "Glucagon.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 76,
@@ -3903,7 +3903,7 @@ window.quizData = [
                 "option_b": "ADH.",
                 "option_c": "T4.",
                 "option_d": "Hydrocortisone.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 77,
@@ -3912,7 +3912,7 @@ window.quizData = [
                 "option_b": "Testosterone.",
                 "option_c": "Oxytocine.",
                 "option_d": "Hydrocortisone.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 78,
@@ -3921,7 +3921,7 @@ window.quizData = [
                 "option_b": "Tuyến giáp.",
                 "option_c": "Tuyến thượng thận.",
                 "option_d": "Tuyến yên.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 79,
@@ -3930,7 +3930,7 @@ window.quizData = [
                 "option_b": "Oxytocine.",
                 "option_c": "Progesterone.",
                 "option_d": "Testosterone.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 80,
@@ -3939,7 +3939,7 @@ window.quizData = [
                 "option_b": "4 Kcal.",
                 "option_c": "9 Kcal.",
                 "option_d": "12 Kcal.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 81,
@@ -3948,7 +3948,7 @@ window.quizData = [
                 "option_b": "Chuyển hóa cơ sở ở nam lớn hơn nữ.",
                 "option_c": "Chuyển hóa cơ sở ngày cao hơn đêm.",
                 "option_d": "Nồng độ thyroxine trong giới hạn bình thường.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 82,
@@ -3957,7 +3957,7 @@ window.quizData = [
                 "option_b": "Acide béo.",
                 "option_c": "Glycérol.",
                 "option_d": "Acide pyruvic.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 83,
@@ -3966,7 +3966,7 @@ window.quizData = [
                 "option_b": "Gầy do bệnh basedow.",
                 "option_c": "Gầy do tăng sử dụng.",
                 "option_d": "Gầy do suy tuyến giáp.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 84,
@@ -3975,7 +3975,7 @@ window.quizData = [
                 "option_b": "15%",
                 "option_c": "20%",
                 "option_d": "40%",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 85,
@@ -3984,7 +3984,7 @@ window.quizData = [
                 "option_b": "Glucose.",
                 "option_c": "Acide béo.",
                 "option_d": "Glycérol.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 86,
@@ -3993,7 +3993,7 @@ window.quizData = [
                 "option_b": "Glucose.",
                 "option_c": "Acide béo.",
                 "option_d": "Glycérol.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 87,
@@ -4002,7 +4002,7 @@ window.quizData = [
                 "option_b": "CI-",
                 "option_c": "HCO3-",
                 "option_d": "K+",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 88,
@@ -4011,7 +4011,7 @@ window.quizData = [
                 "option_b": "Thân nhiệt sáng sớm thấp hơn so với thân nhiệt buổi chiều.",
                 "option_c": "Ở nữ khoảng 1/2 sau chu kỳ sinh dục thân nhiệt cao hơn mức bình thường(0.5-1°C).",
                 "option_d": "Thân nhiệt ở mọi lúc mọi nơi trên cơ thể là 37°C.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 89,
@@ -4020,7 +4020,7 @@ window.quizData = [
                 "option_b": "4 Kcal.",
                 "option_c": "9 Kcal.",
                 "option_d": "12 Kcal.",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 90,
@@ -4029,7 +4029,7 @@ window.quizData = [
                 "option_b": "15%",
                 "option_c": "20%",
                 "option_d": "40%",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 91,
@@ -4038,7 +4038,7 @@ window.quizData = [
                 "option_b": "Ngày 07/12",
                 "option_c": "Ngày 11/12",
                 "option_d": "Ngày 14/12",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 92,
@@ -4047,7 +4047,7 @@ window.quizData = [
                 "option_b": "Tầng sinh môn",
                 "option_c": "Cổ răng hàm trên 7 - 8",
                 "option_d": "Tiền đình",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 93,
@@ -4056,7 +4056,7 @@ window.quizData = [
                 "option_b": "Mềm vì chứa nước",
                 "option_c": "Có cảm giác đau đặc biệt",
                 "option_d": "Nặng khoảng 120 gram",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 94,
@@ -4065,7 +4065,7 @@ window.quizData = [
                 "option_b": "Có kinh nên trứng mới rụng.",
                 "option_c": "Mất kinh có nghĩa là chắc chắn có thai.",
                 "option_d": "Không có kinh vẫn dễ có thai.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 95,
@@ -4074,7 +4074,7 @@ window.quizData = [
                 "option_b": "Túi tỉnh.",
                 "option_c": "Mào tinh hoàn.",
                 "option_d": "Ông sinh tinh.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 96,
@@ -4083,7 +4083,7 @@ window.quizData = [
                 "option_b": "Tuyến hành niệu đạo",
                 "option_c": "Tuyến Cowper",
                 "option_d": "Tuyến tiền liệt",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 97,
@@ -4092,7 +4092,7 @@ window.quizData = [
                 "option_b": "Có kinh nên trứng không rụng.",
                 "option_c": "Không có kinh vẫn có thể có thai.",
                 "option_d": "Trứng không rụng nên không có kinh.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 98,
@@ -4101,7 +4101,7 @@ window.quizData = [
                 "option_b": "Hạch trên đòn.",
                 "option_c": "Hạch cổ.",
                 "option_d": "Hạch dưới đòn.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 99,
@@ -4110,7 +4110,7 @@ window.quizData = [
                 "option_b": "Xương mu.",
                 "option_c": "Xương cùng.",
                 "option_d": "Ụ ngồi.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 100,
@@ -4119,7 +4119,7 @@ window.quizData = [
                 "option_b": "Lúc phôi thai tinh hoàn nằm hai bên cột sống thắt lưng.",
                 "option_c": "Có chức năng ngoại tiết: sản xuất tinh trùng.",
                 "option_d": "Có chức năng nội tiết: sản xuất kích dục tố nam androgene.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 101,
@@ -4128,7 +4128,7 @@ window.quizData = [
                 "option_b": "Giai đoạn bài tiết.",
                 "option_c": "Giai đoạn hành kinh.",
                 "option_d": "Giai đoạn tăng sinh và giai đoạn bài tiết.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 102,
@@ -4137,7 +4137,7 @@ window.quizData = [
                 "option_b": "LH: Duy trì hoàng thể.",
                 "option_c": "FSH: Giúp nang trứng phát triển.",
                 "option_d": "FSH: Gây hành kinh.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 103,
@@ -4146,7 +4146,7 @@ window.quizData = [
                 "option_b": "FSH: Kích thích nang trùng sản xuất Testosterone.",
                 "option_c": "LH: Kích thích hoàng thể sản xuất estrogène.",
                 "option_d": "FSH: Kích thích nang trùng sản xuất Testosterone và estrogène.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 104,
@@ -4155,7 +4155,7 @@ window.quizData = [
                 "option_b": "Tiền đình.",
                 "option_c": "Các tạng cương.",
                 "option_d": "Tầng sinh môn.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 105,
@@ -4164,7 +4164,7 @@ window.quizData = [
                 "option_b": "Tiền đình.",
                 "option_c": "Môi lớn, môi bé.",
                 "option_d": "Tầng sinh môn.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 106,
@@ -4173,7 +4173,7 @@ window.quizData = [
                 "option_b": "Đoạn eo.",
                 "option_c": "Bóng vòi và loa vòi.",
                 "option_d": "Đoạn nhẫn.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 107,
@@ -4182,7 +4182,7 @@ window.quizData = [
                 "option_b": "Thân tử cung.",
                 "option_c": "Cổ tử cung.",
                 "option_d": "Eo tử cung.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 108,
@@ -4200,7 +4200,7 @@ window.quizData = [
                 "option_b": "Âm đạo.",
                 "option_c": "Đoạn gấp của trực tràng.",
                 "option_d": "Âm hộ.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 110,
@@ -4209,7 +4209,7 @@ window.quizData = [
                 "option_b": "Vùng dưới đồi.",
                 "option_c": "Thùy trước tuyến yên.",
                 "option_d": "Buồng trứng.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 111,
@@ -4218,7 +4218,7 @@ window.quizData = [
                 "option_b": "Thông với âm đạo qua lỗ ngoài",
                 "option_c": "Thông với vòi trứng ở 2 gốc",
                 "option_d": "Nằm dưới buồng thân tử cung",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 112,
@@ -4227,7 +4227,7 @@ window.quizData = [
                 "option_b": "Dài khoảng 16cm.",
                 "option_c": "Rất co giãn.",
                 "option_d": "Thành trong của âm đạo rất trơn láng.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 113,
@@ -4236,7 +4236,7 @@ window.quizData = [
                 "option_b": "Giúp trứng chín và rụng.",
                 "option_c": "Giúp hoàng thể sản xuất progesterone.",
                 "option_d": "Duy trì hoàng thể.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 114,
@@ -4245,7 +4245,7 @@ window.quizData = [
                 "option_b": "Làm tăng sinh niêm mạc tử cung.",
                 "option_c": "Làm tử cung co bóp.",
                 "option_d": "Làm tăng thân nhiệt.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 115,
@@ -4254,7 +4254,7 @@ window.quizData = [
                 "option_b": "Nằm ở sau xương mu và trước trực tràng.",
                 "option_c": "Nằm ở dưới cổ bàng quang.",
                 "option_d": "Chỉ có thể thăm dò tuyến tiền liệt ở phụ nữ đã có chồng.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 116,
@@ -4263,7 +4263,7 @@ window.quizData = [
                 "option_b": "Vật xốp.",
                 "option_c": "Cả vật hang và vật xốp.",
                 "option_d": "Không nằm trong vật hang và vật xốp.",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 117,
@@ -4272,7 +4272,7 @@ window.quizData = [
                 "option_b": "Estron.",
                 "option_c": "Estriol.",
                 "option_d": "Cả Estron và Estriol.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 118,
@@ -4290,7 +4290,7 @@ window.quizData = [
                 "option_b": "Estrogène là kích tố giúp biến đổi phát triển tuyến vú thành dạng vẻ của bộ ngực người nữ trưởng thành.",
                 "option_c": "Progesterone là kích tố giúp biến đổi phát triển tuyến vú thành cơ quan sản xuất sữa.",
                 "option_d": "Oxytocine là kích tố giúp các cơ ở ống dẫn sữa co bóp đưa sữa ra ngoài.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 120,
@@ -4299,7 +4299,7 @@ window.quizData = [
                 "option_b": "Ngưng phóng thích trứng.",
                 "option_c": "Chấm dứt chức năng sinh sản.",
                 "option_d": "Cũng là thời kỳ tắt dục ở nữ giới.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 121,
@@ -4308,7 +4308,7 @@ window.quizData = [
                 "option_b": "Ông dẫn tinh.",
                 "option_c": "Dây chằng tròn.",
                 "option_d": "Đám rối tĩnh mạch.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 122,
@@ -4317,7 +4317,7 @@ window.quizData = [
                 "option_b": "Dây chằng rộng.",
                 "option_c": "Dây chằng tròn.",
                 "option_d": "Âm vật.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 123,
@@ -4326,7 +4326,7 @@ window.quizData = [
                 "option_b": "Xoang trán và xoang bướm,",
                 "option_c": "Xoang hàm trên,",
                 "option_d": "Xoang trán, xoang sàng, xoang hàm trên.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 124,
@@ -4335,7 +4335,7 @@ window.quizData = [
                 "option_b": "Vách ngăn mũi.",
                 "option_c": "Xương hàm trên và xương lệ.",
                 "option_d": "Xương sàng và xương bướm.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 125,
@@ -4344,7 +4344,7 @@ window.quizData = [
                 "option_b": "Bao bọc ngoài bao mở.",
                 "option_c": "Bao ngoài lớp mỡ quanh thận.",
                 "option_d": "Còn gọi là mạc thận.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 126,
@@ -4353,7 +4353,7 @@ window.quizData = [
                 "option_b": "Đài thận là đỉnh các tháp thận.",
                 "option_c": "Tùy thận là phần nhu mô tạo nên bởi các tháp thận.",
                 "option_d": "Vỏ thận bao gồm phần tia và phần lượn.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 127,
@@ -4362,7 +4362,7 @@ window.quizData = [
                 "option_b": "Phần lượn của vỏ thận.",
                 "option_c": "Tùy thận.",
                 "option_d": "Cột thận và tủy thận.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 128,
@@ -4380,7 +4380,7 @@ window.quizData = [
                 "option_b": "Ở hành dương vật",
                 "option_c": "Đi qua hoành niệu dục",
                 "option_d": "Ở trong tiền liệt tuyến",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 130,
@@ -4389,7 +4389,7 @@ window.quizData = [
                 "option_b": "Phần trên bờ ngoài thận.",
                 "option_c": "Phần trên bờ trong thận.",
                 "option_d": "Nằm ở giữa thận.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 131,
@@ -4398,7 +4398,7 @@ window.quizData = [
                 "option_b": "Nơi có cuống mạch máu đi vào và đi ra khỏi thận.",
                 "option_c": "Nơi có bể thận.",
                 "option_d": "Nơi có đài thận",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 132,
@@ -4407,7 +4407,7 @@ window.quizData = [
                 "option_b": "Niệu quản.",
                 "option_c": "Niệu đạo.",
                 "option_d": "Thận.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 133,
@@ -4416,7 +4416,7 @@ window.quizData = [
                 "option_b": "Có thể dạng, gấp và duỗi nhờ cơ nhị đầu.",
                 "option_c": "Là một trong các khớp mà hố khớp có sụn viền.",
                 "option_d": "Có bao khớp chặt ở mọi phía.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 134,
@@ -4425,7 +4425,7 @@ window.quizData = [
                 "option_b": "Cấp máu chủ yếu cho phần mền đầu mặt cổ.",
                 "option_c": "Cho các nhánh bên ở cổ.",
                 "option_d": "Không tham gia vào đa giác Willis.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 135,
@@ -4434,7 +4434,7 @@ window.quizData = [
                 "option_b": "Dây chằng tử cung - buồng trứng.",
                 "option_c": "Dây chằng tử cung - cùng.",
                 "option_d": "Vòi trứng.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 136,
@@ -4452,7 +4452,7 @@ window.quizData = [
                 "option_b": "Da và các tuyến sữa.",
                 "option_c": "Mô liên kết, các tuyến sữa và mạch máu.",
                 "option_d": "Các tuyến sữa và các mô mỡ.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 138,
@@ -4461,7 +4461,7 @@ window.quizData = [
                 "option_b": "Giữa hai lá phổi",
                 "option_c": "Bên phổi phải.",
                 "option_d": "Bên phổi trái.",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 139,
@@ -4470,7 +4470,7 @@ window.quizData = [
                 "option_b": "Mũi, miệng, thanh quản, thực quản",
                 "option_c": "Thực quản, phổi, miệng, mũi",
                 "option_d": "Thanh quản, thực quản, mũi, phổi",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 140,
@@ -4479,7 +4479,7 @@ window.quizData = [
                 "option_b": "3",
                 "option_c": "4",
                 "option_d": "5",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 141,
@@ -4488,7 +4488,7 @@ window.quizData = [
                 "option_b": "Amidam khẩu cái",
                 "option_c": "VA",
                 "option_d": "Amidam lưỡi",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 142,
@@ -4497,7 +4497,7 @@ window.quizData = [
                 "option_b": "Bướm",
                 "option_c": "Khẩu cái",
                 "option_d": "Chẩm",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 143,
@@ -4506,7 +4506,7 @@ window.quizData = [
                 "option_b": "Giữa khoang màng phổi",
                 "option_c": "Thấp nhất của khoang màng phổi",
                 "option_d": "Ngoài màng phổi",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 144,
@@ -4515,7 +4515,7 @@ window.quizData = [
                 "option_b": "4",
                 "option_c": "6",
                 "option_d": "8",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 145,
@@ -4524,7 +4524,7 @@ window.quizData = [
                 "option_b": "Chủ động",
                 "option_c": "Tiêu cực",
                 "option_d": "Tích cực",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 146,
@@ -4542,7 +4542,7 @@ window.quizData = [
                 "option_b": "Dạng kết hợp với Hemoglobin",
                 "option_c": "Dạng Carbamine",
                 "option_d": "Dạng HCO3",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 148,
@@ -4551,7 +4551,7 @@ window.quizData = [
                 "option_b": "Lưng hành não",
                 "option_c": "Phía trên của cầu não",
                 "option_d": "Hành não",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 149,
@@ -4560,7 +4560,7 @@ window.quizData = [
                 "option_b": "III, IV, V",
                 "option_c": "IV,V,VI",
                 "option_d": "V, VI, VII",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 150,
@@ -4569,7 +4569,7 @@ window.quizData = [
                 "option_b": "Phần hô hấp chính",
                 "option_c": "Phần thính giác",
                 "option_d": "Phần thị giác",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 151,
@@ -4578,7 +4578,7 @@ window.quizData = [
                 "option_b": "III, IV, V",
                 "option_c": "IV,V,VI",
                 "option_d": "V, VI, VII",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 152,
@@ -4587,7 +4587,7 @@ window.quizData = [
                 "option_b": "3 mặt, 2 đỉnh, 2 bờ",
                 "option_c": "2 mặt, 1 đỉnh, 3 bờ",
                 "option_d": "3 mặt, 1 đỉnh, 3 bờ",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 153,
@@ -4596,7 +4596,7 @@ window.quizData = [
                 "option_b": "Họng miệng, thanh quản, phế quản",
                 "option_c": "Họng mũi, miệng, phổi",
                 "option_d": "Họng miệng, thanh quản, phổi",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 154,
@@ -4614,7 +4614,7 @@ window.quizData = [
                 "option_b": "0.3lít",
                 "option_c": "0.4lít",
                 "option_d": "0.5lít",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 156,
@@ -4623,7 +4623,7 @@ window.quizData = [
                 "option_b": "Dạng kết hợp là dạng tạo ra phân áp khí trong máu",
                 "option_c": "Dạng kết hợp là dạng vận chuyển của khí",
                 "option_d": "Dạng hòa tan và kết hợp không có liên quan với nhau",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 157,
@@ -4632,7 +4632,7 @@ window.quizData = [
                 "option_b": "Dạng hòa tan",
                 "option_c": "Dạng kết hợp với Protein",
                 "option_d": "Dạng kết hợp với Hb",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 158,
@@ -4641,7 +4641,7 @@ window.quizData = [
                 "option_b": "Vuông đơn có lông chuyển",
                 "option_c": "Trụ đơn có lông chuyển",
                 "option_d": "Lát đơn có lông chuyển",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 159,
@@ -4650,7 +4650,7 @@ window.quizData = [
                 "option_b": "90mmHg",
                 "option_c": "40mmHg",
                 "option_d": "50mmHg",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 160,
@@ -4659,7 +4659,7 @@ window.quizData = [
                 "option_b": "Trung tâm hít vào và trung tâm điều chỉnh",
                 "option_c": "Trung tâm nhận cảm hóa học",
                 "option_d": "Trung tâm điều chỉnh",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 161,
@@ -4668,7 +4668,7 @@ window.quizData = [
                 "option_b": "Glucose",
                 "option_c": "Xenlulose",
                 "option_d": "Glucid",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 162,
@@ -4677,7 +4677,7 @@ window.quizData = [
                 "option_b": "11 giờ",
                 "option_c": "15 giờ",
                 "option_d": "17 giờ",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 163,
@@ -4686,7 +4686,7 @@ window.quizData = [
                 "option_b": "5-15 giây",
                 "option_c": "10-20 giây",
                 "option_d": "15 - 25 giây",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 164,
@@ -4704,7 +4704,7 @@ window.quizData = [
                 "option_b": "Bên phải cơ hoành",
                 "option_c": "Trên cơ hoành",
                 "option_d": "Dưới cơ hoành",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 166,
@@ -4713,7 +4713,7 @@ window.quizData = [
                 "option_b": "Nối với lách bởi mạc nối vị lách",
                 "option_c": "Liên quan với phổi",
                 "option_d": "Liên quan với tuyến tụy",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 167,
@@ -4722,7 +4722,7 @@ window.quizData = [
                 "option_b": "Cơ hạ mày.",
                 "option_c": "Cơ cau mày.",
                 "option_d": "Cơ tai trước.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 168,
@@ -4731,7 +4731,7 @@ window.quizData = [
                 "option_b": "Cơ hạ mày.",
                 "option_c": "Cơ mảnh khảnh.",
                 "option_d": "Cơ hạ vách mũi.",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 169,
@@ -4740,7 +4740,7 @@ window.quizData = [
                 "option_b": "Cơ hàm móng.",
                 "option_c": "Cơ ức móng.",
                 "option_d": "Cơ ức giáp.",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 170,
@@ -4749,7 +4749,7 @@ window.quizData = [
                 "option_b": "Cơ hàm móng.",
                 "option_c": "Cơ nhị thân.",
                 "option_d": "Cơ ức giáp.",
-                "answer": "D"
+                "answer": ""
             },
             {
                 "id": 171,
@@ -4758,7 +4758,7 @@ window.quizData = [
                 "option_b": "Cơ hàm móng.",
                 "option_c": "Cơ cằm.",
                 "option_d": "Cơ ức giáp.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 172,
@@ -4776,7 +4776,7 @@ window.quizData = [
                 "option_b": "Duỗi đùi.",
                 "option_c": "Duỗi cẳng chân.",
                 "option_d": "Gấp đùi.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 174,
@@ -4785,7 +4785,7 @@ window.quizData = [
                 "option_b": "Duỗi đùi.",
                 "option_c": "Duỗi cẳng chân.",
                 "option_d": "Gấp đùi",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 175,
@@ -4794,7 +4794,7 @@ window.quizData = [
                 "option_b": "Duỗi đùi.",
                 "option_c": "Khép đùi.",
                 "option_d": "Gấp đùi.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 176,
@@ -4803,7 +4803,7 @@ window.quizData = [
                 "option_b": "Duỗi đùi.",
                 "option_c": "Duỗi cẳng tay.",
                 "option_d": "Gấp đùi.",
-                "answer": "C"
+                "answer": ""
             },
             {
                 "id": 177,
@@ -4812,7 +4812,7 @@ window.quizData = [
                 "option_b": "Duỗi đùi.",
                 "option_c": "Duỗi cẳng tay.",
                 "option_d": "Gấp đùi.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 178,
@@ -4821,7 +4821,7 @@ window.quizData = [
                 "option_b": "Cơ mãnh khảnh.",
                 "option_c": "Cơ ngang cầm.",
                 "option_d": "Cơ mút.",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 179,
@@ -4830,7 +4830,7 @@ window.quizData = [
                 "option_b": "Nhóm cơ dưới móng.",
                 "option_c": "Nhóm cơ trên móng.",
                 "option_d": "Nhóm cơ cổ bên.",
-                "answer": "B"
+                "answer": ""
             },
             {
                 "id": 180,
@@ -4839,7 +4839,7 @@ window.quizData = [
                 "option_b": "II.",
                 "option_c": "VIII.",
                 "option_d": "IX.",
-                "answer": "A"
+                "answer": ""
             },
             {
                 "id": 181,
