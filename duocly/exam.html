@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.5" />
-    <title>English Exam</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kiểm tra Dược Lý</title>
+    <link rel="stylesheet" href="../shared/style.css">
 </head>
 
 <body>
     <div style="text-align:center; margin-bottom: 20px;">
-        <button class="reset-btn" onclick="window.location.href='menu.html'">Về menu chọn môn</button>
+        <button class="reset-btn" onclick="window.location.href='../shared/menu.html'">Về menu chọn môn</button>
     </div>
-    <h1>English Exam (40 câu ngẫu nhiên)</h1>
+    <h1>KIỂM TRA DƯỢC LÝ (40 câu ngẫu nhiên)</h1>
     <div style="text-align:center; margin-bottom: 20px;">
         <button class="reset-btn" onclick="window.location.href='index.html'">Về trang luyện tập</button>
         <button class="reset-btn" onclick="createNewExam()" style="margin-left:10px;">Tạo đề mới</button>
@@ -21,12 +21,12 @@
         <aside id="sidebar"></aside>
         <div id="quiz-container"></div>
     </div>
-    <script src="quiz-data.js"></script>
+    <script src="quiz_data.js"></script>
     <script>
         function createNewExam() {
-            localStorage.removeItem('quiz_exam_indexes_v1');
-            localStorage.removeItem('quiz_exam_shuffled_options_v1');
-            localStorage.removeItem('quiz_exam_answers_v1');
+            localStorage.removeItem('quiz_exam_indexes_duocly_v1');
+            localStorage.removeItem('quiz_exam_shuffled_options_duocly_v1');
+            localStorage.removeItem('quiz_exam_answers_duocly_v1');
             window.location.reload();
         }
     </script>
