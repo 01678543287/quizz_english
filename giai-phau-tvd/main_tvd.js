@@ -170,13 +170,49 @@ function renderSidebar(selectedPage) {
                 if (idx >= start && idx < end) {
                     td_num.classList.add('selected');
                     td_ans.classList.add('selected');
+                    // Auto-scroll to first selected cell in sidebar
+                    if (idx === start) {
+                        setTimeout(() => {
+                            const sidebarEl = document.getElementById('sidebar');
+                            const firstSelectedRow = td_num.closest('tr');
+                            if (sidebarEl && firstSelectedRow) {
+                                const offsetTop = firstSelectedRow.offsetTop - sidebarEl.offsetTop;
+                                sidebarEl.scrollTo({
+                                    top: offsetTop - 100,
+                                    behavior: 'smooth'
+                                });
+                            }
+                        }, 100);
+                    }
                 }
                 td_num.style.cursor = td_ans.style.cursor = 'pointer';
-                td_num.onclick = td_ans.onclick = () => {
+                td_num.onclick = td_ans.onclick = (e) => {
+                    e.preventDefault();
                     const pageToGo = Math.ceil((idx + 1) / QUESTIONS_PER_PAGE);
-                    currentPage = pageToGo;
-                    renderPage(currentPage);
-                    window.scrollTo(0, 0);
+                    const pageStart = (pageToGo - 1) * QUESTIONS_PER_PAGE;
+                    const targetQuestionIdx = idx - pageStart;
+                    
+                    if (pageToGo !== currentPage) {
+                        currentPage = pageToGo;
+                        renderPage(currentPage);
+                        setTimeout(() => {
+                            const allQuestionBlocks = document.querySelectorAll('.question-block');
+                            if (allQuestionBlocks[targetQuestionIdx]) {
+                                allQuestionBlocks[targetQuestionIdx].scrollIntoView({ 
+                                    behavior: 'smooth', 
+                                    block: 'center' 
+                                });
+                            }
+                        }, 100);
+                    } else {
+                        const allQuestionBlocks = document.querySelectorAll('.question-block');
+                        if (allQuestionBlocks[targetQuestionIdx]) {
+                            allQuestionBlocks[targetQuestionIdx].scrollIntoView({ 
+                                behavior: 'smooth', 
+                                block: 'center' 
+                            });
+                        }
+                    }
                 };
                 tr.appendChild(td_num);
                 tr.appendChild(td_ans);

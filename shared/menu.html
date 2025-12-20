@@ -3,51 +3,239 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chọn Môn Học</title>
+    <title>Chọn Môn Học - Quiz App</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .menu-container {
-            max-width: 500px;
-            margin: 60px auto;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-            padding: 40px 24px 32px 24px;
-            text-align: center;
+        .menu-wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
         }
+        
+        .menu-container {
+            max-width: 600px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            padding: 48px 40px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            animation: scaleIn 0.5s ease-out;
+        }
+        
+        .menu-header {
+            margin-bottom: 40px;
+        }
+        
         .menu-title {
-            font-size: 2rem;
-            font-weight: bold;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+        
+        .menu-subtitle {
+            font-size: 1.1rem;
+            color: var(--neutral-600);
+            font-weight: 500;
+        }
+        
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
             margin-bottom: 32px;
         }
+        
         .subject-btn {
-            display: block;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             width: 100%;
-            margin: 18px 0;
-            padding: 18px 0;
-            font-size: 1.25rem;
-            border-radius: 8px;
-            border: none;
-            background: #007bff;
-            color: #fff;
+            padding: 20px 28px;
+            font-size: 1.3rem;
+            border-radius: 16px;
+            border: 2px solid transparent;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
             cursor: pointer;
-            font-weight: 600;
-            transition: background 0.2s;
+            font-weight: 700;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            overflow: hidden;
         }
+        
+        .subject-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+        
         .subject-btn:hover {
-            background: #0056b3;
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 24px rgba(102, 126, 234, 0.5);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .subject-btn:hover::before {
+            left: 100%;
+        }
+        
+        .subject-btn:active {
+            transform: translateY(-2px) scale(1);
+        }
+        
+        .subject-btn .icon {
+            font-size: 1.5rem;
+            margin-right: 16px;
+        }
+        
+        .subject-btn .arrow {
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+        
+        .subject-btn:hover .arrow {
+            transform: translateX(4px);
+        }
+        
+        /* Màu sắc khác nhau cho mỗi môn */
+        .subject-btn:nth-child(1) {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .subject-btn:nth-child(2) {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            box-shadow: 0 4px 12px rgba(240, 147, 251, 0.4);
+        }
+        
+        .subject-btn:nth-child(3) {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            box-shadow: 0 4px 12px rgba(79, 172, 254, 0.4);
+        }
+        
+        .subject-btn:nth-child(4) {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            box-shadow: 0 4px 12px rgba(67, 233, 123, 0.4);
+        }
+        
+        .subject-btn:nth-child(5) {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            box-shadow: 0 4px 12px rgba(250, 112, 154, 0.4);
+        }
+        
+        .footer-text {
+            color: var(--neutral-500);
+            font-size: 0.95rem;
+            margin-top: 24px;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .menu-container {
+                padding: 36px 24px;
+                border-radius: 20px;
+            }
+            
+            .menu-title {
+                font-size: 2rem;
+            }
+            
+            .menu-subtitle {
+                font-size: 1rem;
+            }
+            
+            .subject-btn {
+                padding: 18px 24px;
+                font-size: 1.15rem;
+            }
+            
+            .subject-btn .icon {
+                font-size: 1.3rem;
+                margin-right: 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .menu-wrapper {
+                padding: 20px 16px;
+            }
+            
+            .menu-container {
+                padding: 28px 20px;
+            }
+            
+            .menu-title {
+                font-size: 1.75rem;
+            }
+            
+            .menu-subtitle {
+                font-size: 0.95rem;
+            }
+            
+            .subject-btn {
+                padding: 16px 20px;
+                font-size: 1.05rem;
+            }
+            
+            .subject-btn .icon {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="menu-container">
-        <div class="menu-title">Chọn Môn Học</div>
-        <button class="subject-btn" onclick="window.location.href='../tieng-anh/index.html'">Tiếng Anh</button>
-        <button class="subject-btn" onclick="window.location.href='../hoa-hoc/index2.html'">Hóa Học</button>
-        <button class="subject-btn" onclick="window.location.href='../giai-phau-tvd/index_tvd.html'">Giải phẫu</button>
-        <button class="subject-btn" onclick="window.location.href='../duocly/index.html'">Dược Lý</button>
-        <button class="subject-btn" onclick="window.location.href='../hoasinh/index.html'">Hóa Sinh</button>
-        <!-- Thêm các môn khác ở đây nếu có -->
+    <div class="menu-wrapper">
+        <div class="menu-container">
+            <div class="menu-header">
+                <h1 class="menu-title">🎓 Quiz App</h1>
+                <p class="menu-subtitle">Chọn môn học để bắt đầu luyện tập</p>
+            </div>
+            
+            <div class="subjects-grid">
+                <button class="subject-btn" onclick="window.location.href='../tieng-anh/index.html'">
+                    <span><span class="icon">🇬🇧</span>Tiếng Anh</span>
+                    <span class="arrow">→</span>
+                </button>
+                
+                <button class="subject-btn" onclick="window.location.href='../hoa-hoc/index2.html'">
+                    <span><span class="icon">⚗️</span>Hóa Học</span>
+                    <span class="arrow">→</span>
+                </button>
+                
+                <button class="subject-btn" onclick="window.location.href='../giai-phau-tvd/index_tvd.html'">
+                    <span><span class="icon">🧬</span>Giải phẫu</span>
+                    <span class="arrow">→</span>
+                </button>
+                
+                <button class="subject-btn" onclick="window.location.href='../duocly/index.html'">
+                    <span><span class="icon">💊</span>Dược Lý</span>
+                    <span class="arrow">→</span>
+                </button>
+                
+                <button class="subject-btn" onclick="window.location.href='../hoasinh/index.html'">
+                    <span><span class="icon">🧪</span>Hóa Sinh</span>
+                    <span class="arrow">→</span>
+                </button>
+            </div>
+            
+            <p class="footer-text">Chúc bạn học tập hiệu quả! 📚</p>
+        </div>
     </div>
 </body>
 </html>

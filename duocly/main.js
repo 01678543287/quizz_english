@@ -105,13 +105,49 @@ function renderSidebar(selectedPage) {
                 if (idx >= start && idx < end) {
                     td_num.classList.add('selected');
                     td_ans.classList.add('selected');
+                    // Auto-scroll to first selected cell in sidebar
+                    if (idx === start) {
+                        setTimeout(() => {
+                            const sidebarEl = document.getElementById('sidebar');
+                            const firstSelectedRow = td_num.closest('tr');
+                            if (sidebarEl && firstSelectedRow) {
+                                const offsetTop = firstSelectedRow.offsetTop - sidebarEl.offsetTop;
+                                sidebarEl.scrollTo({
+                                    top: offsetTop - 100,
+                                    behavior: 'smooth'
+                                });
+                            }
+                        }, 100);
+                    }
                 }
                 td_num.style.cursor = td_ans.style.cursor = 'pointer';
-                td_num.onclick = td_ans.onclick = () => {
+                td_num.onclick = td_ans.onclick = (e) => {
+                    e.preventDefault();
                     const pageToGo = Math.ceil((idx + 1) / QUESTIONS_PER_PAGE);
-                    currentPage = pageToGo;
-                    renderPage(currentPage);
-                    window.scrollTo(0, 0);
+                    const pageStart = (pageToGo - 1) * QUESTIONS_PER_PAGE;
+                    const targetQuestionIdx = idx - pageStart;
+                    
+                    if (pageToGo !== currentPage) {
+                        currentPage = pageToGo;
+                        renderPage(currentPage);
+                        setTimeout(() => {
+                            const allQuestionBlocks = document.querySelectorAll('.question-block');
+                            if (allQuestionBlocks[targetQuestionIdx]) {
+                                allQuestionBlocks[targetQuestionIdx].scrollIntoView({ 
+                                    behavior: 'smooth', 
+                                    block: 'center' 
+                                });
+                            }
+                        }, 100);
+                    } else {
+                        const allQuestionBlocks = document.querySelectorAll('.question-block');
+                        if (allQuestionBlocks[targetQuestionIdx]) {
+                            allQuestionBlocks[targetQuestionIdx].scrollIntoView({ 
+                                behavior: 'smooth', 
+                                block: 'center' 
+                            });
+                        }
+                    }
                 };
                 tr.appendChild(td_num);
                 tr.appendChild(td_ans);
@@ -355,7 +391,19 @@ function renderPage(page) {
                 if (letter === userAnswers[i] && userAnswers[i] !== correctAnswer) btn.classList.add('incorrect');
             }
             btn.onclick = () => {
-                // Hiệu ứng trước khi lưu và render lại
+                userAnswers[i] = letter;
+                saveUserAnswers();
+                
+                // Disable all buttons in this question immediately
+                Object.values(buttons).forEach(b => b.disabled = true);
+                
+                // Add correct/incorrect classes
+                buttons[correctAnswer].classList.add('correct');
+                if (letter !== correctAnswer) {
+                    btn.classList.add('incorrect');
+                }
+                
+                // Show effect
                 if (letter === correctAnswer) {
                     showEffect('heart', block);
                     createFloatingHearts();
@@ -363,12 +411,8 @@ function renderPage(page) {
                     showEffect('poop', block);
                 }
                 
-                // Tăng delay để hiệu ứng có thể thấy rõ hơn
-                setTimeout(() => {
-                    userAnswers[i] = letter;
-                    saveUserAnswers();
-                    renderPage(currentPage);
-                }, 600);
+                // Update only sidebar without full page re-render
+                renderSidebar(currentPage);
             };
             buttons[letter] = btn;
             block.appendChild(btn);

@@ -1,18 +1,118 @@
+/* ============================================
+   GENERAL STYLES & VARIABLES
+   ============================================ */
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --primary-light: #dbeafe;
+    --success-color: #10b981;
+    --success-light: #d1fae5;
+    --danger-color: #ef4444;
+    --danger-light: #fee2e2;
+    --warning-color: #f59e0b;
+    --warning-light: #fef3c7;
+    --neutral-50: #f9fafb;
+    --neutral-100: #f3f4f6;
+    --neutral-200: #e5e7eb;
+    --neutral-300: #d1d5db;
+    --neutral-400: #9ca3af;
+    --neutral-500: #6b7280;
+    --neutral-600: #4b5563;
+    --neutral-700: #374151;
+    --neutral-800: #1f2937;
+    --neutral-900: #111827;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     padding: 0;
-    background-color: #f7f7f7;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-attachment: fixed;
     margin: 0;
+    min-height: 100vh;
+    color: var(--neutral-800);
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.05" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x bottom;
+    background-size: cover;
+    pointer-events: none;
+    z-index: 0;
 }
 
 h1 {
     text-align: center;
-    margin: 24px 0 12px 0;
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: 1px;
+    margin: 0 0 32px 0;
+    padding: 32px 16px 0;
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    position: relative;
+    z-index: 1;
+    animation: fadeInDown 0.6s ease-out;
 }
 
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ============================================
+   MAIN LAYOUT
+   ============================================ */
 #main-layout {
     display: flex;
     flex-direction: row;
@@ -20,87 +120,147 @@ h1 {
     max-width: 1400px;
     margin: 0 auto;
     align-items: flex-start;
-    padding: 0 16px 32px 16px;
-    box-sizing: border-box;
-    justify-content: center;
+    padding: 0 24px 48px 24px;
+    position: relative;
+    z-index: 1;
+    animation: fadeInUp 0.6s ease-out 0.2s both;
 }
 
+/* ============================================
+   SIDEBAR STYLES
+   ============================================ */
 #sidebar {
     min-width: 260px;
-    max-width: 520px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-    padding: 20px 16px;
-    height: auto;
-    overflow: visible;
-    font-size: 1.12rem;
+    max-width: 320px;
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    padding: 16px 12px;
+    font-size: 0.95rem;
     position: sticky;
     top: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+#sidebar::-webkit-scrollbar-track {
+    background: var(--neutral-100);
+    border-radius: 4px;
+}
+
+#sidebar::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+#sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
 }
 
 #sidebar h2 {
-    font-size: 1.18rem;
-    margin: 0 0 14px 0;
+    font-size: 1.15rem;
+    margin: 0 0 16px 0;
     text-align: center;
-    font-weight: 600;
+    font-weight: 700;
+    color: var(--neutral-800);
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--neutral-200);
+}
+
+.sidebar-table-wrapper {
+    overflow-x: auto;
+    overflow-y: visible;
+    margin: 0 -12px 16px -12px;
+    padding: 0 12px;
+}
+
+.sidebar-table-wrapper::-webkit-scrollbar {
+    height: 6px;
+}
+
+.sidebar-table-wrapper::-webkit-scrollbar-track {
+    background: var(--neutral-100);
+    border-radius: 3px;
+}
+
+.sidebar-table-wrapper::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 3px;
 }
 
 #sidebar .sidebar-table {
-    width: 100%;
+    width: auto;
+    min-width: 100%;
     border-collapse: separate;
-    border-spacing: 0 6px;
-    margin: 0 auto 16px auto;
-    font-size: 1.18rem;
-    table-layout: fixed;
+    border-spacing: 6px 6px;
+    margin: 0 auto;
+    font-size: 1rem;
+    table-layout: auto;
 }
 
 #sidebar .sidebar-table td {
-    padding: 10px 16px; /* giảm padding ngang để tránh tràn */
-    text-align: left;
-    min-width: 32px;
-    max-width: 64px;
+    padding: 6px 10px;
+    text-align: center;
+    min-width: 30px;
     white-space: nowrap;
     border: none;
-    font-size: 1.08rem;
-    word-break: keep-all;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    background: white;
+    color: var(--neutral-700);
 }
 
-#sidebar .sidebar-table tr > td:nth-child(2n) {
-    padding-right: 18px; /* giảm khoảng cách sau đáp án */
-}
-
-/* Loại bỏ padding phải ở cặp số/đáp án cuối cùng của mỗi hàng */
-#sidebar .sidebar-table tr > td:last-child {
-    padding-right: 0 !important;
+#sidebar .sidebar-table td:hover {
+    background: var(--neutral-100);
 }
 
 #sidebar .sidebar-table td.selected {
-    background: #e9ecef;
-    font-weight: bold;
+    background: var(--primary-light) !important;
+    font-weight: 700 !important;
+    color: var(--primary-color) !important;
 }
 
 #sidebar .sidebar-table td.correct {
-    color: #28a745;
-    font-weight: bold;
+    color: white !important;
+    font-weight: 700 !important;
+    background: var(--success-color) !important;
 }
+
 #sidebar .sidebar-table td.incorrect {
-    color: #dc3545;
-    font-weight: bold;
+    color: white !important;
+    font-weight: 700 !important;
+    background: var(--danger-color) !important;
 }
+
 #sidebar .sidebar-table td.answered:not(.correct):not(.incorrect) {
-    color: #007bff;
-    font-weight: bold;
+    color: var(--primary-color) !important;
+    font-weight: 700 !important;
+    background: var(--primary-light) !important;
 }
 
 #sidebar .score {
-    margin: 14px 0 0 0;
-    font-size: 1.05rem;
+    margin: 16px 0 0 0;
+    font-size: 1rem;
     text-align: center;
-    color: #155724;
-    font-weight: 600;
+    color: var(--success-color);
+    font-weight: 700;
+    padding: 12px;
+    background: var(--success-light);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
 }
 
+/* ============================================
+   QUIZ CONTAINER & QUESTIONS
+   ============================================ */
 #quiz-container {
     max-width: 900px;
     margin: 0 auto;
@@ -109,207 +269,492 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 24px;
 }
 
 .question-block {
-    background: white;
-    padding: 32px 32px;
-    margin-bottom: 32px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 36px 40px;
+    margin-bottom: 0;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
     width: 100%;
-    max-width: 800px;
+    max-width: 850px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: var(--transition);
+    animation: scaleIn 0.4s ease-out;
+}
+
+.question-block:hover {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transform: translateY(-4px);
 }
 
 .question-text {
-    font-weight: bold;
-    margin-bottom: 18px;
-    font-size: 1.35rem;
-    text-align: center;
+    font-weight: 700;
+    margin-bottom: 28px;
+    font-size: 1.5rem;
+    text-align: left;
+    color: var(--neutral-800);
+    line-height: 1.6;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--neutral-200);
 }
 
 .option-btn {
     display: block;
     width: 100%;
-    margin: 10px 0;
-    padding: 16px 14px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    margin: 14px 0;
+    padding: 18px 20px;
+    border: 2px solid var(--neutral-200);
+    border-radius: var(--radius-md);
     cursor: pointer;
-    background: #fff;
-    font-size: 1.18rem;
+    background: white;
+    font-size: 1.15rem;
     text-align: left;
-    box-sizing: border-box;
-    transition: background 0.2s, color 0.2s;
+    position: relative;
+    overflow: hidden;
+    font-weight: 500;
+    color: var(--neutral-700);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.option-btn:hover {
+    border-color: var(--primary-color);
+    background: var(--primary-light);
+}
+
+.option-btn:active {
+    background: var(--primary-light);
 }
 
 .option-btn.correct {
-    background-color: #d4edda;
-    color: #155724;
-    border-color: #c3e6cb;
+    background: linear-gradient(135deg, var(--success-light) 0%, #a7f3d0 100%);
+    color: var(--success-color);
+    border-color: var(--success-color);
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.option-btn.correct::after {
+    content: '✓';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: var(--success-color);
+    font-weight: 700;
 }
 
 .option-btn.incorrect {
-    background-color: #f8d7da;
-    color: #721c24;
-    border-color: #f5c6cb;
+    background: linear-gradient(135deg, var(--danger-light) 0%, #fecaca 100%);
+    color: var(--danger-color);
+    border-color: var(--danger-color);
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
 }
 
+.option-btn.incorrect::after {
+    content: '✗';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: var(--danger-color);
+    font-weight: 700;
+}
+
+.option-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
 .reset-btn {
-    margin-top: 10px;
-    padding: 7px 16px;
+    margin-top: 12px;
+    padding: 12px 28px;
     border: none;
-    background: #007bff;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
     color: white;
-    border-radius: 5px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.reset-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.reset-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.reset-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.reset-btn:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}
+
+/* ============================================
+   PAGINATION CONTROLS
+   ============================================ */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin: 32px 0;
+    flex-wrap: wrap;
+}
+
+.pagination button {
+    padding: 12px 24px;
+    border: 2px solid var(--primary-color);
+    background: white;
+    color: var(--primary-color);
+    border-radius: var(--radius-md);
     cursor: pointer;
     font-size: 1.05rem;
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
 }
 
+.pagination button:hover:not(:disabled) {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: var(--neutral-300);
+    color: var(--neutral-400);
+}
+
+.pagination input {
+    width: 80px;
+    padding: 12px 16px;
+    border: 2px solid var(--neutral-300);
+    border-radius: var(--radius-md);
+    text-align: center;
+    font-size: 1.05rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.pagination input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.pagination .page-info {
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - TABLET
+   ============================================ */
 @media (max-width: 1200px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
     #main-layout {
         max-width: 100vw;
-        gap: 18px;
-        padding: 0 4vw 24px 4vw;
+        gap: 24px;
+        padding: 0 16px 32px 16px;
     }
+    
     #sidebar {
-        min-width: 220px;
-        max-width: 340px;
-        font-size: 1rem;
-        padding: 10px 4px;
+        min-width: 240px;
+        max-width: 300px;
+        padding: 20px 16px;
     }
+    
     #quiz-container {
-        max-width: 98vw;
-        padding: 0;
+        max-width: 100%;
     }
-    #sidebar .sidebar-table {
-        font-size: 1rem;
-    }
-    #sidebar .sidebar-table td {
-        min-width: 28px;
-        max-width: 48px;
-        font-size: 1rem;
-        padding: 6px 10px;
-    }
+    
     .question-block {
-        max-width: 98vw;
-        padding: 18px 6vw;
+        padding: 28px 32px;
+    }
+    
+    .question-text {
+        font-size: 1.35rem;
+    }
+    
+    .option-btn {
+        font-size: 1.1rem;
+        padding: 16px 18px;
     }
 }
 
+/* ============================================
+   RESPONSIVE DESIGN - MOBILE
+   ============================================ */
 @media (max-width: 900px) {
+    h1 {
+        font-size: 1.75rem;
+        padding: 24px 16px 0;
+    }
+    
     #main-layout {
         flex-direction: column;
-        gap: 0;
+        gap: 24px;
         align-items: stretch;
-        padding: 0 2vw 16px 2vw;
+        padding: 0 16px 24px 16px;
     }
+    
     #sidebar {
         min-width: 0;
-        max-width: 100vw;
-        font-size: 0.93rem;
-        padding: 4px 2px;
-        /* Thêm để sidebar không bị tràn và nằm trên cùng */
+        max-width: 100%;
         position: static;
         width: 100%;
-        box-sizing: border-box;
-        margin-bottom: 12px;
+        margin-bottom: 0;
     }
-    #sidebar .sidebar-table {
-        font-size: 0.93rem;
-    }
+    
     #sidebar .sidebar-table td {
-        min-width: 10px;
-        max-width: 18px;
-        font-size: 0.93rem;
-        padding: 2px 2px;
+        padding: 10px 12px;
+        font-size: 1rem;
     }
+    
     #quiz-container {
-        max-width: 100vw;
-        padding: 0;
+        max-width: 100%;
         width: 100%;
-        box-sizing: border-box;
     }
+    
     .question-block {
-        max-width: 100vw;
-        padding: 12px 2vw;
+        padding: 24px 20px;
+    }
+    
+    .question-text {
+        font-size: 1.25rem;
+        margin-bottom: 20px;
+    }
+    
+    .option-btn {
+        font-size: 1.05rem;
+        padding: 14px 16px;
+        margin: 12px 0;
+    }
+    
+    .reset-btn {
+        padding: 10px 20px;
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 700px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+    
     .question-block {
-        padding: 10px 2vw;
+        padding: 20px 16px;
+    }
+    
+    .question-text {
+        font-size: 1.15rem;
+    }
+    
+    .option-btn {
         font-size: 1rem;
+        padding: 12px 14px;
     }
-    .option-btn, .reset-btn {
-        font-size: 0.95rem;
-        padding: 8px 6px;
-    }
-    #sidebar {
-        min-width: 0;
-        max-width: 100vw;
-        font-size: 0.93rem;
-    }
-    #sidebar .sidebar-table {
-        font-size: 0.93rem;
-    }
+    
     #sidebar .sidebar-table td {
-        min-width: 16px;
-        max-width: 26px;
-        font-size: 0.93rem;
-        padding: 3px 4px;
+        padding: 8px 10px;
+        font-size: 0.95rem;
     }
 }
 
 @media (max-width: 480px) {
     body {
-        padding: 2px;
-    }
-    h1 {
-        font-size: 1.2rem;
-        margin: 12px 0 8px 0;
-    }
-    #main-layout {
-        flex-direction: column;
-        gap: 0;
-        align-items: stretch;
-        padding: 0 1vw 8px 1vw;
-    }
-    #sidebar {
-        max-height: none;
-        font-size: 0.9rem;
-        min-width: 0;
-        max-width: 100vw;
-        padding: 4px 2px;
-        width: 100%;
-        position: static;
-        margin-bottom: 8px;
-    }
-    #sidebar .sidebar-table {
-        font-size: 0.9rem;
-    }
-    #sidebar .sidebar-table td {
-        min-width: 10px;
-        max-width: 18px;
-        font-size: 0.9rem;
-        padding: 2px 2px;
-    }
-    #quiz-container {
-        max-width: 100vw;
         padding: 0;
-        width: 100%;
     }
+    
+    h1 {
+        font-size: 1.35rem;
+        padding: 20px 12px 0;
+        margin-bottom: 20px;
+    }
+    
+    #main-layout {
+        padding: 0 12px 20px 12px;
+        gap: 16px;
+    }
+    
+    #sidebar {
+        padding: 16px 12px;
+    }
+    
+    #sidebar h2 {
+        font-size: 1.1rem;
+        margin-bottom: 16px;
+    }
+    
+    #sidebar .sidebar-table td {
+        padding: 6px 8px;
+        font-size: 0.9rem;
+        min-width: 24px;
+        max-width: 48px;
+    }
+    
     .question-block {
-        padding: 7px 2px;
-        margin-bottom: 10px;
-        font-size: 0.98rem;
-        max-width: 100vw;
+        padding: 16px 12px;
+        margin-bottom: 0;
     }
+    
     .question-text {
         font-size: 1.05rem;
+        margin-bottom: 16px;
+        padding-bottom: 16px;
     }
-    .option-btn, .reset-btn {
-        font-size: 0.9rem;
-        padding: 7px 2px;
+    
+    .option-btn {
+        font-size: 0.95rem;
+        padding: 10px 12px;
+        margin: 10px 0;
     }
+    
+    .option-btn.correct::after,
+    .option-btn.incorrect::after {
+        right: 12px;
+        font-size: 1.25rem;
+    }
+    
+    .reset-btn {
+        padding: 8px 16px;
+        font-size: 0.95rem;
+    }
+    
+    .pagination {
+        gap: 12px;
+        margin: 24px 0;
+    }
+    
+    .pagination button {
+        padding: 10px 16px;
+        font-size: 0.95rem;
+    }
+    
+    .pagination input {
+        width: 60px;
+        padding: 10px 12px;
+        font-size: 0.95rem;
+    }
+    
+    .pagination .page-info {
+        font-size: 1rem;
+    }
+}
+
+/* ============================================
+   SCROLL BAR STYLING
+   ============================================ */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--neutral-100);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+    border-radius: 10px;
+    border: 2px solid var(--neutral-100);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, var(--primary-hover), var(--primary-color));
+}
+
+/* ============================================
+   LOADING ANIMATION
+   ============================================ */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.text-center {
+    text-align: center;
+}
+
+.mt-4 {
+    margin-top: 16px;
+}
+
+.mb-4 {
+    margin-bottom: 16px;
+}
+
+.fade-in {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+*:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
 }
