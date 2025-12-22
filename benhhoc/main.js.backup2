@@ -1,0 +1,308 @@
+const container = document.getElementById('quiz-container');
+const sidebar = document.getElementById('sidebar');
+const QUESTIONS_PER_PAGE = 20;
+let currentPage = 1;
+
+// Lưu trữ dữ liệu gốc theo chương
+const chaptersData = window.quizData || [];
+let currentChapter = 0; // 0 = tất cả, 1+ = từng chương cụ thể
+
+// Hàm lấy dữ liệu câu hỏi theo chương hiện tại
+function getCurrentQuizData() {
+    if (currentChapter === 0) {
+        // Tất cả các chương
+        return chaptersData.flatMap(section => section.questions || []);
+    } else {
+        // Một chương cụ thể
+        return chaptersData[currentChapter - 1]?.questions || [];
+    }
+}
+
+let quizData = getCurrentQuizData();
+let totalPages = Math.ceil(quizData.length / QUESTIONS_PER_PAGE);
+
+// Lưu đáp án đã chọn cho từng câu (ưu tiên lấy từ localStorage nếu có)
+const STORAGE_KEY = 'quiz_user_answers_benhhoc_v2';
+function loadUserAnswers() {
+    try {
+        const data = localStorage.getItem(STORAGE_KEY);
+        if (data) {
+            const obj = JSON.parse(data);
+            if (obj && typeof obj === 'object') return obj;
+        }
+    } catch {}
+    return {};
+}
+function saveUserAnswers() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(allUserAnswers));
+}
+function resetUserAnswers() {
+    const start = (currentPage - 1) * QUESTIONS_PER_PAGE;
+    const end = Math.min(start + QUESTIONS_PER_PAGE, quizData.length);
+    for (let i = start; i < end; i++) {
+        const q = quizData[i];
+        if (q && q.id) {
+            delete allUserAnswers[q.id];
+        }
+    }
+    saveUserAnswers();
+    renderPage(currentPage);
+}
+
+const allUserAnswers = loadUserAnswers();
+
+// Hàm lấy/set câu trả lời theo ID
+funCache để lưu đáp án đã trộn cho từng câu hỏi
+const shuffledCache = {};
+function getShuffledOptions(question) {
+    if (!shuffledCache[question.id]) {
+        const options = [
+            { key: 'A', value: question.option_a },
+            { key: 'B', value: question.option_b },
+            { key: 'C', value: question.option_c },
+            { key: 'D', value: question.option_d }
+        ];
+        shuffleArray(options);
+        const correctKey = options.find(opt => opt.key === question.answer);
+        shuffledCache[question.id] = {
+            options,
+            answer: String.fromCharCode(65 + options.indexOf(correctKey))
+        };
+    }
+    return shuffledCache[question.id];
+}
+
+// Hàm chuyển chương và cập nhật lại dữ liệu
+function changeChapter(chapterIndex) {
+    currentChapter = chapterIndex;
+    currentPage = 1;
+    quizData = getCurrentQuizData();
+    totalPages = Math.ceil(quizData.length / QUESTIONS_PER_PAGE);
+    renderPage(currentPage);
+}Tạo mảng lưu trữ thứ tự đáp án đã trộn cho từng câu
+const shuffledOptions = quizData.map(q => {
+    // Tạo mảng các đáp án với key và value
+    const options = [
+        { key: 'A', value: q.option_a },
+        { key: 'B', value: q.option_b },
+        { key: 'C', value: q.option_c },
+        { key: 'D', value: q.option_d }
+    ];
+    shuffleArray(options);
+    
+    // Dropdown chọn chương
+    const chapterSelector = document.createElement('div');
+    chapterSelector.className = 'chapter-selector';
+    const label = document.createElement('label');
+    label.textContent = 'Chọn chương: ';
+    const select = document.createElement('select');
+    select.className = 'chapter-select';
+    
+    // Option "Tất cả"
+    const optionAll = document.createElement('option');
+    optionAll.value = '0';
+    optionAll.textContent = 'Tất cả chương';
+    if (currentChapter === 0) optionAll.selected = true;
+    select.appendChild(optionAll);
+    
+    // Options cho từng chương
+    chaptersData.forEach((chapter, idx) => {
+        const option = document.createElement('option');
+        option.value = String(idx + 1);
+        option.textContent = chapter.chapter || `Chương ${idx + 1}`;
+        if (currentChapter === idx + 1) option.selected = true;
+        select.appendChild(option);
+    });
+    
+    select.addEventListener('change', (e) => {
+        changeChapter(parseInt(e.target.value));
+    });
+    q = quizData[idx];
+                let answer = getUserAnswer(q.id);
+                let shuffled = getShuffledOptions(q);
+                let td_num = document.createElement('td');
+                td_num.textContent = idx + 1;
+                let td_ans = document.createElement('td');
+                td_ans.textContent = answer ? answer : '';
+                if (answer) {
+                    td_ans.classList.add('answered');
+                    if (answer === shuffled
+        answer: String.fromCharCode(65 + options.indexOf(correctKey)) // 'A', 'B', 'C', 'D'
+    };
+});
+
+// Render sidebar bên trái
+function renderSidebar(selectedPage) {
+    sidebar.innerHTML = '';
+    const title = document.createElement('h2');
+    title.textContent = 'Câu hỏi';
+    sidebar.appendChild(title);
+
+    // Tính số cột phù hợp để bảng sidebar ngắn lại và vừa với chiều ngang sidebar
+    // Giả sử mỗi cột chiếm ~38px (số + đáp án), sidebar min-width 180px, max-width 320px
+    // Ưu tiên số cột lớn nhất mà không vượt quá 90% chiều rộng sidebar
+    const sidebarWidth = sidebar.offsetWidth || 320;
+    const cellWidth = 38; // px
+    let COLS = Math.floor((sidebarWidth * 0.9) / cellWidth);
+    if (COLS < 10) COLS = 10;
+    if (COLS > 20) COLS = 20;
+    const total = quizData.length;
+    const ROWS = Math.ceil(total / COLS);
+
+    // Tạo wrapper để scroll riêng bảng
+    const tableWrapper = document.createElement('div');
+    tableWrapper.className = 'sidebar-table-wrapper';
+
+    const table = document.createElement('table');
+    table.className = 'sidebar-table';
+
+    let correctCount = 0;
+    for (let row = 0; row < ROWS; row++) {
+        const tr = document.createElement('tr');
+        for (let col = 0; col < COLS; col++) {
+            let idx = row + col * ROWS;
+            if (idx < total) {
+                let answer = userAnswers[idx];
+                let q = quizData[idx];
+                let td_num = document.createElement('td');
+                td_num.textContent = idx + 1;
+                let td_ans = document.createElement('td');
+                td_ans.textContent = answer ? answer : '';
+                if (answer) {
+                    td_ans.classList.add('answered');
+                    if (answer === shuffledOptions[idx].answer) {
+                        td_ans.classList.add('correct');
+                        correctCount++;
+                    } else {
+                        td_ans.classList.add('incorrect');
+                    }
+                }
+                const start = (selectedPage - 1) * QUESTIONS_PER_PAGE;
+                const end = Math.min(start + QUESTIONS_PER_PAGE, total);
+                if (idx >= start && idx < end) {
+                    td_num.classList.add('selected');
+                    td_ans.classList.add('selected');
+                    if (idx === start) {
+                        setTimeout(() => {
+                            const sidebarEl = document.getElementById('sidebar');
+                            const firstSelectedRow = td_num.closest('tr');
+                            if (sidebarEl && firstSelectedRow) {
+                                const offsetTop = firstSelectedRow.offsetTop - sidebarEl.offsetTop;
+                                sidebarEl.scrollTo({ top: offsetTop - 100, behavior: 'smooth' });
+                            }
+                        }, 100);
+                    }
+                }
+                tr.appendChild(td_num);
+                tr.appendChild(td_ans);
+            }
+        }
+        table.appendChild(tr);
+    }
+    tableWrapper.appendChild(table);
+    sidebar.appendChild(tableWrapper);
+
+    // Thanh reset & phân trang ở dưới sidebar
+    const btmArea = document.createElement('div');
+    btmArea.className = 'sidebar-bottom-area';
+
+    const resetBtn = document.createElement('button');
+    resetBtn.textContent = 'Reset câu trả lời';
+    resetBtn.className = 'reset-btn';
+    
+    // Hiển thị tiêu đề chương nếu đang xem một chương cụ thể
+    if (currentChapter > 0 && chaptersData[currentChapter - 1]) {
+        const chapterTitle = document.createElement('div');
+        chapterTitle.className = 'chapter-title-display';
+        chapterTitle.innerHTML = `<h2>${chaptersData[currentChapter - 1].chapter}</h2>`;
+        container.appendChild(chapterTitle);
+    }
+    
+    const start = (pageNumber - 1) * QUESTIONS_PER_PAGE;
+    const end = Math.min(start + QUESTIONS_PER_PAGE, quizData.length);
+    for (let i = start; i < end; i++) {
+        const q = quizData[i];
+        const shuffled = getShuffledOptions(q);
+        const qDiv = document.createElement('div');
+        qDiv.className = 'question-block';
+        const qTitle = document.createElement('div');
+        qTitle.className = 'question-title';
+        qTitle.textContent = `Câu ${i + 1}: ${q.question}`;
+        qDiv.appendChild(qTitle);
+
+        const optionsDiv = document.createElement('div');
+        optionsDiv.className = 'options-container';
+        shuffled.options.forEach((opt, optIdx) => {
+            const label = document.createElement('label');
+            label.className = 'option-label';
+            const optionKey = String.fromCharCode(65 + optIdx); // A, B, C, D
+            const radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = 'question-' + q.id;
+            radio.value = optionKey;
+            radio.checked = (getUserAnswer(q.id) === optionKey);
+            radio.addEventListener('change', function () {
+                if (this.checked) {
+                    setUserAnswer(q.id, optionKey
+    btmArea.appendChild(paginationDiv);
+    sidebar.appendChild(btmArea);
+}
+
+function renderPage(pageNumber) {
+    container.innerHTML = '';
+    renderSidebar(pageNumber);
+    const start = (pageNumber - 1) * QUESTIONS_PER_PAGE;
+    const end = Math.min(start + QUESTIONS_PER_PAGE, quizData.length);
+    for (let i = start; i < end; i++) {
+        const q = quizData[i];
+        const shuffled = shuffledOptions[i];
+        const qDiv = document.createElement('div');
+        qDiv.className = 'question-block';
+        const qTitle = document.createElement('div');
+        qTitle.className = 'question-title';
+        qTitle.textContent = `Câu ${i + 1}: ${q.question}`;
+        qDiv.appendChild(qTitle);
+
+        const optionsDiv = document.createElement('div');
+        optionsDiv.className = 'options-container';
+        shuffled.options.forEach((opt, optIdx) => {
+            const label = document.createElement('label');
+            label.className = 'option-label';
+            const optionKey = String.fromCharCode(65 + optIdx); // A, B, C, D
+            const radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = 'question-' + i;
+            radio.value = optionKey;
+            radio.checked = (userAnswers[i] === optionKey);
+            radio.addEventListener('change', function () {
+                if (this.checked) {
+                    userAnswers[i] = optionKey;
+                    saveUserAnswers();
+                    renderSidebar(pageNumber);
+                }
+            });
+
+            const span = document.createElement('span');
+            span.textContent = `${optionKey}. ${opt.value}`;
+            label.appendChild(radio);
+            label.appendChild(span);
+            optionsDiv.appendChild(label);
+        });
+        qDiv.appendChild(optionsDiv);
+
+        // Phần trả lời và giải thích
+        const answerDiv = document.createElement('div');
+        answerDiv.className = 'answer-section';
+        const answerP = document.createElement('p');
+        const correctOption = shuffled.options.find((opt, idx) => String.fromCharCode(65 + idx) === shuffled.answer);
+        answerP.innerHTML = `<strong>Đáp án đúng: ${shuffled.answer}.</strong> ${correctOption ? correctOption.value : ''}`;
+        answerDiv.appendChild(answerP);
+        const explanationP = document.createElement('p');
+        explanationP.innerHTML = `<strong>Giải thích:</strong> ${q.explanation || 'Không có giải thích'}`;
+        answerDiv.appendChild(explanationP);
+        qDiv.appendChild(answerDiv);
+        container.appendChild(qDiv);
+    }
+}
+
+renderPage(currentPage);

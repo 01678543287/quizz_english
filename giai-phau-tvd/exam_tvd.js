@@ -46,10 +46,7 @@ function getExamIndexes() {
     return arr;
 }
 
-// Khi vào trang này (hoặc reload), luôn random lại bộ đề và xóa hết dữ liệu cũ
-localStorage.removeItem(shuffledOptionsKey);
-localStorage.removeItem(STORAGE_KEY);
-
+// Khi vào trang này, giữ lại bộ đề cũ nếu có
 const examIndexes = getExamIndexes();
 const examQuizData = examIndexes.map(i => quizDataTVD[i]);
 
@@ -61,6 +58,16 @@ function shuffleArray(arr) {
 }
 
 function getShuffledOptions() {
+    try {
+        const stored = localStorage.getItem(shuffledOptionsKey);
+        if (stored) {
+            const arr = JSON.parse(stored);
+            if (Array.isArray(arr) && arr.length === EXAM_QUESTION_COUNT) {
+                return arr;
+            }
+        }
+    } catch {}
+    // Tạo mới nếu chưa có
     const arr = examQuizData.map(q => {
         const options = [
             { key: 'A', value: q.option_a },
@@ -81,6 +88,13 @@ function getShuffledOptions() {
 const shuffledOptions = getShuffledOptions();
 
 function loadUserAnswers() {
+    try {
+        const data = localStorage.getItem(STORAGE_KEY);
+        if (data) {
+            const arr = JSON.parse(data);
+            if (Array.isArray(arr) && arr.length === EXAM_QUESTION_COUNT) return arr;
+        }
+    } catch {}
     return Array(EXAM_QUESTION_COUNT).fill(null);
 }
 function saveUserAnswers() {

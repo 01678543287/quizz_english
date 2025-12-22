@@ -145,6 +145,62 @@ h1 {
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+/* Chapter Selector */
+.chapter-selector {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--neutral-200);
+}
+
+.chapter-selector label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-weight: 600;
+    color: var(--neutral-700);
+    font-size: 0.9rem;
+}
+
+.chapter-select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px solid var(--neutral-300);
+    border-radius: var(--radius-sm);
+    background: white;
+    color: var(--neutral-800);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    outline: none;
+}
+
+.chapter-select:hover {
+    border-color: var(--primary-color);
+}
+
+.chapter-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.chapter-title-display {
+    margin-bottom: 24px;
+    padding: 20px;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.chapter-title-display h2 {
+    margin: 0;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 #sidebar::-webkit-scrollbar {
     width: 8px;
 }

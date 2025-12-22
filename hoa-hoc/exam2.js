@@ -11,11 +11,18 @@ function shuffleArray(arr) {
 
 const examIndexesKey = 'quiz_exam_indexes2_v1';
 const shuffledOptionsKey = 'quiz_exam_shuffled_options2_v1';
-localStorage.removeItem(examIndexesKey);
-localStorage.removeItem(shuffledOptionsKey);
-localStorage.removeItem(STORAGE_KEY);
 
 function getExamIndexes() {
+    try {
+        const stored = localStorage.getItem(examIndexesKey);
+        if (stored) {
+            const arr = JSON.parse(stored);
+            if (Array.isArray(arr) && arr.length === EXAM_QUESTION_COUNT) {
+                return arr;
+            }
+        }
+    } catch {}
+    // Tạo mới nếu chưa có
     let arr = Array.from({length: quizData.length}, (_, i) => i);
     shuffleArray(arr);
     arr = arr.slice(0, EXAM_QUESTION_COUNT);
@@ -26,6 +33,16 @@ const examIndexes = getExamIndexes();
 const examQuizData = examIndexes.map(i => quizData[i]);
 
 function getShuffledOptions() {
+    try {
+        const stored = localStorage.getItem(shuffledOptionsKey);
+        if (stored) {
+            const arr = JSON.parse(stored);
+            if (Array.isArray(arr) && arr.length === EXAM_QUESTION_COUNT) {
+                return arr;
+            }
+        }
+    } catch {}
+    // Tạo mới nếu chưa có
     const arr = examQuizData.map(q => {
         const options = [
             { key: 'A', value: q.option_a },
@@ -46,6 +63,13 @@ function getShuffledOptions() {
 const shuffledOptions = getShuffledOptions();
 
 function loadUserAnswers() {
+    try {
+        const data = localStorage.getItem(STORAGE_KEY);
+        if (data) {
+            const arr = JSON.parse(data);
+            if (Array.isArray(arr) && arr.length === EXAM_QUESTION_COUNT) return arr;
+        }
+    } catch {}
     return Array(EXAM_QUESTION_COUNT).fill(null);
 }
 function saveUserAnswers() {

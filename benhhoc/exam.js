@@ -1,7 +1,10 @@
 // Số câu kiểm tra
 const EXAM_QUESTION_COUNT = 40;
 const QUESTIONS_PER_PAGE = 20;
-const STORAGE_KEY = 'quiz_exam_answers_duocly_v1';
+const STORAGE_KEY = 'quiz_exam_answers_benhhoc_v1';
+
+// Làm phẳng tất cả câu hỏi từ các chapters
+const quizData = window.quizData ? window.quizData.flatMap(section => section.questions || []) : [];
 
 function shuffleArray(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
@@ -11,8 +14,8 @@ function shuffleArray(arr) {
 }
 
 // Lấy hoặc tạo mới bộ câu hỏi thi
-const examIndexesKey = 'quiz_exam_indexes_duocly_v1';
-const shuffledOptionsKey = 'quiz_exam_shuffled_options_duocly_v1';
+const examIndexesKey = 'quiz_exam_indexes_benhhoc_v1';
+const shuffledOptionsKey = 'quiz_exam_shuffled_options_benhhoc_v1';
 
 function getExamIndexes() {
     try {
@@ -155,48 +158,22 @@ function renderSidebar(selectedPage) {
                         td_ans.classList.add('incorrect');
                     }
                 }
-                const start = (selectedPage - 1) * QUESTIONS_PER_PAGE;
-                const end = Math.min(start + QUESTIONS_PER_PAGE, total);
-                if (idx >= start && idx < end) {
-                    td_num.classList.add('selected');
-                    td_ans.classList.add('selected');
-                    if (idx === start) {
-                        setTimeout(() => {
-                            const sidebarEl = document.getElementById('sidebar');
-                            const firstSelectedRow = td_num.closest('tr');
-                            if (sidebarEl && firstSelectedRow) {
-                                const offsetTop = firstSelectedRow.offsetTop - sidebarEl.offsetTop;
-                                sidebarEl.scrollTo({ top: offsetTop - 100, behavior: 'smooth' });
-                            }
-                        }, 100);
-                    }
-                }
-                td_num.style.cursor = td_ans.style.cursor = 'pointer';
-                td_num.onclick = td_ans.onclick = (e) => {
-                    e.preventDefault();
-                    const pageToGo = Math.ceil((idx + 1) / QUESTIONS_PER_PAGE);
-                    const pageStart = (pageToGo - 1) * QUESTIONS_PER_PAGE;
-                    const targetQuestionIdx = idx - pageStart;
-                    
+                td_num.onclick = td_ans.onclick = () => {
+                    const pageToGo = Math.floor(idx / QUESTIONS_PER_PAGE) + 1;
                     if (pageToGo !== currentPage) {
                         currentPage = pageToGo;
                         renderPage(currentPage);
-                        setTimeout(() => {
-                            const allQuestionBlocks = document.querySelectorAll('.question-block');
-                            if (allQuestionBlocks[targetQuestionIdx]) {
-                                allQuestionBlocks[targetQuestionIdx].scrollIntoView({ 
-                                    behavior: 'smooth', 
-                                    block: 'center' 
-                                });
-                            }
-                        }, 100);
+                        window.scrollTo(0, 0);
                     } else {
-                        const allQuestionBlocks = document.querySelectorAll('.question-block');
-                        if (allQuestionBlocks[targetQuestionIdx]) {
-                            allQuestionBlocks[targetQuestionIdx].scrollIntoView({ 
-                                behavior: 'smooth', 
-                                block: 'center' 
-                            });
+                        const blocks = document.querySelectorAll('.question-block');
+                        const localIdx = idx % QUESTIONS_PER_PAGE;
+                        if (blocks[localIdx]) {
+                            blocks[localIdx].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            const origBg = blocks[localIdx].style.background;
+                            blocks[localIdx].style.background = 'rgba(255, 255, 255, 0.3)';
+                            setTimeout(() => {
+                                blocks[localIdx].style.background = origBg;
+                            }, 500);
                         }
                     }
                 };
@@ -515,19 +492,29 @@ function renderPage(page) {
                 if (letter === userAnswers[i] && userAnswers[i] !== correctAnswer) btn.classList.add('incorrect');
             }
             btn.onclick = () => {
-                // Hiệu ứng trước khi lưu và render lại
-                if (letter === correctAnswer) {
-                    showEffect('heart', block);
-                } else {
-                    showEffect('laugh', block);
+                userAnswers[i] = letter;
+                saveUserAnswers();
+                
+                // Disable tất cả buttons
+                Object.values(buttons).forEach(b => b.disabled = true);
+                
+                // Thêm class correct/incorrect
+                buttons[correctAnswer].classList.add('correct');
+                if (letter !== correctAnswer) {
+                    btn.classList.add('incorrect');
                 }
                 
-                // Tăng delay để hiệu ứng có thể thấy rõ hơn
-                setTimeout(() => {
-                    userAnswers[i] = letter;
-                    saveUserAnswers();
-                    renderPage(currentPage);
-                }, 600);
+                // Hiệu ứng
+                if (letter === correctAnswer) {
+                    showEffect('heart', block);
+                    createFloatingHearts();
+                } else {
+                    showEffect('laugh', block);
+                    createFloatingLaughs();
+                }
+                
+                // Chỉ cập nhật sidebar, không reload toàn bộ trang
+                renderSidebar(currentPage);
             };
             buttons[letter] = btn;
             block.appendChild(btn);
