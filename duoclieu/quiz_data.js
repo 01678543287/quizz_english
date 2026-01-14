@@ -82,7 +82,7 @@ window.quizData = [
                 "option_b": "Thực vật",
                 "option_c": "Vi sinh vật",
                 "option_d": "Khoáng vật",
-                "answer": "C"
+                "answer": "D"
             },
             {
                 "id": 10,
@@ -136,7 +136,7 @@ window.quizData = [
                 "option_b": "Phơi trong bóng râm",
                 "option_c": "Phơi trên giàn",
                 "option_d": "Phơi trên cao để tránh bụi, ruồi nhặng",
-                "answer": "B"
+                "answer": "C"
             },
             {
                 "id": 16,
