@@ -61,7 +61,7 @@ const quizData = [
         "option_b": "Co hồi và cầm máu tử cung sau sanh",
         "option_c": "Kích thích sanh và gây sanh non",
         "option_d": "Phòng suy tuyến thượng thận cấp",
-        "answer": "D"
+        "answer": "C"
     },
     {
         "question": "Câu 9: Insulin bị giảm tác dụng khi bảo quản ở nhiệt độ nào dưới đây?",
@@ -69,7 +69,7 @@ const quizData = [
         "option_b": "20 – 300C",
         "option_c": "> 400C",
         "option_d": "> 300C",
-        "answer": "A"
+        "answer": "D"
     },
     {
         "question": "Câu 10: Chọn một thuốc thuộc nhóm sulfonylurea thế hệ 2?",
@@ -156,7 +156,7 @@ const quizData = [
         "option_a": "Điều hòa nồng độ Ca2+ trong máu",
         "option_b": "Ức chế phân hủy glycogen thành glucose",
         "option_c": "Ức chế hấp thu calci ở ruột non",
-        "option_a": "Kích thích tuyến tụy tiết glucagon",
+        "option_d": "Kích thích tuyến tụy tiết glucagon",
         "answer": "A"
     },
     {
@@ -517,7 +517,7 @@ const quizData = [
         "option_b": "Gắn vào D-ala-D-ala tận cùng của pentapeptid",
         "option_c": "Acetyl hóa các D-alanin transpeptidase",
         "option_d": "Ức chế tổng hợp vách tế bào vi khuẩn",
-        "answer": "B"
+        "answer": "C"
     },
     {
         "question": "Câu 66: Phát biểu nào dưới đây KHÔNG đúng về cơ chế đề kháng kháng sinh của vi khuẩn?",
@@ -661,7 +661,7 @@ const quizData = [
         "option_b": "Thuốc lợi tiểu quai – giảm K+ máu",
         "option_c": "Amilorid – giảm K+ máu",
         "option_d": "Thuốc ức chế men chuyển – tăng K+ máu",
-        "answer": "D"
+        "answer": "C"
     },
     {
         "question": "Câu 84: Cơ chế tác dụng của thuốc lợi tiểu quai là ức chế:",
@@ -813,7 +813,7 @@ const quizData = [
         "option_b": "Chỉ định cho bệnh nhân tăng lipoprotein máu typ IIa (LDL)",
         "option_c": "Tác dụng xuất hiện chậm (4 – 7 ngày sau uống)",
         "option_d": "Làm hạ nồng độ cao cholesterol máu",
-        "answer": "A"
+        "answer": "D"
     },
     {
         "question": "Câu 103: Thuốc nào dưới đây thuộc nhóm ức chế tổng hợp lipid:",
@@ -821,7 +821,7 @@ const quizData = [
         "option_b": "Dioparin",
         "option_c": "Colestipol",
         "option_d": "Fenofibrat",
-        "answer": "D"
+        "answer": "C"
     },
     {
         "question": "Câu 104: Chọn phát biểu đúng về cơ chế tác dụng của Atorvastatin:",
@@ -845,7 +845,7 @@ const quizData = [
         "option_b": "1-7 µg/kg/phút",
         "option_c": "3-7 µg/kg/phút",
         "option_d": "1-3 µg/kg/phút",
-        "answer": "C"
+        "answer": "A"
     },
     {
         "question": "Câu 107: Phát biểu nào dưới đây KHÔNG đúng về glycosid trợ tim loại strophantus?",
@@ -877,7 +877,7 @@ const quizData = [
         "option_b": "2-5 µg/kg/phút",
         "option_c": "1-5 µg/kg/phút",
         "option_d": "5-10 µg/kg/phút",
-        "answer": "A"
+        "answer": "C"
     },
     {
         "question": "Câu 111: Tên gọi khác của ouabain là:",
@@ -981,7 +981,7 @@ const quizData = [
         "option_b": "Tác dụng chọn lọc trên tim cao hơn động mạch",
         "option_c": "Chỉ định cơn đau thắt ngực thể Prinzmetal",
         "option_d": "Chỉ định tăng huyết áp, đau thắt ngực",
-        "answer": "B"
+        "answer": "A"
     },
     {
         "question": "Câu 124: Chọn một thuốc chẹn  -adrenergic có tác dụng cường giao cảm nội tại?",
@@ -1013,7 +1013,7 @@ const quizData = [
         "option_b": "Ức chế receptor α2 – adrenergic trung ương",
         "option_c": "Giảm nhịp tim, giảm trương lực giao cảm ngoại biên",
         "option_d": "Giảm lưu lượng máu ở não, tạng, thận và mạch vành",
-        "answer": "B"
+        "answer": "D"
     },
     {
         "question": "Câu 128: Hai hoạt chất (amilorid và hydroclorothiazid) được phối hợp trong một thuốc thành phẩm nhằm mục đích gì?",
@@ -1061,7 +1061,7 @@ const quizData = [
         "option_b": "Người có tăng thể tích huyết tương",
         "option_c": "Người béo phì, người cao tuổi",
         "option_d": "Người có hoạt tính renin cao",
-        "answer": "D"
+        "answer": "A"
     },
     {
         "question": "Câu 134: Chọn thuốc có chỉ định tăng huyết áp ở phụ nữ mang thai:",
@@ -1133,7 +1133,7 @@ const quizData = [
         "option_b": "Bufeniod",
         "option_c": "Propranolol",
         "option_d": "Doxazocin",
-        "answer": "C"
+        "answer": "D"
     },
     {
         "question": "Câu 143: Các tác dụng không mong muốn của thuốc ức chế men chuyển, NGOẠI TRỪ:",
@@ -1141,7 +1141,7 @@ const quizData = [
         "option_b": "Ho khan liên quan đến liều sử dụng",
         "option_c": "Phù niêm mạc mũi, họng, thanh quản",
         "option_d": "Thay đổi vị giác, hay gặp khi dùng captopril",
-        "answer": "B"
+        "answer": "C"
     },
     {
         "question": "Câu 144: Chọn phát biểu đúng về cơ chế và tác dụng của methyldopa?",
