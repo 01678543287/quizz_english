@@ -41,9 +41,9 @@ const quizData = [
     },
     {
         "question": "Câu 6: Phát biểu nào dưới đây KHÔNG đúng về acarbose?",
-        "option_a": "Kích thích tế bào beta ở đảo tụy tiết insulin",
+        "option_a": "Kích thích tế bào  ở đảo tụy tiết insulin",
         "option_b": "Làm chậm hấp thu carbohydrat ở ruột non",
-        "option_c": "Ức chế cạnh tranh với alpha-glucosidase ở ruột non",
+        "option_c": "Ức chế cạnh tranh với -glucosidase ở ruột non",
         "option_d": "Ít hấp thu ở đường tiêu hóa",
         "answer": "A"
     },
@@ -65,11 +65,11 @@ const quizData = [
     },
     {
         "question": "Câu 9: Insulin bị giảm tác dụng khi bảo quản ở nhiệt độ nào dưới đây?",
-        "option_a": "> 25°C",
-        "option_b": "20 – 30°C",
-        "option_c": "> 40°C",
-        "option_d": "> 30°C",
-        "answer": "D"
+        "option_a": "> 250C",
+        "option_b": "20 – 300C",
+        "option_c": "> 400C",
+        "option_d": "> 300C",
+        "answer": "A"
     },
     {
         "question": "Câu 10: Chọn một thuốc thuộc nhóm sulfonylurea thế hệ 2?",
@@ -99,7 +99,7 @@ const quizData = [
         "question": "Câu 13: Phát biểu nào dưới đây KHÔNG đúng về insulin?",
         "option_a": "Có thể chiết từ tuyến tụy của bò hay lợn",
         "option_b": "Khi phá vỡ cầu disulfid thì tác dụng của insulin sẽ bị mất",
-        "option_c": "Do tế bào alpha và beta đảo Langerhans tiết ra",
+        "option_c": "Do tế bào  và β đảo Langerhans tiết ra",
         "option_d": "Chuỗi A và chuỗi B được nối với nhau bằng 2 cầu disulfid",
         "answer": "C"
     },
@@ -144,7 +144,7 @@ const quizData = [
         "answer": "B"
     },
     {
-        "question": "Câu 19: Thuốc nào dưới đây thuốc nhóm thuốc ức chế alpha-glucosidase?",
+        "question": "Câu 19: Thuốc nào dưới đây thuốc nhóm thuốc ức chế -glucosidase?",
         "option_a": "Liraglutid",
         "option_b": "Pioglitazon",
         "option_c": "Buformin",
@@ -156,7 +156,7 @@ const quizData = [
         "option_a": "Điều hòa nồng độ Ca2+ trong máu",
         "option_b": "Ức chế phân hủy glycogen thành glucose",
         "option_c": "Ức chế hấp thu calci ở ruột non",
-        "option_d": "Kích thích tuyến tụy tiết glucagon",
+        "option_a": "Kích thích tuyến tụy tiết glucagon",
         "answer": "A"
     },
     {
@@ -212,7 +212,7 @@ const quizData = [
         "option_a": "Có tác dụng khi cơ thể không còn khả năng tăng tiết insulin",
         "option_b": "Tăng số lượng receptor của insulin ở tế bào mỡ, hồng cầu",
         "option_c": "Ức chế nhẹ tác dụng của glucagon",
-        "option_d": "Kích thích trực tiếp tế bào beta tuyến tụy",
+        "option_d": "Kích thích trực tiếp tế bào  tuyến tụy",
         "answer": "A"
     },
     {
@@ -297,10 +297,10 @@ const quizData = [
     },
     {
         "question": "Câu 38: Nhiệt độ tốt nhất bảo quản insulin là:",
-        "option_a": "<= 0°C",
-        "option_b": "25 – 30°C",
-        "option_c": "2 – 8°C",
-        "option_d": "10 – 20°C",
+        "option_a": " 00C",
+        "option_b": "25 – 300C",
+        "option_c": "2 – 80C",
+        "option_d": "10 – 200C",
         "answer": "C"
     },
     {
@@ -400,407 +400,407 @@ const quizData = [
         "answer": "D"
     },
     {
-        "question": "Câu 51: Loại penicilin nào dưới đây bền với acid và có thể dùng đường uống?",
-        "option_a": "Penicilin G",
-        "option_b": "Penicilin V",
-        "option_c": "Methicilin",
+        "question": "Câu 51: Cơ chế – hậu quả tương tác giữa ketoconazol và terfenadin:",
+        "option_a": "Cạnh tranh liên kết protein huyết tương – tăng nồng độ ketoconazol",
+        "option_b": "Cạnh tranh thải trừ ở ống thận – kéo dài tác dụng của ketoconazol",
+        "option_c": "Ức chế enzym gan – tăng nồng độ terfenadin",
+        "option_d": "Cảm ứng enzym – giảm nồng độ terfenadin",
+        "answer": "C"
+    },
+    {
+        "question": "Câu 52: Phát biểu nào dưới đây KHÔNG đúng về amphotericin B?",
+        "option_a": "Dự phòng và điều trị nấm cho bệnh nhân suy giảm miễn dịch",
+        "option_b": "Trên người và động vật, thuốc gắn được vào cholesterol",
+        "option_c": "Cơ chế tác dụng: thuốc gắn vào ergosterol trên màng tế bào nấm",
+        "option_d": "Hấp thu kém qua đường tiêu hóa nên chỉ dùng điều trị nấm bề mặt",
+        "answer": "D"
+    },
+    {
+        "question": "Câu 53: Phát biểu nào dưới đây KHÔNG đúng về “phản ứng dị ứng” do kháng sinh gây ra?",
+        "option_a": "Viêm ruột kết màng giả",
+        "option_b": "Hội chứng Stevens-Johnson",
+        "option_c": "Sốc phản vệ",
+        "option_d": "Nổi ban, mày đay",
+        "answer": "A"
+    },
+    {
+        "question": "Câu 54: Vai trò chính của cilastatin trong phối hợp imipenem và cilastatin?",
+        "option_a": "Ức chế enzym dipeptidase ở ống thận",
+        "option_b": "Cạnh tranh thải trừ ở ống thận",
+        "option_c": "Mở rộng phổ kháng khuẩn cho imipenem",
+        "option_d": "Kháng được enzym -lactamase",
+        "answer": "A"
+    },
+    {
+        "question": "Câu 55: Liều dùng fluconazol trong chỉ định nhiễm nấm âm đạo:",
+        "option_a": "150 mg/24 giờ x 4-6 tuần",
+        "option_b": "150 mg x 3 lần/24 giờ x 5-7 ngày",
+        "option_c": "150 mg x 2 lần/24 giờ x 5-7 ngày",
+        "option_d": "Liều duy nhất 150 mg",
+        "answer": "D"
+    },
+    {
+        "question": "Câu 56: Ưu điểm chính của cephalosporin thế hệ III là:",
+        "option_a": "Các thuốc trong nhóm tác dụng được trên MRSA",
+        "option_b": "Tác dụng tốt trên vi khuẩn gram âm, bền vững với -lactamase",
+        "option_c": "Sinh khả dụng thuốc dùng đường uống tương đương đường tiêm",
+        "option_d": "Tác dụng trên vi khuẩn gram dương mạnh hơn penicilin",
+        "answer": "B"
+    },
+    {
+        "question": "Câu 57: Phát biểu nào dưới đây KHÔNG đúng về nguyên tắc sử dụng kháng sinh?",
+        "option_a": "Thời gian sử dụng thuốc thông thường từ 5-7 ngày",
+        "option_b": "Chỉ dùng kháng sinh dự phòng trong các trường hợp phẫu thuật",
+        "option_c": "Luôn phối hợp kháng sinh để cho hiệu quả tốt nhất",
+        "option_d": "Căn cứ vào vị trí nhiễm khuẩn để chọn dạng dùng thích hợp",
+        "answer": "C"
+    },
+    {
+        "question": "Câu 58: Phát biểu nào dưới đây KHÔNG đúng về aminopenicilin?",
+        "option_a": "Hấp thu qua đường tiêu hóa kém nên chỉ dùng qua đường tiêm",
+        "option_b": "Hầu như không có tác dụng với các vi khuẩn tiết ra penicilinase",
+        "option_c": "Chỉ định các nhiễm khuẩn hô hấp trên do các vi khuẩn nhạy cảm",
+        "option_d": "Hiện nay thường được phối hợp các chất ức chế -lactamase",
+        "answer": "A"
+    },
+    {
+        "question": "Câu 59: Phát biểu nào dưới đây KHÔNG đúng về cephalexin?",
+        "option_a": "Probenecid kéo dài tác dụng của thuốc",
+        "option_b": "Tác dụng phụ gây rối loạn tiêu hóa",
+        "option_c": "Là cephalosporin thế hệ I",
+        "option_d": "Phân lập từ môi trường nuôi cấy nấm",
+        "answer": "D"
+    },
+    {
+        "question": "Câu 60: Phát biểu nào dưới đây KHÔNG đúng về nystatin?",
+        "option_a": "Được chiết xuất từ môi trương nuôi cấy Streptomyces noursei",
+        "option_b": "Dung nạp tốt, ít độc, có thể dùng cho mọi lứa tuổi",
+        "option_c": "Nhạy cảm nhất với các loại nấm men và nấm Candida albicans",
+        "option_d": "Hấp thu tốt qua đường tiêu hóa, qua da, niêm mạc",
+        "answer": "D"
+    },
+    {
+        "question": "Câu 61: Chọn một phát biểu đúng về MBC và MIC đối với kháng sinh kìm khuẩn?",
+        "option_a": "MBC/MIC  4",
+        "option_b": "MBC/MIC > 4",
+        "option_c": "MIC/MBC  2",
+        "option_d": "MIC/MBC > 5",
+        "answer": "B"
+    },
+    {
+        "question": "Câu 62: Phát biểu nào dưới đây KHÔNG đúng về griseofulvin?",
+        "option_a": "Tích lũy nhiều trong các tế bào tiền thân keratin",
+        "option_b": "Làm giảm tác dụng của thuốc tránh thai do cảm ứng enzym gan",
+        "option_c": "Demethylgriseofulvin là chất chuyển hóa chính không còn hoạt tính",
+        "option_d": "Có tác dụng với cả nấm candida và nấm nội tạng",
+        "answer": "D"
+    },
+    {
+        "question": "Câu 63: Phát biểu nào dưới đây KHÔNG đúng về tác dụng không mong muốn của flucytosin?",
+        "option_a": "Rối loạn thần kinh tâm thần và tim mạch",
+        "option_b": "Ức chế tủy xương, làm giảm bạch cầu",
+        "option_c": "Tăng đường huyết, tăng triglycerid huyết",
+        "option_d": "Đau bụng, chán ăn, loét dạ dày – tá tràng",
+        "answer": "C"
+    },
+    {
+        "question": "Câu 64: Phân, nước tiểu, nước bọt, nước mắt, mồ hôi và các dịch khác của cơ thể sẽ có màu đỏ khi bệnh nhân sử dụng thuốc điều trị lao nào dưới đây?",
+        "option_a": "Ethambutol",
+        "option_b": "Isoniazid",
+        "option_c": "Pyrazinamid",
+        "option_d": "Rifampicin",
+        "answer": "D"
+    },
+    {
+        "question": "Câu 65: Phát biểu nào dưới đây KHÔNG đúng về cơ chế của kháng sinh -lactam?",
+        "option_a": "Ức chế giai đoạn tạo liên kết ngang giữa các peptidoglycan",
+        "option_b": "Gắn vào D-ala-D-ala tận cùng của pentapeptid",
+        "option_c": "Acetyl hóa các D-alanin transpeptidase",
+        "option_d": "Ức chế tổng hợp vách tế bào vi khuẩn",
+        "answer": "B"
+    },
+    {
+        "question": "Câu 66: Phát biểu nào dưới đây KHÔNG đúng về cơ chế đề kháng kháng sinh của vi khuẩn?",
+        "option_a": "Tạo enzym phân hủy hoặc biến đổi kháng sinh",
+        "option_b": "Thay đổi tính thấm của màng tế bào vi khuẩn",
+        "option_c": "Thay đổi đích tác dụng của kháng sinh",
+        "option_d": "Làm kéo dài thời gian tiềm tàng của kháng sinh",
+        "answer": "D"
+    },
+    {
+        "question": "Câu 67: Chọn một phát biểu đúng về MBC và MIC đối với kháng sinh diệt khuẩn?",
+        "option_a": "MIC/MBC < 1",
+        "option_b": "MBC/MIC > 1",
+        "option_c": "MBC/MIC  1",
+        "option_d": "MIC/MBC  2",
+        "answer": "C"
+    },
+    {
+        "question": "Câu 68: Thuốc chống lao thuộc nhóm 2 (tuyến 2) là:",
+        "option_a": "Amikacin",
+        "option_b": "Isoniazid",
+        "option_c": "Streptomycin",
+        "option_d": "Rifampicin",
+        "answer": "A"
+    },
+    {
+        "question": "Câu 69: Chọn phát biểu đúng về itraconazol:",
+        "option_a": "Hấp thu kém ở môi trường pH acid",
+        "option_b": "Liều cao gây hạ huyết áp, tăng kali máu",
+        "option_c": "Làm tăng nồng độ digoxin trong huyết tương",
+        "option_d": "Thuốc kháng acid làm tăng hấp thu itraconazol",
+        "answer": "C"
+    },
+    {
+        "question": "Câu 70: Vai trò chính của sulbactam trong phối hợp ampicilin và sulbactam?",
+        "option_a": "Cạnh tranh thải trừ ở ống thận",
+        "option_b": "Kháng được enzym -lactamase",
+        "option_c": "Diệt được Pseudomonas",
+        "option_d": "Diệt được MSSA",
+        "answer": "B"
+    },
+    {
+        "question": "Câu 71: Chọn phát biểu đúng về phác đồ điều trị lao ở trẻ em:",
+        "option_a": "2HRZ/4HR",
+        "option_b": "1ZE/5HRZ",
+        "option_c": "2SHE/4RE",
+        "option_d": "3SHR/3HR",
+        "answer": "A"
+    },
+    {
+        "question": "Câu 72: Liều dùng trung bình streptomycin trong phác đồ điều trị lao là:",
+        "option_a": "5 mg/kg",
+        "option_b": "7 mg/kg",
+        "option_c": "10 mg/kg",
+        "option_d": "15 mg/kg",
+        "answer": "D"
+    },
+    {
+        "question": "Câu 73: Kháng sinh nào dưới đây thuộc họ -lactam?",
+        "option_a": "Sulbactam",
+        "option_b": "Minocyclin",
+        "option_c": "Oxacilin",
+        "option_d": "Amikacin",
+        "answer": "C"
+    },
+    {
+        "question": "Câu 74: Penicilin kháng được Pseudomonas aeruginosa là:",
+        "option_a": "Ampicilin",
+        "option_b": "Ticarcilin",
+        "option_c": "Amoxycilin",
         "option_d": "Nafcilin",
         "answer": "B"
     },
     {
-        "question": "Câu 52: Thuốc nào dưới đây thuộc nhóm penicilin phổ rộng?",
-        "option_a": "Oxacilin",
-        "option_b": "Amoxicilin",
-        "option_c": "Penicilin G",
-        "option_d": "Penicilin V",
+        "question": "Câu 75: Hậu quả tương tác giữa ketoconazol và cimetidin:",
+        "option_a": "Tăng độc tính của ketoconazol",
+        "option_b": "Giảm hiệu quả điều trị nấm của ketoconazol",
+        "option_c": "Kéo dài thời gian bán thải của kháng histamin H2",
+        "option_d": "Tăng nồng độ của kháng histamin H2",
         "answer": "B"
     },
     {
-        "question": "Câu 53: Cơ chế tác dụng của kháng sinh nhóm Beta-lactam là:",
-        "option_a": "Ức chế tổng hợp vách tế bào vi khuẩn",
-        "option_b": "Ức chế tổng hợp protein của vi khuẩn",
-        "option_c": "Ức chế tổng hợp acid nucleic",
-        "option_d": "Thay đổi tính thấm màng tế bào",
+        "question": "Câu 76: Kháng sinh hay nhóm kháng sinh nào dưới đây có tác dụng ức chế tổng hợp vách tế bào vi khuẩn?",
+        "option_a": "Vancomycin",
+        "option_b": "Cloramphenicol",
+        "option_c": "Macrolid",
+        "option_d": "Doxycyclin",
         "answer": "A"
     },
     {
-        "question": "Câu 54: Kháng sinh nào dưới đây thuộc nhóm Cephalosporin thế hệ 3?",
-        "option_a": "Cephalexin",
-        "option_b": "Cefuroxim",
-        "option_c": "Cefotaxim",
-        "option_d": "Cefazolin",
+        "question": "Câu 77: Chọn phát biểu đúng về cơ chế và tác dụng của cimetidin?",
+        "option_a": "Tranh chấp với acetylcholin lại receptor M",
+        "option_b": "Trung hòa acid dịch vị",
+        "option_c": "Tranh chấp với histamin tại receptor H2",
+        "option_d": "Bao phủ vết loét dạ dày – tá tràng",
         "answer": "C"
     },
     {
-        "question": "Câu 55: Tác dụng không mong muốn đặc trưng nhất của nhóm Aminoglycosid là:",
-        "option_a": "Độc với gan và thận",
-        "option_b": "Độc với tai và thận",
-        "option_c": "Gây tiêu chảy",
-        "option_d": "Gây vàng răng ở trẻ em",
-        "answer": "B"
-    },
-    {
-        "question": "Câu 56: Kháng sinh nào không được dùng cho trẻ em dưới 8 tuổi do gây hỏng men răng và chậm phát triển xương?",
-        "option_a": "Amoxicilin",
-        "option_b": "Erythromycin",
-        "option_c": "Tetracyclin",
-        "option_d": "Ciprofloxacin",
+        "question": "Câu 78: Thuốc nào dưới đây thuộc nhóm tăng cường bảo vệ niêm mạc dạ dày – tá tràng?",
+        "option_a": "Proglumid",
+        "option_b": "Telenzepin",
+        "option_c": "Sucralfat",
+        "option_d": "Clarithromycin",
         "answer": "C"
     },
     {
-        "question": "Câu 57: Tai biến trầm trọng nhất khi dùng Penicilin là:",
-        "option_a": "Rối loạn tiêu hóa",
-        "option_b": "Nổi mề đay",
-        "option_c": "Sốc phản vệ",
-        "option_d": "Viêm thận kẽ",
+        "question": "Câu 79: Phát biểu nào dưới đây KHÔNG đúng về cơ chế và tác dụng của các hợp chất bismuth?",
+        "option_a": "Tăng bài tiết chất nhày bảo vệ niêm mạc dạ dày",
+        "option_b": "Ức chế sinh tổng hợp prostaglandin",
+        "option_c": "Tạo hàng rào bảo vệ niêm mạc dạ dày",
+        "option_d": "Chống lại vi khuẩn Helicobacter pylori",
+        "answer": "B"
+    },
+    {
+        "question": "Câu 80: Phát biểu nào dưới đây KHÔNG đúng về omeprazol?",
+        "option_a": "Liên kết với nhóm sulhydryl của H+/K+ ATPase",
+        "option_b": "Hấp thu nhanh qua đường tiêu hóa",
+        "option_c": "Trung hòa acid hydroclorid ở dạ dày",
+        "option_d": "Tác dụng chọn lọc trên tế bào thành dạ dày",
         "answer": "C"
     },
     {
-        "question": "Câu 58: Thuốc nào dưới đây thường được phối hợp với Amoxicilin để chống lại sự bài tiết beta-lactamase của vi khuẩn?",
-        "option_a": "Acid clavulanic",
-        "option_b": "Sulbactam",
-        "option_c": "Tazobactam",
-        "option_d": "Probenecid",
-        "answer": "A"
-    },
-    {
-        "question": "Câu 59: Kháng sinh nhóm Macrolid có cơ chế tác dụng là:",
-        "option_a": "Ức chế tổng hợp vách tế bào",
-        "option_b": "Ức chế tổng hợp protein ở tiểu đơn vị 50S của ribosom",
-        "option_c": "Ức chế tổng hợp protein ở tiểu đơn vị 30S của ribosom",
-        "option_d": "Ức chế DNA gyrase",
+        "question": "Câu 81: Chọn phát biểu đúng về cách dùng, liều dùng của cimetidin?",
+        "option_a": "150 mg x 2 lần/ngày",
+        "option_b": "800 mg x 1 lần/ngày trước khi ngủ",
+        "option_c": "20 mg x 2 lần/ngày",
+        "option_d": "300 mg x 1 lần/ngày trước khi ngủ",
         "answer": "B"
     },
     {
-        "question": "Câu 60: Thuốc nào là lựa chọn hàng đầu để điều trị lỵ amip ở đại tràng?",
-        "option_a": "Metronidazol",
-        "option_b": "Chloroquin",
-        "option_c": "Emetin",
-        "option_d": "Diloxanid",
+        "question": "Câu 82: Phát biểu nào dưới đây KHÔNG đúng về các trường hợp chống chỉ định của hợp chất bismuth?",
+        "option_a": "Đang dùng amoxicillin",
+        "option_b": "Suy nhược thần kinh trung ương",
+        "option_c": "Đen vòm miệng",
+        "option_d": "Loạn dưỡng xương",
         "answer": "A"
     },
     {
-        "question": "Câu 61: Tác dụng phụ gây 'Hội chứng xám' (Gray syndrome) thường gặp ở trẻ sơ sinh khi dùng:",
-        "option_a": "Tetracyclin",
-        "option_b": "Chloramphenicol",
-        "option_c": "Lincomycin",
-        "option_d": "Streptomycin",
-        "answer": "B"
+        "question": "Câu 83: Tương tác thuốc (thuốc/nhóm thuốc tương tác – hậu quả) cần lưu ý khi sử dụng triamteren?",
+        "option_a": "Kháng sinh aminosid – độc trên thính giác",
+        "option_b": "Thuốc lợi tiểu quai – giảm K+ máu",
+        "option_c": "Amilorid – giảm K+ máu",
+        "option_d": "Thuốc ức chế men chuyển – tăng K+ máu",
+        "answer": "D"
     },
     {
-        "question": "Câu 62: Nhóm kháng sinh Quinolon (như Ciprofloxacin) chống chỉ định cho trẻ em dưới 18 tuổi vì:",
-        "option_a": "Gây điếc vĩnh viễn",
-        "option_b": "Gây thoái hóa sụn khớp ở động vật non",
-        "option_c": "Gây thiếu máu tán huyết",
-        "option_d": "Gây suy gan cấp",
-        "answer": "B"
-    },
-    {
-        "question": "Câu 63: Thuốc kháng sinh nào có tác dụng điều trị tốt đối với vi khuẩn kỵ khí?",
-        "option_a": "Gentamicin",
-        "option_b": "Metronidazol",
-        "option_c": "Cotrimoxazol",
-        "option_d": "Neomycin",
-        "answer": "B"
-    },
-    {
-        "question": "Câu 64: Sulfonamid (Sulfamide) có cơ chế tác dụng là:",
-        "option_a": "Ức chế tổng hợp vách",
-        "option_b": "Cạnh tranh với PABA làm ngăn cản tổng hợp acid folic",
-        "option_c": "Ức chế enzym RNA polymerase",
-        "option_d": "Gây rối loạn màng tế bào",
-        "answer": "B"
-    },
-    {
-        "question": "Câu 65: Kháng sinh nào thường gây tác dụng phụ là đứt gân gót chân (gân Achilles)?",
-        "option_a": "Nhóm Quinolon",
-        "option_b": "Nhóm Macrolid",
-        "option_c": "Nhóm Lincosamid",
-        "option_d": "Nhóm Aminosid",
+        "question": "Câu 84: Cơ chế tác dụng của thuốc lợi tiểu quai là ức chế:",
+        "option_a": "Kênh đồng vận chuyển Na+/K+/2Cl-",
+        "option_b": "Sự tiết renin",
+        "option_c": "Enzym carbonic anhydrase",
+        "option_d": "Enzym chuyển angiotensin",
         "answer": "A"
     },
     {
-        "question": "Câu 66: Thuốc phối hợp trong Cotrimoxazol gồm Sulfamethoxazol và:",
-        "option_a": "Trimethoprim",
-        "option_b": "Pyrimethamin",
-        "option_c": "Clavulanic acid",
-        "option_d": "Tazobactam",
-        "answer": "A"
-    },
-    {
-        "question": "Câu 67: Kháng sinh chống lao thiết yếu nhất, có tác dụng diệt khuẩn cả trong và ngoài tế bào là:",
-        "option_a": "Ethambutol",
-        "option_b": "Isoniazid (INH)",
-        "option_c": "Pyrazinamid",
-        "option_d": "Cycloserin",
+        "question": "Câu 85: Kết quả khi phối hợp thuốc lợi tiểu quai và amiodaron là:",
+        "option_a": "Giảm hấp thu amiodaron",
+        "option_b": "Tăng nguy cơ rối loạn nhịp tim",
+        "option_c": "Gây cơn hạ huyết áp đột ngột",
+        "option_d": "Giảm tác dụng lợi tiểu",
         "answer": "B"
     },
     {
-        "question": "Câu 68: Tác dụng không mong muốn chính của Ethambutol là:",
-        "option_a": "Viêm dây thần kinh thị giác",
-        "option_b": "Độc với gan",
-        "option_c": "Tăng acid uric máu",
-        "option_d": "Rối loạn tiền đình",
-        "answer": "A"
-    },
-    {
-        "question": "Câu 69: Thuốc nào có tác dụng nhuộm màu đỏ các dịch bài tiết (nước tiểu, mồ hôi, nước mắt)?",
-        "option_a": "Rifampicin",
-        "option_b": "Isoniazid",
-        "option_c": "Streptomycin",
-        "option_d": "Ethambutol",
-        "answer": "A"
-    },
-    {
-        "question": "Câu 70: Thuốc kháng nấm được lựa chọn ưu tiên trong điều trị nấm Candida miệng (tưa miệng) là:",
-        "option_a": "Amphotericin B",
-        "option_b": "Nystatin",
-        "option_c": "Griseofulvin",
-        "option_d": "Ketoconazol",
-        "answer": "B"
-    },
-    {
-        "question": "Câu 71: Phát biểu nào dưới đây đúng về cơ chế tác dụng của thuốc lợi tiểu nhóm Thiazid?",
-        "option_a": "Ức chế tái hấp thu Na+ và Cl- ở đoạn đầu ống lượn xa",
-        "option_b": "Ức chế tái hấp thu Na+ ở nhánh lên quai Henle",
-        "option_c": "Đối kháng với aldosteron",
-        "option_d": "Ức chế enzym carbonic anhydrase",
-        "answer": "A"
-    },
-    {
-        "question": "Câu 72: Thuốc lợi tiểu nào có thể gây tác dụng phụ là vú to ở nam giới?",
+        "question": "Câu 86: Lợi tiểu quai KHÔNG bao gồm thuốc nào dưới đây?",
         "option_a": "Furosemid",
-        "option_b": "Hydroclorothiazid",
-        "option_c": "Spironolacton",
-        "option_d": "Acetazolamid",
+        "option_b": "Bumetanid",
+        "option_c": "Chlorthalidon",
+        "option_d": "Acid ethacrynic",
         "answer": "C"
     },
     {
-        "question": "Câu 73: Thuốc lợi tiểu quai (như Furosemid) có đặc điểm:",
-        "option_a": "Tác dụng yếu nhưng kéo dài",
-        "option_b": "Làm tăng nồng độ Ca2+ máu",
-        "option_c": "Tác dụng mạnh, nhanh nhưng ngắn",
-        "option_d": "Không làm mất kali",
+        "question": "Câu 87: Phát biểu nào dưới đây KHÔNG đúng về tác dụng không mong muốn của thuốc lợi tiểu quai?",
+        "option_a": "Chóng mặt, ù tai",
+        "option_b": "Đau cơ, đau khớp",
+        "option_c": "Tăng K+",
+        "option_d": "Giảm Ca2+",
         "answer": "C"
     },
     {
-        "question": "Câu 74: Nhóm thuốc đầu tay trong điều trị tăng huyết áp ở bệnh nhân đái tháo đường vì giúp bảo vệ thận là:",
-        "option_a": "Chẹn kênh calci",
-        "option_b": "Ức chế men chuyển (ACEI)",
-        "option_c": "Chẹn beta-adrenergic",
-        "option_d": "Lợi tiểu Thiazid",
-        "answer": "B"
-    },
-    {
-        "question": "Câu 75: Tác dụng không mong muốn điển hình của thuốc ức chế men chuyển (như Captopril) là:",
-        "option_a": "Phù chân",
-        "option_b": "Ho khan kéo dài",
-        "option_c": "Nhịp chậm",
-        "option_d": "Tăng đường huyết",
-        "answer": "B"
-    },
-    {
-        "question": "Câu 76: Thuốc chẹn kênh calci nhóm Dihydropyridin (DHP) như Amlodipin có tác dụng ưu tiên trên:",
-        "option_a": "Cơ tim",
-        "option_b": "Cơ trơn mạch máu",
-        "option_c": "Hệ thống dẫn truyền",
-        "option_d": "Thận",
-        "answer": "B"
-    },
-    {
-        "question": "Câu 77: Cơ chế tác dụng của Nitroglycerin trong điều trị đau thắt ngực là:",
-        "option_a": "Chỉ làm tăng nhịp tim",
-        "option_b": "Giãn tĩnh mạch, giảm tiền gánh và giãn mạch vành",
-        "option_c": "Ức chế trực tiếp trung tâm đau ở não",
-        "option_d": "Co mạch ngoại vi để dồn máu về tim",
-        "answer": "B"
-    },
-    {
-        "question": "Câu 78: Thuốc điều trị tăng huyết áp nào có thể gây hiện tượng 'tăng huyết áp dội ngược' nếu ngừng thuốc đột ngột?",
-        "option_a": "Clonidin",
-        "option_b": "Enalapril",
-        "option_c": "Amlodipin",
-        "option_d": "Indapamid",
+        "question": "Câu 88: Kết quả khi phối hợp thuốc lợi tiểu quai và kháng sinh aminoglycosid là:",
+        "option_a": "Tăng độc tính với dây thần kinh số VIII",
+        "option_b": "Tăng tác dụng lợi tiểu của thuốc",
+        "option_c": "Gây cơn hạ huyết áp đột ngột",
+        "option_d": "Tăng nguy cơ rối loạn nhịp tim",
         "answer": "A"
     },
     {
-        "question": "Câu 79: Digoxin có tác dụng chính trên tim là:",
-        "option_a": "Tăng nhịp tim, tăng sức co bóp",
-        "option_b": "Giảm nhịp tim, giảm sức co bóp",
-        "option_c": "Giảm nhịp tim, tăng sức co bóp cơ tim",
-        "option_d": "Tăng nhịp tim, giảm dẫn truyền",
-        "answer": "C"
-    },
-    {
-        "question": "Câu 80: Khi ngộ độc Digoxin, dấu hiệu rối loạn thị giác thường gặp là:",
-        "option_a": "Mù màu",
-        "option_b": "Nhìn vật thấy màu vàng hoặc xanh lá cây",
-        "option_c": "Sợ ánh sáng",
-        "option_d": "Tăng nhãn áp",
+        "question": "Câu 89: Phát biểu nào dưới đây KHÔNG đúng về chống chỉ định của lợi tiểu thiazid?",
+        "option_a": "Giảm K+ huyết",
+        "option_b": "Tăng lipid huyết",
+        "option_c": "Bệnh gout",
+        "option_d": "Dị ứng với sulfamid",
         "answer": "B"
     },
     {
-        "question": "Câu 81: Nhóm thuốc Statins (như Atorvastatin) có cơ chế là:",
-        "option_a": "Ức chế enzym HMG-CoA reductase",
-        "option_b": "Tăng cường bài tiết acid mật",
-        "option_c": "Ức chế hấp thu cholesterol ở ruột",
-        "option_d": "Kích thích lipoprotein lipase",
+        "question": "Câu 90: Furosemid được chỉ định trong những trường hợp dưới đây, NGOẠI TRỪ:",
+        "option_a": "Cơn tăng huyết áp",
+        "option_b": "Phù do các bệnh gan, thận",
+        "option_c": "Suy tim mạn tính có phù",
+        "option_d": "Rối loạn điện giải",
+        "answer": "D"
+    },
+    {
+        "question": "Câu 91: Việc tăng cường chuyển hóa thành chất nào dưới đây giải thích NSAIDs có thể gây cơn hen giả ở người không bị hen?",
+        "option_a": "Acid arachidonic",
+        "option_b": "Leucotrien",
+        "option_c": "Prostaglandin",
+        "option_d": "Thromboxan A2",
+        "answer": "B"
+    },
+    {
+        "question": "Câu 92: Cơ chế tác dụng hạ sốt của NSAIDs là:",
+        "option_a": "Ức chế enzym prostaglandin synthetase",
+        "option_b": "Tăng tổng hợp prostaglandin E1",
+        "option_c": "Ức chế enzym cyclooxygenase-2",
+        "option_d": "Giảm sự tạo thành leucotrien",
         "answer": "A"
     },
     {
-        "question": "Câu 82: Tác dụng không mong muốn cần theo dõi sát khi dùng Statin là:",
-        "option_a": "Viêm loét dạ dày",
-        "option_b": "Đau cơ, tiêu cơ vân",
-        "option_c": "Mất ngủ",
-        "option_d": "Hạ huyết áp tư thế",
-        "answer": "B"
+        "question": "Câu 93: NSAIDs ức chế enzym nào dưới đây gây tác dụng không mong muốn trên đường tiêu hóa?",
+        "option_a": "Lipooxygenase",
+        "option_b": "Phospholipase A2",
+        "option_c": "Cyclooxygenase-1",
+        "option_d": "Cyclooxygenase-2",
+        "answer": "C"
     },
     {
-        "question": "Câu 83: Vitamin K được dùng để xử trí khi quá liều thuốc chống đông máu nào?",
-        "option_a": "Heparin",
-        "option_b": "Warfarin",
-        "option_c": "Aspirin",
-        "option_d": "Clopidogrel",
-        "answer": "B"
+        "question": "Câu 94: [Câu hỏi bị thiếu nội dung đầy đủ nhưng dựa trên các lựa chọn]:",
+        "option_a": "Gây hạ nhiệt ở người bình thường",
+        "option_b": "Liều tối đa cho người nghiện rượu: 2 g/24 giờ",
+        "option_c": "Hạ sốt do mọi nguyên nhân gây sốt",
+        "option_d": "Không uống rượu trong thời gian dùng thuốc",
+        "answer": "D"
     },
     {
-        "question": "Câu 84: Thuốc giải độc đặc hiệu khi quá liều Heparin là:",
-        "option_a": "Vitamin K1",
-        "option_b": "Protamin sulfat",
-        "option_c": "Acetylcystein",
-        "option_d": "Atropin",
-        "answer": "B"
+        "question": "Câu 95: Phát biểu nào dưới đây KHÔNG đúng về các tác dụng không mong muốn của NSAIDs?",
+        "option_a": "Có thể gây loét dạ dày tá tràng, xuất huyết tiêu hóa",
+        "option_b": "Giảm lưu lượng máu qua thận, giảm sức lọc cầu thận",
+        "option_c": "Không dùng cho phụ nữ có thai vì tăng co bóp tử cung",
+        "option_d": "Kéo dài thời gian chảy máu do ức chế kết tập tiểu cầu",
+        "answer": "C"
     },
     {
-        "question": "Câu 85: Aspirin liều thấp (75-100mg) được dùng để:",
-        "option_a": "Hạ sốt mạnh",
-        "option_b": "Chống kết tập tiểu cầu, phòng huyết khối",
-        "option_c": "Giảm đau răng",
-        "option_d": "Điều trị loét dạ dày",
-        "answer": "B"
+        "question": "Câu 96: Chỉ định chung của NSAIDs KHÔNG bao gồm:",
+        "option_a": "Hạ sốt",
+        "option_b": "Đau răng, đau cơ",
+        "option_c": "Viêm dạ dày",
+        "option_d": "Viêm khớp dạng thấp",
+        "answer": "C"
     },
     {
-        "question": "Câu 86: Thuốc nào dưới đây là thuốc chống viêm không steroid (NSAID) ức chế chọn lọc trên COX-2?",
-        "option_a": "Diclofenac",
-        "option_b": "Celecoxib",
-        "option_c": "Ibuprofen",
-        "option_d": "Naproxen",
-        "answer": "B"
+        "question": "Câu 97: Cơ chế tác dụng kháng viêm của NSAIDs là:",
+        "option_a": "Ức chế enzym cyclooxygenase-2",
+        "option_b": "Ức chế enzym lipooxygenase",
+        "option_c": "Ngăn cản sự tạo thành thromboxan A2",
+        "option_d": "Ức chế enzym prostaglandin synthetase",
+        "answer": "A"
     },
     {
-        "question": "Câu 87: Tác dụng phụ thường gặp nhất của các NSAID không chọn lọc là:",
-        "option_a": "Gây buồn ngủ",
-        "option_b": "Loét dạ dày - tá tràng",
-        "option_c": "Tăng huyết áp",
-        "option_d": "Suy tủy",
-        "answer": "B"
+        "question": "Câu 98: Chọn thuốc có chỉ định “sốt do mọi nguyên nhân” trên lâm sàng:",
+        "option_a": "Acid acetylsalicylic",
+        "option_b": "Ketoprofen",
+        "option_c": "Acid mefenamic",
+        "option_d": "Nimesulid",
+        "answer": "A"
     },
     {
-        "question": "Câu 88: Liều tối đa của Paracetamol trong 24 giờ đối với người lớn bình thường là khoảng:",
-        "option_a": "2g",
-        "option_b": "4g",
-        "option_c": "6g",
-        "option_d": "10g",
-        "answer": "B"
-    },
-    {
-        "question": "Câu 89: Thuốc giải độc khi quá liều Paracetamol gây độc cho gan là:",
-        "option_a": "Atropin",
-        "option_b": "N-acetylcystein",
-        "option_c": "Naloxon",
-        "option_d": "Ethanol",
-        "answer": "B"
-    },
-    {
-        "question": "Câu 90: Morphine chống chỉ định trong trường hợp nào dưới đây?",
-        "option_a": "Đau do ung thư giai đoạn cuối",
-        "option_b": "Suy hô hấp",
-        "option_c": "Phù phổi cấp",
-        "option_d": "Sau phẫu thuật lớn",
-        "answer": "B"
-    },
-    {
-        "question": "Câu 91: Thuốc đối kháng đặc hiệu khi ngộ độc các thuốc phiện (opioid) là:",
-        "option_a": "Morphin",
-        "option_b": "Naloxon",
-        "option_c": "Codein",
-        "option_d": "Pethidin",
-        "answer": "B"
-    },
-    {
-        "question": "Câu 92: Salbutamol (Albuterol) là thuốc cường beta-2 có tác dụng:",
-        "option_a": "Co thắt phế quản",
-        "option_b": "Giãn cơ trơn phế quản",
-        "option_c": "Ức chế trung tâm ho",
-        "option_d": "Làm loãng đờm",
-        "answer": "B"
-    },
-    {
-        "question": "Câu 93: Thuốc nào dưới đây thuộc nhóm thuốc long đờm (tiêu chất nhầy)?",
-        "option_a": "Dextromethorphan",
-        "option_b": "Bromhexin",
-        "option_c": "Codein",
-        "option_d": "Terpin hydrat",
-        "answer": "B"
-    },
-    {
-        "question": "Câu 94: Cơ chế tác dụng của thuốc kháng acid (Antacid) là:",
-        "option_a": "Ức chế bơm proton",
-        "option_b": "Trung hòa trực tiếp acid dịch vị",
-        "option_c": "Phong bế receptor H2",
-        "option_d": "Bao phủ niêm mạc dạ dày",
-        "answer": "B"
-    },
-    {
-        "question": "Câu 95: Omeprazol thuộc nhóm thuốc nào?",
-        "option_a": "Kháng receptor H2",
-        "option_b": "Ức chế bơm proton (PPI)",
-        "option_c": "Kháng gastrin",
-        "option_d": "Hồi phục tế bào niêm mạc",
-        "answer": "B"
-    },
-    {
-        "question": "Câu 96: Thời điểm uống PPI tốt nhất để đạt hiệu quả tối ưu là:",
-        "option_a": "Ngay sau khi ăn no",
-        "option_b": "Trước bữa ăn sáng 30 - 60 phút",
-        "option_c": "Trước khi đi ngủ",
-        "option_d": "Lúc nào cũng được",
-        "answer": "B"
-    },
-    {
-        "question": "Câu 97: Thuốc nào có tác dụng nhuộm màu đen lưỡi và phân khi điều trị viêm loét dạ dày?",
+        "question": "Câu 99: Thuốc nào dưới đây thuộc nhóm dẫn xuất statin:",
         "option_a": "Sucralfat",
-        "option_b": "Bismuth",
-        "option_c": "Misoprostol",
-        "option_d": "Maalox",
+        "option_b": "Streptomycin",
+        "option_c": "Simvastatin",
+        "option_d": "Salbutamol",
+        "answer": "C"
+    },
+    {
+        "question": "Câu 100: Phát biểu nào dưới đây KHÔNG đúng về nguyên nhân dẫn đến tăng lipoprotein máu:",
+        "option_a": "Cơ thể hấp thu nhiều lipid do chế độ ăn quá nhiều lipid",
+        "option_b": "Giảm hoạt tính của enzym lipooxygenase",
+        "option_c": "Tăng hoạt tính của enzym HMG – CoA reductase",
+        "option_d": "Dùng thuốc tránh thai, corticoid, chẹn beta giao cảm",
         "answer": "B"
     },
     {
-        "question": "Câu 98: Nhóm thuốc nào dưới đây có tác dụng nhuận tràng do làm tăng thể tích phân?",
-        "option_a": "Dầu thầu dầu",
-        "option_b": "Hạt mã đề (Psyllium)",
-        "option_c": "Bisacodyl",
-        "option_d": "Glycerin",
-        "answer": "B"
-    },
-    {
-        "question": "Câu 99: Loperamid được dùng trong trường hợp nào?",
-        "option_a": "Táo bón kinh niên",
-        "option_b": "Tiêu chảy cấp không nhiễm khuẩn",
-        "option_c": "Đầy hơi, chướng bụng",
-        "option_d": "Viêm loét đại tràng",
-        "answer": "B"
-    },
-    {
-        "question": "Câu 100: Vitamin B1 còn có tên gọi khác là:",
-        "option_a": "Riboflavin",
-        "option_b": "Thiamin",
-        "option_c": "Niacin",
-        "option_d": "Pyridoxin",
-        "answer": "B"
-    },
-    {
-        "question": "Câu 101: Phát biểu nào dưới đây KHÔNG đúng về Colestipol?",
+        "question": "Câu 101: Phát biểu nào dưới đây KHÔNG đúng về Colestipol:",
         "option_a": "Thuộc nhóm thuốc các resin chelat hóa",
         "option_b": "Tạo chelat với acid mật, cản trở việc nhũ hóa các lipid ở ruột",
         "option_c": "Giảm hoạt tính của enzym HMG – CoA reductase",
@@ -808,7 +808,7 @@ const quizData = [
         "answer": "C"
     },
     {
-        "question": "Câu 102: Phát biểu nào dưới đây KHÔNG đúng về Cholestyramin?",
+        "question": "Câu 102: Phát biểu nào dưới đây KHÔNG đúng về Cholestyramin:",
         "option_a": "Không tan trong nước, hấp thu tốt qua đường tiêu hóa",
         "option_b": "Chỉ định cho bệnh nhân tăng lipoprotein máu typ IIa (LDL)",
         "option_c": "Tác dụng xuất hiện chậm (4 – 7 ngày sau uống)",
@@ -816,7 +816,7 @@ const quizData = [
         "answer": "A"
     },
     {
-        "question": "Câu 103: Thuốc nào dưới đây thuộc nhóm ức chế tổng hợp lipid?",
+        "question": "Câu 103: Thuốc nào dưới đây thuộc nhóm ức chế tổng hợp lipid:",
         "option_a": "Cholestyramin",
         "option_b": "Dioparin",
         "option_c": "Colestipol",
@@ -827,7 +827,7 @@ const quizData = [
         "question": "Câu 104: Chọn phát biểu đúng về cơ chế tác dụng của Atorvastatin:",
         "option_a": "Ức chế sản xuất gonadotropin tuyến yên gây giảm tiết estrogen",
         "option_b": "Ức chế cạnh tranh với enzym H+/K+ ATPase",
-        "option_c": "Ức chế cạnh tranh với enzym HMG – CoA reductase",
+        "option_c": "Ức chế cạnh tranh với enzym HMG – CoA recductase",
         "option_d": "Tạo chelat với acid mật, cản trở nhũ hóa lipid",
         "answer": "C"
     },
@@ -857,8 +857,8 @@ const quizData = [
     },
     {
         "question": "Câu 108: Chọn phát biểu đúng về tác dụng của dobutamin là:",
-        "option_a": "Tác dụng không chọn lọc trên α và β-adrenergic",
-        "option_b": "Tác dụng chọn lọc trên α1-adrenergic",
+        "option_a": "Tác dụng không chọn lọc trên  và β-adrenergic",
+        "option_b": "Tác dụng chọn lọc trên  1-adrenergic",
         "option_c": "Tác dụng chọn lọc trên β1-adrenergic",
         "option_d": "Tác dụng không chọn lọc trên β-adrenergic",
         "answer": "C"
@@ -920,7 +920,7 @@ const quizData = [
         "answer": "B"
     },
     {
-        "question": "Câu 116: ƯU ĐIỂM của thuốc ức chế chọn lọc β1-adrenergic khi sử dụng ở liều điều trị so với thuốc ức chế β không chọn lọc là:",
+        "question": "Câu 116: ƯU ĐIỂM của thuốc ức chế chọn lọc  1-adrenergic khi sử dụng ở liều điều trị so với thuốc ức chế  không chọn lọc là:",
         "option_a": "Làm giảm tiết renin",
         "option_b": "Giãn cơ trơn tử cung",
         "option_c": "Tăng lưu lượng tim",
@@ -984,7 +984,7 @@ const quizData = [
         "answer": "B"
     },
     {
-        "question": "Câu 124: Chọn một thuốc chẹn β-adrenergic có tác dụng cường giao cảm nội tại?",
+        "question": "Câu 124: Chọn một thuốc chẹn  -adrenergic có tác dụng cường giao cảm nội tại?",
         "option_a": "Amlodipin",
         "option_b": "Atenolol",
         "option_c": "Acebutolol",
@@ -1027,7 +1027,7 @@ const quizData = [
         "question": "Câu 129: Phát biểu nào dưới đây KHÔNG đúng về minoxidil?",
         "option_a": "Phản xạ bù nặng hơn hydralazin",
         "option_b": "Làm giãn mạch nhanh hơn verapamil",
-        "option_c": "Nên phối hợp với thuốc chẹn β-adrenergic",
+        "option_c": "Nên phối hợp với thuốc chẹn  -adrenergic",
         "option_d": "Gây tăng cân, rậm lông (dùng trên 4 tuần)",
         "answer": "B"
     },
@@ -1051,7 +1051,7 @@ const quizData = [
         "question": "Câu 132: Phát biểu nào dưới đây KHÔNG đúng?",
         "option_a": "Prazocin không bị chuyển hóa qua gan lần đầu",
         "option_b": "Bufeniod gây giãn mạch, giảm sức cản ngoại biên",
-        "option_c": "Terazocin ức chế chọn lọc receptor α1-adrenergic",
+        "option_c": "Terazocin ức chế chọn lọc receptor  1-adrenergic",
         "option_d": "Terazocin, prazocin chỉ định tăng huyết áp",
         "answer": "A"
     },
@@ -1076,7 +1076,7 @@ const quizData = [
         "option_a": "Giãn mạch trực tiếp",
         "option_b": "Lợi tiểu",
         "option_c": "Chẹn thụ thể angiotensin",
-        "option_d": "Cường β-adrenergic",
+        "option_d": "Cường  -adrenergic",
         "answer": "D"
     },
     {
@@ -1128,7 +1128,7 @@ const quizData = [
         "answer": "D"
     },
     {
-        "question": "Câu 142: Chọn một thuốc chẹn β1-adrenergic KHÔNG chọn lọc?",
+        "question": "Câu 142: Chọn một thuốc chẹn  1-adrenergic KHÔNG chọn lọc?",
         "option_a": "Atenolol",
         "option_b": "Bufeniod",
         "option_c": "Propranolol",
@@ -1145,7 +1145,7 @@ const quizData = [
     },
     {
         "question": "Câu 144: Chọn phát biểu đúng về cơ chế và tác dụng của methyldopa?",
-        "option_a": "Ức chế receptor β1 – adrenergic ở tim",
+        "option_a": "Ức chế receptor  1 – adrenergic ở tim",
         "option_b": "Kích thích receptor α2 – adrenergic trung ương",
         "option_c": "Dùng lâu dài làm tăng giải phóng noradrenalin",
         "option_d": "Giãn mạch trực tiếp do phóng thích NO",
