@@ -109,7 +109,7 @@ const quizData = [
     "option_b": "Trộn đều với chất gây thấm",
     "option_c": "Tan hoàn toàn trong chất dẫn",
     "option_d": "Thấm đều chất dẫn",
-    "answer": "D"
+    "answer": "B"
   },
   {
     "question": "Calci stearat có vai trò gì trong điều chế nhũ tương thuốc?",
@@ -213,7 +213,7 @@ const quizData = [
     "option_b": "Diện hoạt bán tổng hợp",
     "option_c": "Thiên nhiên, dùng cho nhũ tương D/N",
     "option_d": "Thiên nhiên, dùng cho nhũ tương N/D",
-    "answer": "D"
+    "answer": "C"
   },
   {
     "question": "Giai đoạn quyết định đến chất lượng thuốc mỡ điều chế theo phương pháp hòa tan là:",
@@ -221,7 +221,7 @@ const quizData = [
     "option_b": "Phối hợp dược chất vào tá dược",
     "option_c": "Điều chế tá dược",
     "option_d": "Làm mịn hoạt chất",
-    "answer": "B"
+    "answer": "C"
   },
   {
     "question": "Loại tá dược dùng điều chế thuốc mỡ có tác dụng điều trị toàn thân là:",
@@ -245,7 +245,7 @@ const quizData = [
     "option_b": "Hoạt chất phân tán đồng nhất",
     "option_c": "Không chảy ở nhiệt độ thường",
     "option_d": "Để bảo vệ da",
-    "answer": "C"
+    "answer": "D"
   },
   {
     "question": "Chất nhũ hoá, chất gây thấm cho cả 3 dạng uống, tiêm, dùng ngoài?",
@@ -269,7 +269,7 @@ const quizData = [
     "option_b": "Bền vững với nhiệt độ",
     "option_c": "Dễ bám thành lớp mỏng trên các niêm mạc ướt",
     "option_d": "Trơn nhờn, khó rữa",
-    "answer": "D"
+    "answer": "B"
   },
   {
     "question": "Hỗn dịch thuốc dầu là cách gọi theo tiêu chí phân loại nào sau đây?",
@@ -309,7 +309,7 @@ const quizData = [
     "option_b": "Che dấu mùi vị khó chịu của hoạt chất",
     "option_c": "Ít kích ứng niêm mạc",
     "option_d": "Bào chế dạng lỏng cho chất ít tan",
-    "answer": "A"
+    "answer": "D"
   },
   {
     "question": "Tá dược gel Carbopol cần thêm các chất kiềm, nhằm mục đích nào sau đây?",
@@ -341,7 +341,7 @@ const quizData = [
     "option_b": "Thể chất mềm, mịn",
     "option_c": "Không tan chảy ở nhiệt độ thường",
     "option_d": "Không gây kích ứng da và niêm mạc",
-    "answer": "C"
+    "answer": "A"
   },
   {
     "question": "Vì sao kem bôi da có thể chất mềm, mịn, dễ rữa sạch khi bôi lên da?",
@@ -381,7 +381,7 @@ const quizData = [
     "option_b": "Khan",
     "option_c": "Nhũ tương hoàn chỉnh",
     "option_d": "Thân nước",
-    "answer": "C"
+    "answer": "A"
   },
   {
     "question": "Chọn phương pháp thường dùng điều chế thuốc mỡ với tá dược là dầu thực vật:",
@@ -389,7 +389,7 @@ const quizData = [
     "option_b": "Trộn đều đơn giản",
     "option_c": "Nhũ hóa trực tiếp",
     "option_d": "Nhũ hóa với tá dược NT hoàn chỉnh",
-    "answer": "B"
+    "answer": "C"
   },
   {
     "question": "Tá dược dùng cho thuốc mỡ bôi lên vết bỏng không nhất thiết phải đạt yêu cầu nào sau đây?",
@@ -397,7 +397,7 @@ const quizData = [
     "option_b": "Tác dụng kìm khuẩn mạnh",
     "option_c": "Có tác dụng tái sinh mô, làm liền sẹo",
     "option_d": "Dẫn thuốc thấm sâu tuỳ mức độ bỏng",
-    "answer": "B"
+    "answer": "D"
   },
   {
     "question": "Điều nào không đúng khi nói đến tính chất của gôm arabic?",
@@ -413,7 +413,7 @@ const quizData = [
     "option_b": "Bài tiết, điều hòa thân nhiệt",
     "option_c": "Bảo vệ, dự trữ",
     "option_d": "Dự trữ, hô hấp",
-    "answer": "A"
+    "answer": "C"
   },
   {
     "question": "Đường tiêm thích hợp của thuốc tiêm dạng hỗn dịch là:",
@@ -477,7 +477,7 @@ const quizData = [
     "option_b": "Dẫn thuốc thấm sâu",
     "option_c": "Thể chất mịn màng hấp dẫn",
     "option_d": "Dễ rửa",
-    "answer": "D"
+    "answer": "B"
   },
   {
     "question": "Độ cồn thích hợp để điều chế cồn thuốc từ dược liệu chứa hoạt chất độc:",
@@ -517,7 +517,7 @@ const quizData = [
     "option_b": "0,87 – 0,98",
     "option_c": "0,78 – 0,89",
     "option_d": "1,26 - 1,32",
-    "answer": "B"
+    "answer": "C"
   },
   {
     "question": "Dùng cao cam thảo để điều chỉnh cao thuốc có tỷ lệ hoạt chất cao hơn qui định, áp dụng đối với cao:",
@@ -525,7 +525,7 @@ const quizData = [
     "option_b": "Mềm",
     "option_c": "Đặc",
     "option_d": "Khô",
-    "answer": "B"
+    "answer": "C"
   },
   {
     "question": "Khoảng độ cồn dùng điều chế cồn thuốc có hoạt chất trong dược liệu chứa glycosid:",
@@ -557,7 +557,7 @@ const quizData = [
     "option_b": "Chì acetat kiềm",
     "option_c": "Cồn 90 độ",
     "option_d": "Ete",
-    "answer": "A"
+    "answer": "D"
   },
   {
     "question": "Trong điều chế cao thuốc, để loại tạp là chất béo, nhựa dùng cách nào sau đây:",
