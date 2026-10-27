@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#FAF6EE" />
+    <title>Quiz Dược Học Cổ Truyền</title>
+    <link rel="stylesheet" href="../shared/style.css">
+    <link rel="stylesheet" href="../shared/mobile.css">
+</head>
+
+<body class="practice-page">
+    <header class="app-bar">
+        <a class="icon-btn" href="../shared/menu.html" aria-label="Về menu">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19 12H5" />
+                <path d="m12 19-7-7 7-7" />
+            </svg>
+        </a>
+        <div class="app-bar-title">Dược Học Cổ Truyền</div>
+        <div class="app-bar-count"><span id="current-num">1</span>/<span id="total-num">217</span></div>
+        <div class="progress-track" role="progressbar" aria-label="Tiến độ câu hỏi" aria-valuemin="1" aria-valuemax="217" aria-valuenow="1">
+            <div id="progress-fill" class="progress-fill"></div>
+        </div>
+    </header>
+
+    <main class="practice-main">
+        <div id="question-card" class="question-card"></div>
+    </main>
+
+    <aside id="desktop-sidebar" class="desktop-sidebar" aria-label="Danh sách câu">
+        <h2 class="sidebar-heading">Danh sách câu</h2>
+        <div id="desktop-grid" class="sheet-grid"></div>
+    </aside>
+
+    <p id="live-region" class="visually-hidden" aria-live="polite"></p>
+
+    <nav class="bottom-bar" aria-label="Điều hướng câu hỏi">
+        <button id="prev-btn" class="btn-ghost" type="button">Trước</button>
+        <button id="sheet-btn" class="btn-pill" type="button">Danh sách câu</button>
+        <button id="next-btn" class="btn-primary" type="button">Sau</button>
+    </nav>
+
+    <div id="sheet-backdrop" class="sheet-backdrop" hidden></div>
+
+    <section id="question-sheet" class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" tabindex="-1" hidden>
+        <div class="sheet-handle" aria-hidden="true"></div>
+        <div class="sheet-head">
+            <h2 id="sheet-title">Danh sách câu</h2>
+            <button id="sheet-close" class="icon-btn" type="button" aria-label="Đóng danh sách câu">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M18 6 6 18" />
+                    <path d="m6 6 12 12" />
+                </svg>
+            </button>
+        </div>
+        <div id="sheet-grid" class="sheet-grid"></div>
+        <button id="reset-btn" class="btn-danger" type="button">Reset kết quả</button>
+    </section>
+
+    <script src="../shared/quiz-core.js"></script>
+    <script src="quiz_data.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
