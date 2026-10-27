@@ -9,6 +9,10 @@ const QuizCore = require('../shared/quiz-core.js');
 const OPTION_KEYS = ['option_a', 'option_b', 'option_c', 'option_d'];
 const ANSWERS = new Set(['A', 'B', 'C', 'D']);
 
+function optionFingerprint(value) {
+  return String(value).trim().replace(/\s+/g, ' ').toLowerCase();
+}
+
 export function validateQuizData(data, expectedCount) {
   const errors = [];
 
@@ -44,13 +48,13 @@ export function validateQuizData(data, expectedCount) {
       errors.push(`${where}: question is empty`);
     }
 
-    const normalizedOptions = [];
+    const optionFingerprints = [];
     for (const key of OPTION_KEYS) {
       const value = q[key];
       if (typeof value !== 'string' || !value.trim()) {
         errors.push(`${where}: ${key} is missing or empty`);
       } else {
-        normalizedOptions.push(QuizCore.normalizeText(value));
+        optionFingerprints.push(optionFingerprint(value));
       }
     }
 
@@ -58,15 +62,15 @@ export function validateQuizData(data, expectedCount) {
       errors.push(`${where}: answer must be A, B, C or D`);
     }
 
-    if (normalizedOptions.length === OPTION_KEYS.length) {
-      const uniqueOptions = new Set(normalizedOptions);
-      if (uniqueOptions.size !== normalizedOptions.length) {
+    if (optionFingerprints.length === OPTION_KEYS.length) {
+      const uniqueOptions = new Set(optionFingerprints);
+      if (uniqueOptions.size !== optionFingerprints.length) {
         errors.push(`${where}: duplicate option text`);
       }
 
       const signature = [
         QuizCore.normalizeText(q.question || ''),
-        [...normalizedOptions].sort().join('|'),
+        [...optionFingerprints].sort().join('|'),
         q.answer
       ].join('::');
       if (seenQuestions.has(signature)) {

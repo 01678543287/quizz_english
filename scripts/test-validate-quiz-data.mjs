@@ -58,3 +58,8 @@ test('hai phương án trùng nội dung fail', () => {
   assert.equal(r.ok, false);
   assert.match(r.errors.join(' '), /duplicate option/i);
 });
+
+test('phương án khác dấu < > không bị coi là trùng', () => {
+  const r = validateQuizData([q(1, 'Câu một', ['< 1/100', '> 1/100', 'a', 'b'])], 1);
+  assert.equal(r.ok, true, r.errors.join('; '));
+});
