@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#FAF6EE" />
+    <title>Kiểm tra Dược Lâm Sàng</title>
+    <link rel="stylesheet" href="../shared/style.css">
+    <link rel="stylesheet" href="../shared/mobile.css">
+</head>
+
+<body class="exam-page">
+    <header class="app-bar">
+        <a class="icon-btn" href="../shared/menu.html" aria-label="Về menu">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19 12H5" />
+                <path d="m12 19-7-7 7-7" />
+            </svg>
+        </a>
+        <div class="app-bar-title">Dược Lâm Sàng</div>
+        <div class="app-bar-count">40 câu</div>
+    </header>
+
+    <div class="exam-head">
+        <h1>Kiểm tra 40 câu ngẫu nhiên</h1>
+        <div class="exam-actions">
+            <a class="reset-btn" href="index.html">Về luyện tập</a>
+            <button class="reset-btn" type="button" onclick="createNewExam()">Tạo đề mới</button>
+        </div>
+    </div>
+
+    <details class="exam-nav">
+        <summary>Danh sách câu</summary>
+        <aside id="sidebar"></aside>
+    </details>
+
+    <div id="main-layout">
+        <div id="quiz-container"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const nav = document.querySelector('.exam-nav');
+            if (nav && window.innerWidth >= 900) nav.open = true;
+        });
+    </script>
+
+    <script src="quiz_data.js"></script>
+    <script>
+        function createNewExam() {
+            localStorage.removeItem('quiz_exam_indexes_dls_v1');
+            localStorage.removeItem('quiz_exam_shuffled_options_dls_v1');
+            localStorage.removeItem('quiz_exam_answers_dls_v1');
+            window.location.reload();
+        }
+    </script>
+    <script src="exam.js"></script>
+    <script src="../shared/enhance-ux.js"></script>
+</body>
+
+</html>
