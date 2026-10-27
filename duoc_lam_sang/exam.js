@@ -119,98 +119,69 @@ function renderSidebar(selectedPage) {
     title.textContent = 'Câu hỏi';
     sidebar.appendChild(title);
 
-    // Tính số cột phù hợp để bảng sidebar ngắn lại và vừa với chiều ngang sidebar
-    const sidebarWidth = sidebar.offsetWidth || 320;
-    const cellWidth = 44;
-    let COLS = Math.floor((sidebarWidth * 0.9) / cellWidth);
-    if (COLS < 6) COLS = 6;
-    if (COLS > 10) COLS = 10;
     const total = examQuizData.length;
-    const ROWS = Math.ceil(total / COLS);
-
-    const tableWrapper = document.createElement('div');
-    tableWrapper.className = 'sidebar-table-wrapper';
-
-    const table = document.createElement('table');
-    table.className = 'sidebar-table';
+    const grid = document.createElement('div');
+    grid.className = 'exam-grid';
 
     let correctCount = 0;
-    for (let row = 0; row < ROWS; row++) {
-        const tr = document.createElement('tr');
-        for (let col = 0; col < COLS; col++) {
-            let idx = row + col * ROWS;
-            if (idx < total) {
-                let answer = userAnswers[idx];
-                let q = examQuizData[idx];
-                let td_num = document.createElement('td');
-                td_num.textContent = idx + 1;
-                let td_ans = document.createElement('td');
-                td_ans.textContent = answer ? answer : '';
-                if (answer) {
-                    td_ans.classList.add('answered');
-                    if (answer === shuffledOptions[idx].answer) {
-                        td_ans.classList.add('correct');
-                        correctCount++;
-                    } else {
-                        td_ans.classList.add('incorrect');
-                    }
-                }
-                const start = (selectedPage - 1) * QUESTIONS_PER_PAGE;
-                const end = Math.min(start + QUESTIONS_PER_PAGE, total);
-                if (idx >= start && idx < end) {
-                    td_num.classList.add('selected');
-                    td_ans.classList.add('selected');
-                    if (idx === start) {
-                        setTimeout(() => {
-                            const sidebarEl = document.getElementById('sidebar');
-                            const firstSelectedRow = td_num.closest('tr');
-                            if (sidebarEl && firstSelectedRow) {
-                                const offsetTop = firstSelectedRow.offsetTop - sidebarEl.offsetTop;
-                                sidebarEl.scrollTo({ top: offsetTop - 100, behavior: 'smooth' });
-                            }
-                        }, 100);
-                    }
-                }
-                td_num.style.cursor = td_ans.style.cursor = 'pointer';
-                td_num.onclick = td_ans.onclick = (e) => {
-                    e.preventDefault();
-                    const pageToGo = Math.ceil((idx + 1) / QUESTIONS_PER_PAGE);
-                    const pageStart = (pageToGo - 1) * QUESTIONS_PER_PAGE;
-                    const targetQuestionIdx = idx - pageStart;
-                    
-                    if (pageToGo !== currentPage) {
-                        currentPage = pageToGo;
-                        renderPage(currentPage);
-                        setTimeout(() => {
-                            const allQuestionBlocks = document.querySelectorAll('.question-block');
-                            if (allQuestionBlocks[targetQuestionIdx]) {
-                                allQuestionBlocks[targetQuestionIdx].scrollIntoView({ 
-                                    behavior: 'smooth', 
-                                    block: 'center' 
-                                });
-                            }
-                        }, 100);
-                    } else {
-                        const allQuestionBlocks = document.querySelectorAll('.question-block');
-                        if (allQuestionBlocks[targetQuestionIdx]) {
-                            allQuestionBlocks[targetQuestionIdx].scrollIntoView({ 
-                                behavior: 'smooth', 
-                                block: 'center' 
-                            });
-                        }
-                    }
-                };
-                tr.appendChild(td_num);
-                tr.appendChild(td_ans);
+    const start = (selectedPage - 1) * QUESTIONS_PER_PAGE;
+    const end = Math.min(start + QUESTIONS_PER_PAGE, total);
+
+    for (let idx = 0; idx < total; idx++) {
+        const answer = userAnswers[idx];
+        const cell = document.createElement('button');
+        cell.type = 'button';
+        cell.className = 'exam-cell';
+        cell.textContent = idx + 1;
+
+        if (answer) {
+            if (answer === shuffledOptions[idx].answer) {
+                cell.classList.add('correct');
+                correctCount++;
             } else {
-                tr.appendChild(document.createElement('td'));
-                tr.appendChild(document.createElement('td'));
+                cell.classList.add('incorrect');
             }
         }
-        table.appendChild(tr);
+
+        if (idx >= start && idx < end) {
+            cell.classList.add('selected');
+        }
+
+        const state = answer ? (answer === shuffledOptions[idx].answer ? ' đúng' : ' sai') : ' chưa làm';
+        cell.setAttribute('aria-label', `Câu ${idx + 1}${state}`);
+        cell.onclick = (e) => {
+            e.preventDefault();
+            const pageToGo = Math.ceil((idx + 1) / QUESTIONS_PER_PAGE);
+            const pageStart = (pageToGo - 1) * QUESTIONS_PER_PAGE;
+            const targetQuestionIdx = idx - pageStart;
+
+            if (pageToGo !== currentPage) {
+                currentPage = pageToGo;
+                renderPage(currentPage);
+                setTimeout(() => {
+                    const allQuestionBlocks = document.querySelectorAll('.question-block');
+                    if (allQuestionBlocks[targetQuestionIdx]) {
+                        allQuestionBlocks[targetQuestionIdx].scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+                    }
+                }, 100);
+            } else {
+                const allQuestionBlocks = document.querySelectorAll('.question-block');
+                if (allQuestionBlocks[targetQuestionIdx]) {
+                    allQuestionBlocks[targetQuestionIdx].scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                }
+            }
+        };
+
+        grid.appendChild(cell);
     }
-    tableWrapper.appendChild(table);
-    sidebar.appendChild(tableWrapper);
+
+    sidebar.appendChild(grid);
 
     const score = document.createElement('div');
     score.className = 'score';
@@ -346,6 +317,8 @@ function renderPagination(page) {
 
 // Hiệu ứng trái tim, đống phân, mặt cười chảy nước mắt
 function showEffect(type, parent) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
     // Xóa hiệu ứng cũ nếu có
     const old = parent.querySelector('.answer-effect');
     if (old) old.remove();
@@ -515,17 +488,25 @@ function renderPage(page) {
                 if (letter === userAnswers[i] && userAnswers[i] !== correctAnswer) btn.classList.add('incorrect');
             }
             btn.onclick = () => {
-                // Hiệu ứng trước khi lưu và render lại
+                if (userAnswers[i]) return;
+
+                userAnswers[i] = letter;
+                saveUserAnswers();
+                Object.values(buttons).forEach(item => { item.disabled = true; });
+
+                const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                if (reduced) {
+                    renderPage(currentPage);
+                    return;
+                }
+
                 if (letter === correctAnswer) {
                     showEffect('heart', block);
                 } else {
                     showEffect('laugh', block);
                 }
-                
-                // Tăng delay để hiệu ứng có thể thấy rõ hơn
+
                 setTimeout(() => {
-                    userAnswers[i] = letter;
-                    saveUserAnswers();
                     renderPage(currentPage);
                 }, 600);
             };

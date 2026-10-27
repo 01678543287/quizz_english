@@ -88,7 +88,7 @@ Sau đó:
 - Đổi 3 storage key trong `exam.html`.
 - Thêm `<link rel="stylesheet" href="../shared/mobile.css">` sau `../shared/style.css`.
 - Thêm `<script src="../shared/quiz-core.js"></script>` trước `main.js`.
-- Trang luyện tập mới dùng một câu/màn hình + bottom sheet; xem [design/mobile-ui.md](design/mobile-ui.md).
+- Trang luyện tập mới dùng 20 câu/trang + bottom sheet; xem [design/mobile-ui.md](design/mobile-ui.md).
 - Trang kiểm tra giữ 20 câu/trang, chỉ áp dụng app bar/option mobile.
 
 ## 8. Đăng ký lobby + README
@@ -118,7 +118,7 @@ Cập nhật danh sách môn trong `README.md` gốc và `docs/README.md`.
 
 - Mở trang luyện tập: đủ câu, chọn đáp án, tiến độ/sidebar đổi màu đúng.
 - Refresh 3 lần: **thứ tự câu giữ nguyên**, đáp án vẫn đúng câu.
-- Bấm "Reset kết quả": đáp án xoá, thứ tự câu đổi, về câu 1.
+- Bấm "Reset kết quả": đáp án xoá, thứ tự câu đổi, về trang 1.
 - Mở trang kiểm tra: đúng 40 câu, refresh không mất đề, "Tạo đề mới" đổi đề.
 - Mở lobby: card môn mới hiện đúng tên, số câu, tiến độ; "Tiếp tục học" mở đúng môn.
 - Kiểm tra 430×932: không tràn ngang, safe area, nút ≥44px, sheet danh sách câu hoạt động.

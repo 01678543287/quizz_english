@@ -246,32 +246,30 @@ Không có animation lặp vô hạn ở lobby.
 
 ### 5.1 Mô hình
 
-- **Một câu một màn hình** (không còn 20 câu/trang) cho 2 môn mới.
-- Desktop ≥900px: sidebar grid câu hỏi cố định bên trái, nội dung bên phải.
-- Mobile: sheet "Danh sách câu" mở từ bottom bar.
+- **20 câu/trang** cho 2 môn mới (giống các môn cũ); phân trang Trước/Sau.
+- Desktop ≥900px và cao ≥600px: sidebar grid câu hỏi cố định bên trái, nội dung bên phải.
+- Mobile/landscape thấp: sheet "Danh sách câu" mở từ bottom bar; chọn câu sẽ nhảy đúng trang và cuộn tới câu.
 - Order câu lấy từ `quiz_question_order_<subject>_v1`; refresh giữ nguyên; Reset mới đảo.
 - Đáp án lưu theo `id` + key gốc.
+- Mỗi trang có toolbar "Làm kiểm tra 40 câu" và nút Reset trên app bar; Reset mở popup xác nhận.
 
 ### 5.2 Cấu trúc
 
 ```
 ┌──────────────────────────────────┐
-│ ←   Dược Lý 2            12/150  │
-│ ▓▓▓▓░░░░░░░░░░░░░░░░░░░░░░░░░░  │
-│                                  │
+│ ←  Dược Lý 2       Trang 1/8   ↺ │
+│ ▓▓▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░  │
+│              [Làm kiểm tra 40 câu]│
 │ ┌──────────────────────────────┐ │
-│ │ CÂU 12                       │ │
+│ │ CÂU 1                        │ │
 │ │ Phát biểu nào dưới đây ...   │ │
-│ │                              │ │
-│ │ ┌──────────────────────────┐ │ │
-│ │ │ A  Cloratadin ...        │ │ │
-│ │ └──────────────────────────┘ │ │
-│ │ ┌──────────────────────────┐ │ │
-│ │ │ B  Đối kháng cạnh tranh  │ │ │
-│ │ └──────────────────────────┘ │ │
-│ │ ...                          │ │
+│ │ [A] ...  [B] ...             │ │
+│ │ [C] ...  [D] ...             │ │
 │ └──────────────────────────────┘ │
-│                                  │
+│ ┌──────────────────────────────┐ │
+│ │ CÂU 2 ...                    │ │
+│ └──────────────────────────────┘ │
+│ ... 20 câu/trang                 │
 │ ┌──────────────────────────────┐ │
 │ │ Trước    Danh sách    Sau    │ │
 │ └──────────────────────────────┘ │
@@ -282,10 +280,11 @@ Không có animation lặp vô hạn ở lobby.
 
 - Nút back 44×44, icon arrow-left, `aria-label="Về menu"`.
 - Tên môn 15px, truncate 1 dòng.
-- Số `current/N` mono.
-- Progress line 3px dưới app bar: `(currentIndex + 1) / N`.
+- Số `Trang x/y` mono.
+- Nút Reset icon 44×44 (rotate-ccw), `aria-label="Reset kết quả"`.
+- Progress line 4px dưới app bar: `currentPage / totalPages`.
 - Nền `--paper`, viền dưới 1px `--line`; sticky top, có safe-area top.
-- Không có tiêu đề H1 lớn trên mobile.
+- Dưới app bar: toolbar `Làm kiểm tra 40 câu` (pill teal, 44px).
 
 ### 5.4 Question card
 
@@ -302,7 +301,7 @@ Không có animation lặp vô hạn ở lobby.
 - Nền `--surface`, viền 1px `--line`, radius 8px.
 - Chạm: translateY(1px), shadow-press, 90ms.
 - Đã chọn: viền `--teal`, nền `--teal-soft`, letter stamp đảo màu.
-- Đúng: viền `--success`, nền `--success-soft`, icon check SVG, highlighter sweep 320ms.
+- Đúng: viền `--success`, nền `--success-soft`, icon check SVG, success underline 320ms.
 - Sai: viền `--coral`, nền `--coral-soft`, icon x SVG, shake 240ms.
 - Disabled sau khi chọn; không đổi layout khi thêm icon.
 - Khoảng cách giữa các option 10px (≥8px).
@@ -310,36 +309,37 @@ Không có animation lặp vô hạn ở lobby.
 ### 5.6 Bottom bar
 
 - Sticky bottom, nền `--paper` + viền trên 1px `--line`.
-- 3 vùng: `Trước` (ghost), `Danh sách câu` (pill teal), `Sau` (primary).
+- 3 vùng: `Trước` (ghost), `Danh sách câu` (pill teal), `Sau` (primary); Trước/Sau chuyển **trang**, không chuyển từng câu.
 - Nút min 44px; safe-area bottom.
-- `Sau` disabled ở câu cuối; `Trước` disabled ở câu đầu.
+- `Sau` disabled ở trang cuối; `Trước` disabled ở trang đầu.
 - Nút "Danh sách câu" mở sheet.
 
 ### 5.7 Sheet danh sách câu
 
 - Bottom sheet cao tối đa 70dvh, bo 16px trên, viền 1px.
 - Handle 36×4px, tiêu đề "Danh sách câu" + nút đóng 44px.
-- Grid 6 cột mobile / 10 cột desktop, ô 44×44, gap 8px.
-- Desktop ≥900px: grid nằm trong `#desktop-sidebar` cố định; mobile dùng `#sheet-grid` trong sheet.
-- Trạng thái: chưa làm (paper), đang xem (viền teal), đúng (success-soft + chữ success), sai (coral-soft + chữ coral).
-- Chọn câu → đóng sheet, nhảy đúng câu.
+- Grid 6 cột mobile / 5 cột desktop, ô 44×44, gap 8px.
+- Desktop ≥900px và cao ≥600px: grid nằm trong `#desktop-sidebar` cố định; mobile dùng `#sheet-grid` trong sheet.
+- Trạng thái: chưa làm (paper), thuộc trang hiện tại (viền teal), đúng (success-soft + chữ success), sai (coral-soft + chữ coral).
+- Chọn câu → đóng sheet, nhảy đúng trang và cuộn tới câu.
 - Backdrop `rgba(27,26,23,0.32)`.
 - `aria-modal="true"`, `role="dialog"`, focus trap, Esc đóng.
 - Reduced motion: sheet hiện ngay, không trượt.
 
 ### 5.8 Reset
 
-- Nút "Reset kết quả" đặt trong sheet, kiểu ghost + icon rotate-ccw, chữ đỏ.
-- Bấm: xác nhận inline (2 bước) để tránh xoá nhầm; sau đó xoá đáp án, đảo order, về câu 1.
-- Không dùng `confirm()` của trình duyệt.
+- Nút Reset có ở 3 nơi: icon app bar, nút trong sheet, nút dưới danh sách câu.
+- Bấm: mở **popup xác nhận** (`role="dialog"`, backdrop, tiêu đề "Reset kết quả?", nội dung cảnh báo, nút Huỷ + Reset).
+- Huỷ → đóng popup, giữ nguyên đáp án; Reset → xoá đáp án, đảo order, về trang 1.
+- Popup có focus trap, `Esc` đóng, focus trả về nút đã bấm; không dùng `confirm()` của trình duyệt.
 
 ### 5.9 Motion practice
 
 | Trigger | Motion | Duration | Reduced motion |
 |---|---|---|---|
-| Vào câu | card fade-up 8px | 180ms ease-out | opacity 120ms |
+| Vào trang | 20 card fade-up 8px (không stagger) | 180ms ease-out | opacity 120ms |
 | Nhấn option | translateY(1px) + shadow | 90ms | đổi nền |
-| Đúng | highlighter sweep + check stamp + 6 mảnh giấy nhỏ | 320ms / 260ms | đổi màu + icon ngay |
+| Đúng | success underline + check stamp + 6 mảnh giấy nhỏ | 320ms / 260ms | đổi màu + icon ngay |
 | Sai | shake ±5px 3 nhịp + underline vẽ | 240ms | đổi màu + icon ngay |
 | Streak 3 | chip "3 đúng liên tiếp" stamp | 220ms, tự ẩn 1.6s | hiện/ẩn opacity |
 | Progress | width + số | 240ms | hiện ngay |
@@ -389,7 +389,7 @@ Nguyên tắc:
 - Ví dụ:
   - "Hôm nay, học gì?"
   - "Ôn tiếp nào"
-  - "Câu 12/217"
+  - "Trang 1/11"
   - "3 đúng liên tiếp"
   - "Sai rồi, xem lại nhé"
   - "Đã làm 42/150"
@@ -414,7 +414,7 @@ Nguyên tắc:
 - [ ] Bottom bar không bị home indicator che; nội dung cuối không bị che.
 - [ ] Tất cả nút ≥ 44×44px, cách nhau ≥ 8px.
 - [ ] Chọn đáp án, refresh: order giữ nguyên, đáp án vẫn đúng câu.
-- [ ] Bấm Reset: đáp án xoá, order đảo, về câu 1.
+- [ ] Bấm Reset: đáp án xoá, order đảo, về trang 1.
 - [ ] Sheet mở/đóng bằng chạm, Esc, và nút đóng; focus không thoát ra ngoài.
 - [ ] Reduced motion: không có chuyển động translate/shake/confetti; vẫn thấy đúng/sai.
 - [ ] Landscape 932×430: bottom bar và sheet vẫn dùng được.
@@ -432,4 +432,4 @@ Nguyên tắc:
   - `h1 { background: none; -webkit-text-fill-color: var(--ink); color: var(--ink); text-shadow: none; }`
   - `#main-layout` chỉ dùng cho exam; practice dùng grid riêng.
 - Trang cũ giữ nguyên giao diện; lobby mới là điểm vào chung.
-- Trang kiểm tra (`exam.html`) giữ logic 20 câu/trang; chỉ áp dụng app bar, option full-width, safe-area. Nếu muốn one-question cho exam, tách task sau.
+- Trang kiểm tra (`exam.html`) giữ logic 20 câu/trang; danh sách câu nằm trong `<details>` (6 ô mobile / 10 ô desktop, 44px, hàng ngang 1..40), mở ra xem score + Reset. Đáp án lưu ngay khi bấm; không dùng hiệu ứng tim/phân bay; reduced motion tắt animation của trang.

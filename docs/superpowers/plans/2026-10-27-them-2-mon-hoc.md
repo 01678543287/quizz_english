@@ -20,16 +20,16 @@
 - Trang kiểm tra: đúng 40 câu, giữ đề qua refresh.
 - Không sửa file của các môn cũ; không sửa `shared/style.css`.
 - Toàn bộ UI text tiếng Việt, giữ văn phong hiện tại.
-- Trang luyện tập giữ nguyên order khi tải lại; chỉ nút "Reset kết quả" mới đảo câu, xoá đáp án và về câu 1.
+- Trang luyện tập giữ nguyên order khi tải lại; chỉ nút "Reset kết quả" mới đảo câu, xoá đáp án và về trang 1.
 - Đáp án phải gắn đúng câu và đúng nội dung phương án sau refresh.
-- Giao diện bám `docs/design/mobile-ui.md`: mobile-first 430×932, safe area, vùng chạm ≥44px, một câu/màn hình, bottom sheet.
+- Giao diện bám `docs/design/mobile-ui.md`: mobile-first 430×932, safe area, vùng chạm ≥44px, 20 câu/trang, bottom sheet.
 - Không dùng gradient tím/glassmorphism/emoji icon/card bo 24px; icon là inline SVG.
-- Motion theo spec: press stamp, card enter, highlighter sweep, shake, streak, sheet; tôn trọng `prefers-reduced-motion`.
+- Motion theo spec: press stamp, card enter, success underline, shake, streak, sheet; tôn trọng `prefers-reduced-motion`.
 - Lobby render từ `shared/subjects.js`, có tiến độ + "Tiếp tục học".
 
 ## Review Focus
 
-1. **Refresh giữa lúc làm bài:** thứ tự câu không đổi, đáp án đã chọn vẫn ở đúng câu và đúng phương án; bấm "Reset kết quả" thì order đổi, đáp án bị xoá, về câu 1.
+1. **Refresh giữa lúc làm bài:** thứ tự câu không đổi, đáp án đã chọn vẫn ở đúng câu và đúng phương án; bấm "Reset kết quả" thì order đổi, đáp án bị xoá, về trang 1.
 2. **localStorage hỏng hoặc dữ liệu kiểu cũ:** object rỗng, mảng, JSON lỗi, `id` lạ → trang vẫn render, không crash, không lưu rác.
 3. **Dedupe quá tay:** các câu gần giống nhưng khác nghĩa (tân ôn vs tân lương; "chậm lớn" của DLS) phải được giữ.
 4. **Câu thiếu phương án/trùng nhãn:** DHCT PHẦN 1 câu 18, PHẦN 2 câu 1; DLS Bài 8 câu 4 — phải có 4 phương án khác nhau và đáp án đúng.
@@ -430,7 +430,7 @@ Triển khai đúng spec `docs/design/mobile-ui.md` mục 2, 3, 5:
 - question card + option button 56px + states selected/correct/wrong;
 - bottom bar 3 nút + safe-area bottom;
 - bottom sheet + grid 44px + backdrop;
-- keyframes: card enter, highlighter sweep, check stamp, shake, streak chip, paper confetti;
+- keyframes: card enter, success underline, check stamp, shake, streak chip, paper confetti;
 - `@media (prefers-reduced-motion: reduce)` theo mục 5.10;
 - `@media (min-width: 900px)`: grid `300px 1fr` với `.desktop-sidebar`, app bar span 2 cột, ẩn `#sheet-btn`; `.desktop-sidebar` render grid câu 10 cột.
 
@@ -474,55 +474,48 @@ Cấu trúc semantic (không copy layout 20 câu/trang):
 - Không load `enhance-ux.js` (tránh double keyboard/scroll).
 - Không có H1 lớn, hint đảo câu đặt trong sheet hoặc app bar (không chiếm màn hình).
 
-- [ ] **Step 3: Tạo `main.js` (một câu/màn hình)**
+- [ ] **Step 3: Tạo `main.js` (20 câu/trang)**
 
 State:
 
 ```js
+const QUESTIONS_PER_PAGE = 20;
 const ids = quizData.map(q => q.id);
 const byId = new Map(quizData.map(q => [q.id, q]));
-let questionOrder = QuizCore.normalizeOrder(loadRawOrder(), ids);
-if (!questionOrder) { questionOrder = QuizCore.shuffledCopy(ids); saveQuestionOrder(questionOrder); }
-let currentIndex = 0;
-let userAnswers = QuizCore.normalizeAnswers(loadRawAnswers(), ids);
+let questionOrder = QuizCore.normalizeOrder(readJson(ORDER_KEY), ids);
+if (!questionOrder) { questionOrder = QuizCore.shuffledCopy(ids); writeJson(ORDER_KEY, questionOrder); }
+let userAnswers = QuizCore.normalizeAnswers(readJson(ANSWERS_KEY), ids);
+let currentPage = 1;
 const optionCache = new Map();
 let streak = 0;
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 ```
 
 Bắt buộc:
 
-- `optionsFor(q)` cache `QuizCore.shuffleOptions(q)` theo `id`; reset thì `optionCache.clear()`.
-- `renderQuestion()`:
-  - câu hiện tại = `byId.get(questionOrder[currentIndex])`;
-  - render `CÂU x` + question text + 4 option button;
-  - chữ cái hiển thị lấy theo **vị trí** (`String.fromCharCode(65 + index)`), còn `option.key` là key gốc lưu trong `dataset.key`;
-  - so đúng/sai bằng `option.key === q.answer`, không so chữ cái hiển thị;
-  - nếu đã trả lời: disable, gắn `.is-correct` / `.is-wrong`, hiện icon check/x;
-  - nếu chưa: click lưu `userAnswers[q.id] = option.key`, `saveUserAnswers()`, cập nhật UI, progress, sheet; correct thì `streak++`, sai thì `streak = 0`.
-- `renderAppBar()` cập nhật `current-num`, `total-num`, `progress-fill` width; number dùng mono.
-- `renderSheet()` render grid câu theo `questionOrder`, ô 44px, trạng thái chưa/đang xem/đúng/sai; render vào cả `#sheet-grid` (mobile) và `#desktop-sidebar` (desktop); click gọi `goTo(index)`.
-- `goTo(i)` clamp 0..N-1, render, đóng sheet, focus lại card.
-- `openSheet()`/`closeSheet()`: `hidden`, focus trap, `Esc`; trả focus về `sheet-btn`.
-- Keyboard: `1–4` chọn đáp án, `ArrowLeft/Right` chuyển câu, `Esc` đóng sheet; bỏ qua khi focus trong input.
-- Reset 2 bước: bấm lần 1 đổi nhãn "Chắc chắn? Bấm lần nữa", lần 2 mới xoá; xoá `userAnswers`, sinh order mới, lưu, `optionCache.clear()`, `currentIndex = 0`, `streak = 0`, render.
-- Motion:
-  - đúng: thêm class `.is-correct`, highlighter sweep + check stamp + 6 mảnh giấy (append span, remove sau 600ms);
-  - sai: `.is-wrong` shake 240ms, remove class sau 300ms;
-  - streak 3: hiện chip `3 đúng liên tiếp` 1.6s;
-  - reduced motion: chỉ đổi màu/icon, không append confetti, không shake/stamp.
-- `aria-live="polite"` cho vùng thông báo đúng/sai + streak.
-- Refresh: chỉ đọc order đã lưu; không gọi `shuffledCopy` cho câu.
+- `renderPage()`: lấy `start = (currentPage - 1) * 20`, render tối đa 20 `.question-card` vào `#question-card`; mỗi card có `data-index`, label `Câu N`, câu hỏi, 4 option.
+- `buildOptionButton`: chữ cái hiển thị theo vị trí (`A–D`), `dataset.key` là key gốc; so đúng/sai bằng `option.key === question.answer`; đã trả lời thì disable + `.is-correct` / `.is-wrong`.
+- `selectOption`: lưu `userAnswers[q.id] = option.key`, `writeJson(ANSWERS_KEY, ...)`, disable 4 option của câu đó, cập nhật grid; correct thì streak++, sai thì streak=0.
+- `updateAppBar()`: `current-num = currentPage`, `total-num = ceil(N/20)`, progress width = page/totalPages; `prev`/`next` theo trang.
+- `renderGrids()`: render vào `#sheet-grid` và `#desktop-sidebar`; ô của trang hiện tại có `.is-current`; click gọi `goToQuestion(index)`.
+- `goToQuestion(index)`: tính page, render nếu khác trang, đóng sheet, scroll tới `[data-index]` và focus block.
+- `goToPage(page)`: clamp, render, đóng sheet, scroll top.
+- Sheet: mở/đóng, focus trap, `Esc`; app bar reset icon, inline reset và sheet reset.
+- Reset: **popup xác nhận** `#reset-dialog` (Huỷ/Reset), focus trap, `Esc`; confirm mới xoá đáp án, đảo order, về trang 1.
+- Toolbar `Làm kiểm tra 40 câu` link `exam.html` ở đầu `practice-main`.
+- Keyboard: `ArrowLeft/Right` chuyển trang; bỏ qua khi sheet/dialog mở hoặc có modifier.
+- Motion: đúng → success underline + check stamp + 6 mảnh giấy trong card; sai → shake 240ms; streak 3 → chip; reduced motion chỉ đổi màu/icon.
 
 - [ ] **Step 4: Tạo `exam.html` + `exam.js`**
 
 Copy từ `duocly-2`, giữ nguyên `#main-layout`, `#sidebar`, `#quiz-container` để `exam.js` chạy:
 
 - Thêm `class="exam-page"` + `shared/mobile.css`.
-- Thêm app bar đơn giản (back, tên môn, "40 câu") phía trên `#main-layout`.
+- Thêm app bar (back, tên môn, "40 câu") phía trên.
 - Đổi title/H1: "KIỂM TRA DƯỢC HỌC CỔ TRUYỀN (40 câu ngẫu nhiên)".
 - Đổi 3 storage key: `quiz_exam_indexes_dhct_v1`, `quiz_exam_shuffled_options_dhct_v1`, `quiz_exam_answers_dhct_v1`.
-- Không đổi logic exam.js; giữ 20 câu/trang.
+- Bọc `#sidebar` trong `<details class="exam-nav">`; render 40 ô một hàng ngang 1..40 (6 cột mobile / 10 desktop, 44px); giữ 20 câu/trang.
+- Lưu đáp án ngay khi bấm, disable 4 option; bỏ delay 600ms chỉ để chạy hiệu ứng.
+- Bỏ hiệu ứng tim/phân bay; `prefers-reduced-motion` tắt animation h1/main-layout/question-block.
 
 - [ ] **Step 5: Kiểm tra cú pháp**
 
@@ -543,9 +536,11 @@ Mở `http://localhost:8000/duoc_hoc_co_truyen/index.html`:
 
 - DevTools 430×932: không tràn ngang; `scrollWidth === innerWidth`; app bar/bottom bar không bị che.
 - Mọi nút ≥44×44 (kiểm tra `getBoundingClientRect`).
+- Có đúng 20 `.question-card`/trang; app bar hiện `Trang 1/11`.
 - Chọn đáp án câu 1, ghi nội dung; refresh 3 lần: order giữ nguyên, đáp án đúng câu.
-- Reset: xác nhận 2 bước, đáp án xoá, order đổi, về câu 1.
-- Sheet: mở bằng nút, chọn câu nhảy đúng, `Esc` đóng, focus về nút.
+- Reset: bấm icon/nút → popup xác nhận; Huỷ giữ đáp án; Reset xoá đáp án, order đổi, về trang 1.
+- Toolbar `Làm kiểm tra 40 câu` mở `exam.html`.
+- Sheet: mở bằng nút, chọn câu nhảy đúng trang/câu, `Esc` đóng, focus về nút.
 - Reduced motion: không còn shake/confetti/sheet trượt; vẫn thấy đúng/sai.
 - Desktop ≥900px: sidebar grid hiện, bottom bar ẩn trigger sheet.
 - `exam.html`: 40 câu, refresh giữ đề, "Tạo đề mới" đổi đề.
@@ -746,7 +741,7 @@ Expected: chỉ có file mới của 2 môn, `shared/menu.html`, `shared/menu.cs
 
 - Lobby 430×932: 1 cột, card đúng tên/số câu/tiến độ; "Tiếp tục học" đúng môn.
 - Vào từng môn mới, làm 3 câu, refresh: order giữ nguyên, đáp án đúng câu.
-- Bấm Reset: xác nhận 2 bước, đáp án xoá, order đổi, về câu 1.
+- Bấm Reset: xác nhận 2 bước, đáp án xoá, order đổi, về trang 1.
 - Sheet: mở/đóng bằng chạm, `Esc`, nút đóng; focus không thoát ra ngoài.
 - Mọi nút ≥44×44; `document.documentElement.scrollWidth === window.innerWidth` ở 430, 393, 375.
 - 430×932: app bar không bị Dynamic Island che; bottom bar không bị home indicator che.
@@ -770,7 +765,7 @@ git commit -m "chore: finalize two new subjects"
 - Dữ liệu phẳng, không chọn chương → Task 3/4/5/6.
 - Giữ order khi refresh; Reset mới đảo câu + xoá đáp án → Task 1/5/6.
 - 217/305 câu, dedupe, sửa lỗi → Task 3/4.
-- Mobile-first, một câu/màn hình, app bar, bottom bar, sheet → Task 5/6 + `docs/design/mobile-ui.md`.
+- Mobile-first, 20 câu/trang, app bar, bottom bar, sheet → Task 5/6 + `docs/design/mobile-ui.md`.
 - Motion (press, sweep, stamp, shake, streak, sheet) + reduced motion → Task 5/6.
 - Lobby "Sổ ôn bài", registry, tiến độ, "Tiếp tục học" → Task 7.
 - Exam 40 câu, giữ đề, mobile CSS → Task 5/6.

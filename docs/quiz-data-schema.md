@@ -48,8 +48,8 @@ Dùng cho môn có dropdown chọn chương (Dược Liệu, Dược Lý 1, Hóa
 - Lần đầu chưa có order: `shared/quiz-core.js` sinh thứ tự ngẫu nhiên bằng Fisher–Yates và lưu mảng `id` vào localStorage.
 - Các lần tải sau: giữ nguyên order đã lưu. Refresh **không** đảo lại câu.
 - Order không hợp lệ (thiếu/thừa/trùng `id`, sai kiểu) → sinh lại và lưu.
-- Chỉ nút **"Reset kết quả"** mới sinh order mới, xoá đáp án và về câu 1.
-- Trang luyện tập mới hiển thị **một câu/màn hình**; danh sách câu nằm trong bottom sheet (mobile) hoặc sidebar (desktop ≥900px).
+- Chỉ nút **"Reset kết quả"** mới sinh order mới, xoá đáp án và về trang 1.
+- Trang luyện tập mới hiển thị **20 câu/trang**; danh sách câu nằm trong bottom sheet (mobile) hoặc sidebar (desktop ≥900px).
 - Phương án vẫn được đảo mỗi lần tải (hành vi cũ); đáp án lưu theo key gốc nên không bị lệch.
 - Đáp án lưu dạng object, key là `id`, value là **key gốc** của phương án:
 

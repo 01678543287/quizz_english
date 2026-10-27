@@ -17,7 +17,7 @@ Yêu cầu của chủ dự án:
 2. **Trang luyện tập giữ nguyên thứ tự câu khi tải lại trang; chỉ đảo lại thứ tự khi bấm "Reset kết quả".** Đáp án đã chọn không được mất khi refresh.
 3. Áp dụng skill UI/UX trong `.opencode` cho các điểm chạm của người dùng.
 4. Tạo bộ tài liệu dự án (`docs/`) theo chuẩn superpowers.
-5. **Giao diện mobile-first, tối ưu iPhone 14 Pro Max**: safe area, vùng chạm 44px, một câu một màn hình, sheet danh sách câu.
+5. **Giao diện mobile-first, tối ưu iPhone 14 Pro Max**: safe area, vùng chạm 44px, 20 câu một trang, sheet danh sách câu.
 6. **Lobby menu mới** có cá tính "sổ ôn bài", hiển thị tiến độ và môn đang học.
 7. **Motion có mục đích** (stamp, highlight, progress, streak) tạo cảm giác thích thú; vẫn có fallback cho `prefers-reduced-motion`.
 8. Tránh giao diện "nhìn như AI": không gradient tím/glassmorphism/emoji icon/card bo 24px hàng loạt.
@@ -28,7 +28,7 @@ Yêu cầu của chủ dự án:
 - Không thiết kế lại giao diện các môn cũ; lobby mới là điểm vào chung.
 - Không sửa `shared/style.css`; thêm `shared/mobile.css` + `shared/menu.css`.
 - Không sửa logic hoặc dữ liệu của các môn cũ.
-- Không đổi logic trang kiểm tra (`exam.html`/`exam.js`) ngoài copy + storage key; exam giữ 20 câu/trang, chỉ áp dụng app bar/option mobile.
+- Trang kiểm tra giữ logic chấm điểm và 20 câu/trang; chỉ đổi presentation: app bar, option mobile, danh sách câu dạng details grid, lưu đáp án ngay và tắt hiệu ứng bay khi reduced motion.
 - Không thêm backend, tài khoản, đồng bộ đám mây, spaced repetition.
 - Không giữ cố định thứ tự phương án; phương án vẫn đảo mỗi lần tải.
 
@@ -58,7 +58,7 @@ Yêu cầu của chủ dự án:
 | D9 | Tách hàm thuần (shuffle, thứ tự câu, chuẩn hoá đáp án) vào `shared/quiz-core.js` | Test được bằng Node, dùng chung cho 2 môn |
 | D10 | Hướng thị giác "Sổ ôn bài": giấy ấm, mực đậm, teal/amber, serif + system sans, viền mảnh + bóng offset | Theo E-Ink/Paper + Editorial của ui-ux-pro-max; tránh giao diện AI |
 | D11 | Mobile-first, tối ưu 430×932; safe area, `100dvh`, vùng chạm ≥44px | iPhone 14 Pro Max là thiết bị ưu tiên |
-| D12 | Luyện tập một câu/màn hình; desktop ≥900px có sidebar grid; mobile dùng bottom sheet | Tập trung hơn 20 câu/trang trên điện thoại |
+| D12 | Luyện tập 20 câu/trang; desktop ≥900px có sidebar grid; mobile dùng bottom sheet | Giữ nhịp 20 câu/trang như các môn cũ |
 | D13 | Motion "giấy/con dấu/highlight": press, sweep, stamp, streak chip, progress; không bay toàn màn hình | Tạo cảm giác thích thú nhưng không rối |
 | D14 | Lobby mới dùng registry `shared/subjects.js` + tiến độ localStorage, có "Tiếp tục học" | Menu có ích cho học viên, dễ thêm môn |
 | D15 | `prefers-reduced-motion`: bỏ translate/shake/confetti, giữ phản hồi màu + icon | Tôn trọng người dùng nhạy cảm chuyển động |
@@ -149,7 +149,7 @@ Quy tắc:
 
 - Lần đầu (chưa có order trong localStorage): sinh thứ tự ngẫu nhiên bằng Fisher–Yates, lưu mảng `id` vào localStorage.
 - Các lần tải sau: đọc lại order đã lưu; nếu order không hợp lệ (thiếu/thừa/trùng `id`, sai kiểu) thì sinh lại và lưu.
-- Chỉ nút **"Reset kết quả"** mới sinh order mới (đồng thời xoá đáp án đã chọn và đưa về câu 1).
+- Chỉ nút **"Reset kết quả"** mới sinh order mới (đồng thời xoá đáp án đã chọn và đưa về trang 1).
 - Trong cùng phiên, chuyển câu/sidebar không đổi order.
 
 ### 5.2 Lưu đáp án
@@ -162,7 +162,7 @@ Quy tắc:
 - Phương án vẫn được đảo mỗi lần tải (giữ hành vi cũ), nhưng khi render so sánh theo key gốc nên đáp án luôn gắn đúng nội dung.
 - Sidebar hiển thị chữ cái **theo vị trí hiển thị** của phương án đã chọn, không phải key gốc.
 - Điểm "Đúng: x / N" tính bằng so sánh key gốc.
-- Nút "Reset kết quả": xoá object đáp án + sinh order mới + về câu 1.
+- Nút "Reset kết quả": xoá object đáp án + sinh order mới + về trang 1.
 - Dữ liệu localStorage hỏng/khác schema → bỏ qua, bắt đầu object rỗng; không làm crash trang.
 
 ### 5.3 Giao diện & UX
@@ -171,10 +171,11 @@ Chi tiết đầy đủ ở [`docs/design/mobile-ui.md`](../../design/mobile-ui.
 
 - **Hướng thị giác "Sổ ôn bài"**: nền giấy ấm, mực đậm, teal/amber, serif cho tiêu đề/câu hỏi, system sans cho đáp án, nhãn mono. Không gradient tím, không glass, không emoji icon.
 - **Mobile-first**: ưu tiên 430×932; `viewport-fit=cover`, `100dvh`, safe-area top/bottom; vùng chạm ≥44px; nội dung không bị bottom bar che.
-- **Luyện tập một câu/màn hình**: app bar (back, tên môn, `Câu x/N`, progress line), question card, option full-width 56px, bottom bar (Trước / Danh sách câu / Sau).
-- **Desktop ≥900px**: sidebar grid cố định + nội dung; mobile dùng bottom sheet "Danh sách câu" (44px ô, focus trap, Esc đóng).
+- **Luyện tập 20 câu/trang**: app bar (back, tên môn, `Trang x/y`, nút Reset icon, progress line), 20 question cards, option full-width 56px, bottom bar (Trước / Danh sách câu / Sau) chuyển trang.
+- **Desktop ≥900px và cao ≥600px**: sidebar grid cố định + nội dung; mobile/landscape thấp dùng bottom sheet "Danh sách câu" (44px ô, focus trap, Esc đóng).
+- **Reset luôn thấy**: icon ở app bar, nút trong sheet và nút dưới danh sách câu; xác nhận 2 bước, không dùng `confirm()`.
 - **Lobby mới**: wordmark "SỔ ÔN BÀI", greeting "Hôm nay, học gì?", card "Tiếp tục học", danh sách môn có tab màu + tiến độ, tip card. Dữ liệu từ `shared/subjects.js` + `shared/menu.js`.
-- **Motion**: press stamp 90ms, card enter 180ms, correct highlighter sweep 320ms + check stamp, wrong shake 240ms, streak chip, progress 240ms, sheet 240ms. Confetti giấy 6 mảnh trong card, không phủ màn hình.
+- **Motion**: press stamp 90ms, card enter 180ms, correct success underline 320ms + check stamp, wrong shake 240ms, streak chip, progress 240ms, sheet 240ms. Confetti giấy 6 mảnh trong card, không phủ màn hình.
 - **Reduced motion**: bỏ translate/shake/confetti/stamp; giữ đổi màu + icon + opacity 120ms; sheet/progress hiện ngay.
 - **Không dùng** hiệu ứng tim/phân bay cũ; thay bằng phản hồi "giấy/con dấu" gọn.
 - **Icon**: inline SVG 24px, stroke 1.75; emoji không dùng cho điều hướng.
@@ -183,10 +184,13 @@ Chi tiết đầy đủ ở [`docs/design/mobile-ui.md`](../../design/mobile-ui.
 ## 6. Trang kiểm tra
 
 - Copy `exam.html` + `exam.js` từ `duocly-2`, chỉ đổi tiêu đề và storage key.
-- Giữ `EXAM_QUESTION_COUNT = 40`; giữ 20 câu/trang (không đổi logic).
+- Giữ `EXAM_QUESTION_COUNT = 40`; giữ 20 câu/trang (không đổi logic chấm điểm).
 - Đề được lưu qua refresh (indexes, option order, answers) để làm dở không mất.
 - Nút "Tạo đề mới" xoá 3 key và tải lại trang.
-- Áp dụng app bar, option full-width, safe-area và typography mobile từ `shared/mobile.css`; không đổi logic chấm điểm.
+- Danh sách câu nằm trong `<details class="exam-nav">`: hàng 6 ô mobile / 10 ô desktop, mỗi ô 44px, một ô/câu, hàng ngang 1..40; mở ra xem score + Reset.
+- Đáp án được lưu ngay khi bấm và các option bị disable; không còn delay 600ms chỉ để chạy hiệu ứng.
+- Trang exam mới không dùng hiệu ứng tim/phân bay; `prefers-reduced-motion` tắt animation của h1/main-layout/question-block.
+- Áp dụng app bar, option full-width, safe-area và typography mobile từ `shared/mobile.css`.
 
 ## 7. Cấu trúc file
 
@@ -248,7 +252,7 @@ Storage key:
 2. Mọi câu có 4 phương án khác rỗng, `answer` thuộc A–D, `id` duy nhất và liên tục 1..N.
 3. Không còn câu trùng hoàn toàn (cùng câu + cùng bộ phương án + cùng đáp án); DHCT không còn cặp gần trùng đã xác định.
 4. Refresh 3 lần: **thứ tự câu không đổi**; đáp án đã chọn vẫn nằm đúng câu và đúng nội dung phương án.
-5. Bấm "Reset kết quả": đáp án bị xoá, thứ tự câu đổi, về câu 1; điểm "Đúng" về 0.
+5. Bấm "Reset kết quả": đáp án bị xoá, thứ tự câu đổi, về trang 1; điểm "Đúng" về 0.
 6. Trang kiểm tra tạo đúng 40 câu; refresh giữ nguyên đề đang làm; "Tạo đề mới" tạo đề khác.
 7. Lobby hiển thị 2 môn mới (DHCT, DLS) + các môn đang bật; card "Tiếp tục học" mở đúng môn; tiến độ khớp localStorage.
 8. Trên 430×932: không tràn ngang; app bar không bị Dynamic Island che; bottom bar không bị home indicator che; mọi nút ≥44px.
@@ -265,7 +269,7 @@ Storage key:
 - Wordmark lobby "SỔ ÔN BÀI" là đề xuất; có thể đổi mà không ảnh hưởng layout.
 - Lobby chỉ hiện các môn đang bật (3 môn cũ + 2 môn mới); không tự bật lại 8 môn đang comment.
 - Dùng system font (New York/SF Pro trên iPhone) thay Google Fonts để chạy offline.
-- Practice một câu/màn hình; exam giữ 20 câu/trang trong phase này.
+- Practice 20 câu/trang; exam giữ 20 câu/trang trong phase này.
 
 ## 10. Lịch sử thay đổi
 
@@ -274,6 +278,7 @@ Storage key:
 | 2026-10-27 | Bản đầu: đảo câu mỗi lần refresh |
 | 2026-10-27 | Đổi trigger: giữ order khi refresh, chỉ đảo khi bấm "Reset kết quả" |
 | 2026-10-27 | Thêm hướng UI/UX mobile-first "Sổ ôn bài", lobby mới, motion + reduced motion |
+| 2026-10-27 | Đổi practice sang 20 câu/trang, thêm nút Làm kiểm tra + popup Reset, bỏ nền vàng nửa thân |
 
 ## 11. Kết quả builder check (đã xử lý)
 

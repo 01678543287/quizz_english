@@ -1,5 +1,6 @@
 const ORDER_KEY = 'quiz_question_order_dls_v1';
 const ANSWERS_KEY = 'quiz_user_answers_dls_v1';
+const QUESTIONS_PER_PAGE = 20;
 
 const ICON_CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
 const ICON_X = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>';
@@ -19,6 +20,12 @@ const sheetClose = document.getElementById('sheet-close');
 const sheetGrid = document.getElementById('sheet-grid');
 const desktopGrid = document.getElementById('desktop-grid');
 const resetBtn = document.getElementById('reset-btn');
+const resetInlineBtn = document.getElementById('reset-inline-btn');
+const resetTopBtn = document.getElementById('reset-top-btn');
+const resetDialog = document.getElementById('reset-dialog');
+const resetBackdrop = document.getElementById('reset-dialog-backdrop');
+const resetCancel = document.getElementById('reset-cancel');
+const resetConfirm = document.getElementById('reset-confirm');
 const liveRegion = document.getElementById('live-region');
 
 const ids = quizData.map(q => q.id);
@@ -48,11 +55,11 @@ if (!questionOrder) {
 }
 
 let userAnswers = QuizCore.normalizeAnswers(readJson(ANSWERS_KEY), ids);
-let currentIndex = 0;
+let currentPage = 1;
 let streak = 0;
-let resetArmed = false;
-let resetTimer = null;
 let lastFocused = null;
+let lastResetTrigger = null;
+const resetButtons = [resetBtn, resetInlineBtn, resetTopBtn].filter(Boolean);
 
 const optionCache = new Map();
 let reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -63,6 +70,10 @@ if (motionQuery.addEventListener) {
     });
 }
 
+function totalPages() {
+    return Math.max(1, Math.ceil(questionOrder.length / QUESTIONS_PER_PAGE));
+}
+
 function optionsFor(question) {
     if (!optionCache.has(question.id)) {
         optionCache.set(question.id, QuizCore.shuffleOptions(question));
@@ -71,19 +82,20 @@ function optionsFor(question) {
 }
 
 function updateAppBar() {
-    currentNum.textContent = String(currentIndex + 1);
-    totalNum.textContent = String(questionOrder.length);
-    const percent = questionOrder.length ? ((currentIndex + 1) / questionOrder.length) * 100 : 0;
+    const pages = totalPages();
+    currentNum.textContent = String(currentPage);
+    totalNum.textContent = String(pages);
+    const percent = (currentPage / pages) * 100;
     progressFill.style.width = `${percent}%`;
     if (progressTrack) {
-        progressTrack.setAttribute('aria-valuenow', String(currentIndex + 1));
-        progressTrack.setAttribute('aria-valuemax', String(questionOrder.length));
+        progressTrack.setAttribute('aria-valuenow', String(currentPage));
+        progressTrack.setAttribute('aria-valuemax', String(pages));
     }
-    prevBtn.disabled = currentIndex === 0;
-    nextBtn.disabled = currentIndex === questionOrder.length - 1;
+    prevBtn.disabled = currentPage === 1;
+    nextBtn.disabled = currentPage === pages;
 }
 
-function buildOptionButton(question, option, displayIndex) {
+function buildOptionButton(question, option, displayIndex, options, optionButtons, block) {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'option-btn';
@@ -113,44 +125,54 @@ function buildOptionButton(question, option, displayIndex) {
             button.classList.add('is-wrong');
             icon.innerHTML = ICON_X;
         }
+    } else {
+        button.addEventListener('click', () => {
+            selectOption(question, option, options, optionButtons, block);
+        });
     }
 
     return button;
 }
 
-function renderQuestion() {
-    const question = byId.get(questionOrder[currentIndex]);
-    if (!question) return;
-
-    const options = optionsFor(question);
-    const optionButtons = [];
-
+function renderPage() {
+    const start = (currentPage - 1) * QUESTIONS_PER_PAGE;
+    const end = Math.min(start + QUESTIONS_PER_PAGE, questionOrder.length);
     card.innerHTML = '';
-    card.tabIndex = -1;
 
-    const label = document.createElement('div');
-    label.className = 'question-label';
-    label.textContent = `Câu ${currentIndex + 1}`;
+    for (let index = start; index < end; index++) {
+        const question = byId.get(questionOrder[index]);
+        if (!question) continue;
 
-    const heading = document.createElement('h2');
-    heading.className = 'question-text';
-    heading.textContent = question.question;
+        const options = optionsFor(question);
+        const optionButtons = [];
 
-    const list = document.createElement('div');
-    list.className = 'options';
+        const block = document.createElement('article');
+        block.className = 'question-card';
+        block.dataset.index = String(index);
+        block.id = `q-${index}`;
+        block.tabIndex = -1;
 
-    options.forEach((option, index) => {
-        const button = buildOptionButton(question, option, index);
-        if (!userAnswers[question.id]) {
-            button.addEventListener('click', () => {
-                selectOption(question, option, options, optionButtons);
-            });
-        }
-        optionButtons.push(button);
-        list.appendChild(button);
-    });
+        const label = document.createElement('div');
+        label.className = 'question-label';
+        label.textContent = `Câu ${index + 1}`;
 
-    card.append(label, heading, list);
+        const heading = document.createElement('h2');
+        heading.className = 'question-text';
+        heading.textContent = question.question;
+
+        const list = document.createElement('div');
+        list.className = 'options';
+
+        options.forEach((option, displayIndex) => {
+            const button = buildOptionButton(question, option, displayIndex, options, optionButtons, block);
+            optionButtons.push(button);
+            list.appendChild(button);
+        });
+
+        block.append(label, heading, list);
+        card.appendChild(block);
+    }
+
     updateAppBar();
     renderGrids();
 }
@@ -159,7 +181,7 @@ function displayLetter(options, originalKey) {
     return QuizCore.displayLetter(options, originalKey);
 }
 
-function selectOption(question, option, options, optionButtons) {
+function selectOption(question, option, options, optionButtons, block) {
     if (userAnswers[question.id]) return;
 
     userAnswers[question.id] = option.key;
@@ -184,8 +206,8 @@ function selectOption(question, option, options, optionButtons) {
         streak += 1;
         liveRegion.textContent = `Đúng. Chuỗi ${streak} câu đúng.`;
         if (!reduceMotion) {
-            showPaperBits();
-            if (streak % 3 === 0) showStreak(streak);
+            showPaperBits(block);
+            if (streak % 3 === 0) showStreak(block, streak);
         }
     } else {
         streak = 0;
@@ -196,7 +218,11 @@ function selectOption(question, option, options, optionButtons) {
 }
 
 function renderGrid(container) {
+    if (!container) return;
     container.innerHTML = '';
+    const start = (currentPage - 1) * QUESTIONS_PER_PAGE;
+    const end = Math.min(start + QUESTIONS_PER_PAGE, questionOrder.length);
+
     questionOrder.forEach((id, index) => {
         const question = byId.get(id);
         const answer = userAnswers[id];
@@ -205,9 +231,9 @@ function renderGrid(container) {
         cell.className = 'sheet-cell';
         cell.textContent = String(index + 1);
 
-        if (index === currentIndex) {
+        if (index >= start && index < end) {
             cell.classList.add('is-current');
-            cell.setAttribute('aria-current', 'true');
+            if (index === start) cell.setAttribute('aria-current', 'true');
         }
         if (answer) {
             if (answer === question.answer) {
@@ -218,7 +244,7 @@ function renderGrid(container) {
         }
         const state = answer ? (answer === question.answer ? ' đúng' : ' sai') : ' chưa làm';
         cell.setAttribute('aria-label', `Câu ${index + 1}${state}`);
-        cell.addEventListener('click', () => goTo(index));
+        cell.addEventListener('click', () => goToQuestion(index));
         container.appendChild(cell);
     });
 }
@@ -228,7 +254,7 @@ function renderGrids() {
     renderGrid(desktopGrid);
 }
 
-function showPaperBits() {
+function showPaperBits(block) {
     for (let index = 0; index < 6; index++) {
         const bit = document.createElement('span');
         bit.className = 'paper-bit';
@@ -236,28 +262,52 @@ function showPaperBits() {
         bit.style.setProperty('--dy', `${Math.round(-Math.random() * 70 - 20)}px`);
         bit.style.setProperty('--rot', `${Math.round(Math.random() * 360 - 180)}deg`);
         bit.style.background = index % 2 ? 'var(--teal)' : 'var(--amber-bright)';
-        card.appendChild(bit);
+        block.appendChild(bit);
         window.setTimeout(() => bit.remove(), 620);
     }
 }
 
-function showStreak(count) {
-    const old = card.querySelector('.streak-chip');
+function showStreak(block, count) {
+    const old = block.querySelector('.streak-chip');
     if (old) old.remove();
 
     const chip = document.createElement('div');
     chip.className = 'streak-chip';
     chip.innerHTML = `${ICON_FLAME}<span>${count} đúng liên tiếp</span>`;
-    card.appendChild(chip);
+    block.appendChild(chip);
     window.setTimeout(() => chip.remove(), 1600);
 }
 
-function goTo(index) {
+function scrollToQuestion(index) {
+    const block = card.querySelector(`[data-index="${index}"]`);
+    if (!block) return;
+    block.scrollIntoView({
+        behavior: reduceMotion ? 'auto' : 'smooth',
+        block: 'center'
+    });
+    block.focus({ preventScroll: true });
+}
+
+function goToQuestion(index) {
     if (index < 0 || index >= questionOrder.length) return;
-    currentIndex = index;
+    const page = Math.floor(index / QUESTIONS_PER_PAGE) + 1;
     closeSheet();
-    renderQuestion();
-    card.focus({ preventScroll: true });
+    if (page !== currentPage) {
+        currentPage = page;
+        renderPage();
+        window.setTimeout(() => scrollToQuestion(index), 60);
+    } else {
+        scrollToQuestion(index);
+    }
+}
+
+function goToPage(page) {
+    const pages = totalPages();
+    if (page < 1 || page > pages || page === currentPage) return;
+    currentPage = page;
+    closeSheet();
+    renderPage();
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
 }
 
 function openSheet() {
@@ -279,20 +329,32 @@ function closeSheet() {
     }
 }
 
-function armReset() {
-    if (resetArmed) {
-        doReset();
-        return;
+function openResetDialog(trigger) {
+    lastResetTrigger = trigger || null;
+    resetDialog.hidden = false;
+    resetBackdrop.hidden = false;
+    document.body.classList.add('dialog-open');
+    resetDialog.focus({ preventScroll: true });
+}
+
+function closeResetDialog(returnFocus = true) {
+    resetDialog.hidden = true;
+    resetBackdrop.hidden = true;
+    document.body.classList.remove('dialog-open');
+    if (returnFocus && lastResetTrigger && typeof lastResetTrigger.focus === 'function') {
+        lastResetTrigger.focus();
     }
-    resetArmed = true;
-    resetBtn.classList.add('is-armed');
-    resetBtn.textContent = 'Chắc chắn? Bấm lần nữa';
-    window.clearTimeout(resetTimer);
-    resetTimer = window.setTimeout(() => {
-        resetArmed = false;
-        resetBtn.classList.remove('is-armed');
-        resetBtn.textContent = 'Reset kết quả';
-    }, 3000);
+    lastResetTrigger = null;
+}
+
+function confirmReset() {
+    resetDialog.hidden = true;
+    resetBackdrop.hidden = true;
+    document.body.classList.remove('dialog-open');
+    lastResetTrigger = null;
+    doReset();
+    if (resetTopBtn) resetTopBtn.focus({ preventScroll: true });
+    else if (sheetBtn) sheetBtn.focus({ preventScroll: true });
 }
 
 function doReset() {
@@ -303,25 +365,56 @@ function doReset() {
     writeJson(ORDER_KEY, questionOrder);
 
     optionCache.clear();
-    currentIndex = 0;
+    currentPage = 1;
     streak = 0;
-    resetArmed = false;
-    resetBtn.classList.remove('is-armed');
-    resetBtn.textContent = 'Reset kết quả';
 
     closeSheet();
-    renderQuestion();
+    renderPage();
     liveRegion.textContent = 'Đã reset. Thứ tự câu đã được đảo.';
 }
 
-prevBtn.addEventListener('click', () => goTo(currentIndex - 1));
-nextBtn.addEventListener('click', () => goTo(currentIndex + 1));
+prevBtn.addEventListener('click', () => goToPage(currentPage - 1));
+nextBtn.addEventListener('click', () => goToPage(currentPage + 1));
 sheetBtn.addEventListener('click', openSheet);
 sheetClose.addEventListener('click', closeSheet);
 sheetBackdrop.addEventListener('click', closeSheet);
-resetBtn.addEventListener('click', armReset);
+resetButtons.forEach(button => button.addEventListener('click', () => openResetDialog(button)));
+resetCancel.addEventListener('click', () => closeResetDialog());
+resetConfirm.addEventListener('click', confirmReset);
+resetBackdrop.addEventListener('click', () => closeResetDialog());
 
 document.addEventListener('keydown', event => {
+    if (event.metaKey || event.ctrlKey || event.altKey) return;
+
+    if (!resetDialog.hidden) {
+        if (event.key === 'Escape') {
+            event.preventDefault();
+            closeResetDialog();
+            return;
+        }
+        if (event.key === 'Tab') {
+            const focusables = resetDialog.querySelectorAll('button, [href], [tabindex]:not([tabindex="-1"])');
+            if (!focusables.length) return;
+            const first = focusables[0];
+            const last = focusables[focusables.length - 1];
+            if (document.activeElement === resetDialog) {
+                if (event.shiftKey) {
+                    event.preventDefault();
+                    last.focus();
+                }
+                return;
+            }
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+            }
+        }
+        return;
+    }
+
     if (!sheet.hidden) {
         if (event.key === 'Escape') {
             event.preventDefault();
@@ -353,23 +446,13 @@ document.addEventListener('keydown', event => {
 
     if (event.key === 'ArrowLeft') {
         event.preventDefault();
-        goTo(currentIndex - 1);
+        goToPage(currentPage - 1);
         return;
     }
     if (event.key === 'ArrowRight') {
         event.preventDefault();
-        goTo(currentIndex + 1);
-        return;
-    }
-    if (event.key >= '1' && event.key <= '4') {
-        const question = byId.get(questionOrder[currentIndex]);
-        if (!question || userAnswers[question.id]) return;
-        const options = optionsFor(question);
-        const index = Number(event.key) - 1;
-        if (!options[index]) return;
-        const buttons = card.querySelectorAll('.option-btn');
-        if (buttons[index]) buttons[index].click();
+        goToPage(currentPage + 1);
     }
 });
 
-renderQuestion();
+renderPage();

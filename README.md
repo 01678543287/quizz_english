@@ -40,11 +40,12 @@ english-quiz/
 ## Tính năng
 
 - **Lobby "Sổ Ôn Bài"**: thẻ môn có tab màu, icon SVG, số câu, tiến độ; card "Tiếp tục học" chọn môn có tỉ lệ làm cao nhất.
-- **Luyện tập một câu/màn hình** cho 2 môn mới: app bar + progress, option 56px, bottom bar, sheet danh sách câu.
-- **Giữ thứ tự câu khi refresh**; chỉ đảo khi bấm "Reset kết quả" (2 bước xác nhận).
+- **Luyện tập 20 câu/trang** cho 2 môn mới: app bar + progress, option 56px, bottom bar, sheet danh sách câu.
+- **Giữ thứ tự câu khi refresh**; chỉ đảo khi bấm "Reset kết quả" (popup xác nhận Huỷ/Reset).
+- **Làm kiểm tra 40 câu** ngay từ toolbar đầu trang; trang kiểm tra có danh sách câu dạng details grid.
 - **Đáp án lưu theo `id` + key gốc**, nên refresh/đảo phương án không làm lệch đáp án.
 - **Kiểm tra 40 câu ngẫu nhiên**, giữ đề khi refresh, "Tạo đề mới" đổi đề.
-- **Motion có mục đích**: press stamp, highlighter sweep, check stamp, shake, streak, sheet; tôn trọng `prefers-reduced-motion`.
+- **Motion có mục đích**: press stamp, success underline, check stamp, shake, streak, sheet; tôn trọng `prefers-reduced-motion`.
 - **Mobile-first**: 430×932, safe area, vùng chạm ≥44px, không gradient tím/glass/emoji icon.
 
 ## Chạy thử

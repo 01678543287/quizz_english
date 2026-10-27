@@ -30,10 +30,21 @@
         </div>
     </div>
 
-    <div id="main-layout">
+    <details class="exam-nav">
+        <summary>Danh sách câu</summary>
         <aside id="sidebar"></aside>
+    </details>
+
+    <div id="main-layout">
         <div id="quiz-container"></div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const nav = document.querySelector('.exam-nav');
+            if (nav && window.innerWidth >= 900) nav.open = true;
+        });
+    </script>
 
     <script src="quiz_data.js"></script>
     <script>
