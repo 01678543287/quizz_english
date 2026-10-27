@@ -2,6 +2,8 @@
 const EXAM_QUESTION_COUNT = 40;
 const QUESTIONS_PER_PAGE = 20;
 const STORAGE_KEY = 'quiz_exam_answers_dhct_v1';
+const ICON_CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+const ICON_X = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>';
 
 function shuffleArray(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
@@ -460,6 +462,20 @@ function createRunningPig() {
     setTimeout(moveNext, 10);
 }
 
+function showPaperBits(block) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    for (let index = 0; index < 6; index++) {
+        const bit = document.createElement('span');
+        bit.className = 'paper-bit';
+        bit.style.setProperty('--dx', `${Math.round(Math.random() * 120 - 60)}px`);
+        bit.style.setProperty('--dy', `${Math.round(-Math.random() * 70 - 20)}px`);
+        bit.style.setProperty('--rot', `${Math.round(Math.random() * 360 - 180)}deg`);
+        bit.style.background = index % 2 ? 'var(--teal)' : 'var(--amber-bright)';
+        block.appendChild(bit);
+        window.setTimeout(() => bit.remove(), 620);
+    }
+}
+
 function renderPage(page) {
     renderSidebar(page);
     container.innerHTML = '';
@@ -481,18 +497,40 @@ function renderPage(page) {
             const btn = document.createElement('button');
             btn.textContent = `${letter}. ${opts[idx].value}`;
             btn.className = 'option-btn';
+
+            const icon = document.createElement('span');
+            icon.className = 'option-icon';
+            icon.setAttribute('aria-hidden', 'true');
+            btn.appendChild(icon);
+
             if (userAnswers[i]) {
                 btn.disabled = true;
-                btn.classList.remove('correct', 'incorrect');
-                if (letter === correctAnswer) btn.classList.add('correct');
-                if (letter === userAnswers[i] && userAnswers[i] !== correctAnswer) btn.classList.add('incorrect');
+                if (letter === correctAnswer) {
+                    btn.classList.add('is-correct');
+                    icon.innerHTML = ICON_CHECK;
+                } else if (letter === userAnswers[i]) {
+                    btn.classList.add('is-wrong');
+                    icon.innerHTML = ICON_X;
+                }
             }
+
             btn.onclick = () => {
                 if (userAnswers[i]) return;
 
                 userAnswers[i] = letter;
                 saveUserAnswers();
-                Object.values(buttons).forEach(item => { item.disabled = true; });
+
+                Object.entries(buttons).forEach(([key, item]) => {
+                    item.disabled = true;
+                    const itemIcon = item.querySelector('.option-icon');
+                    if (key === correctAnswer) {
+                        item.classList.add('is-correct');
+                        if (itemIcon) itemIcon.innerHTML = ICON_CHECK;
+                    } else if (key === letter) {
+                        item.classList.add('is-wrong');
+                        if (itemIcon) itemIcon.innerHTML = ICON_X;
+                    }
+                });
 
                 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
                 if (reduced) {
@@ -500,16 +538,13 @@ function renderPage(page) {
                     return;
                 }
 
-                if (letter === correctAnswer) {
-                    showEffect('heart', block);
-                } else {
-                    showEffect('laugh', block);
-                }
+                if (letter === correctAnswer) showPaperBits(block);
 
                 setTimeout(() => {
                     renderPage(currentPage);
                 }, 600);
             };
+
             buttons[letter] = btn;
             block.appendChild(btn);
         });

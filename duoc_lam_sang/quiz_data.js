@@ -100,7 +100,7 @@ const quizData = [
     },
     {
         "id": 12,
-        "question": "Sinh khả dụng F được ước lượng bởi tỉ lệ       AUCPO\tgọi là sinh khả dụng: AUCIV",
+        "question": "Sinh khả dụng F được ước lượng bởi tỉ lệ AUC_PO/AUC_IV, gọi là sinh khả dụng:",
         "option_a": "Tương đối",
         "option_b": "Tuyệt đối",
         "option_c": "So sánh",

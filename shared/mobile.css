@@ -893,10 +893,37 @@ body.exam-page h1 {
   text-align: left;
 }
 
+body.exam-page .question-block {
+  margin-bottom: 14px;
+  padding: 20px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  animation: card-in var(--dur-base) var(--ease-out);
+}
+
 body.exam-page .option-btn {
+  position: relative;
   width: 100%;
   min-height: 52px;
   margin-bottom: 8px;
+  padding-right: 44px;
+}
+
+body.exam-page .option-btn .option-icon {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  display: none;
+  width: 20px;
+  height: 20px;
+  transform: translateY(-50%);
+}
+
+body.exam-page .option-btn.is-correct .option-icon,
+body.exam-page .option-btn.is-wrong .option-icon {
+  display: block;
 }
 
 body.exam-page .exam-nav {

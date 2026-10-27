@@ -161,7 +161,6 @@ Quy tắc:
 - Key = `id` câu hỏi; value = **key gốc** của phương án đã chọn.
 - Phương án vẫn được đảo mỗi lần tải (giữ hành vi cũ), nhưng khi render so sánh theo key gốc nên đáp án luôn gắn đúng nội dung.
 - Sidebar hiển thị chữ cái **theo vị trí hiển thị** của phương án đã chọn, không phải key gốc.
-- Điểm "Đúng: x / N" tính bằng so sánh key gốc.
 - Nút "Reset kết quả": xoá object đáp án + sinh order mới + về trang 1.
 - Dữ liệu localStorage hỏng/khác schema → bỏ qua, bắt đầu object rỗng; không làm crash trang.
 
@@ -252,7 +251,7 @@ Storage key:
 2. Mọi câu có 4 phương án khác rỗng, `answer` thuộc A–D, `id` duy nhất và liên tục 1..N.
 3. Không còn câu trùng hoàn toàn (cùng câu + cùng bộ phương án + cùng đáp án); DHCT không còn cặp gần trùng đã xác định.
 4. Refresh 3 lần: **thứ tự câu không đổi**; đáp án đã chọn vẫn nằm đúng câu và đúng nội dung phương án.
-5. Bấm "Reset kết quả": đáp án bị xoá, thứ tự câu đổi, về trang 1; điểm "Đúng" về 0.
+5. Bấm "Reset kết quả": popup xác nhận hiện ra; Huỷ giữ đáp án; Reset xoá đáp án, thứ tự câu đổi, về trang 1.
 6. Trang kiểm tra tạo đúng 40 câu; refresh giữ nguyên đề đang làm; "Tạo đề mới" tạo đề khác.
 7. Lobby hiển thị 2 môn mới (DHCT, DLS) + các môn đang bật; card "Tiếp tục học" mở đúng môn; tiến độ khớp localStorage.
 8. Trên 430×932: không tràn ngang; app bar không bị Dynamic Island che; bottom bar không bị home indicator che; mọi nút ≥44px.

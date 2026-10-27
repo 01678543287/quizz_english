@@ -61,6 +61,7 @@ body.lobby-page h1 {
     -webkit-text-fill-color: var(--ink);
     color: var(--ink);
     text-shadow: none;
+    animation: none;
 }
 
 body.lobby-page *:focus-visible {

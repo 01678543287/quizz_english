@@ -72,24 +72,22 @@ Sửa đến khi pass. Không bỏ qua bước này.
 
 ## 7. Tạo trang
 
-Copy từ môn mới nhất (`duocly-2` hoặc một môn vừa làm):
+Copy từ template mới nhất (`duoc_hoc_co_truyen`):
 
 ```bash
-cp duocly-2/index.html <ten-mon>/index.html
-cp duocly-2/exam.html <ten-mon>/exam.html
-cp duocly-2/main.js <ten-mon>/main.js
-cp duocly-2/exam.js <ten-mon>/exam.js
+cp duoc_hoc_co_truyen/index.html <ten-mon>/index.html
+cp duoc_hoc_co_truyen/exam.html <ten-mon>/exam.html
+cp duoc_hoc_co_truyen/main.js <ten-mon>/main.js
+cp duoc_hoc_co_truyen/exam.js <ten-mon>/exam.js
 ```
 
 Sau đó:
 
-- Đổi `<title>`, app bar/tên môn, link "Làm kiểm tra".
-- Đổi `STORAGE_KEY` trong `main.js` thành `quiz_user_answers_<slug>_v1` và order key `quiz_question_order_<slug>_v1`.
-- Đổi 3 storage key trong `exam.html`.
-- Thêm `<link rel="stylesheet" href="../shared/mobile.css">` sau `../shared/style.css`.
-- Thêm `<script src="../shared/quiz-core.js"></script>` trước `main.js`.
-- Trang luyện tập mới dùng 20 câu/trang + bottom sheet; xem [design/mobile-ui.md](design/mobile-ui.md).
-- Trang kiểm tra giữ 20 câu/trang, chỉ áp dụng app bar/option mobile.
+- Đổi `<title>`, app bar/tên môn, toolbar `Làm kiểm tra 40 câu`, tổng số trang (`Trang 1/N`).
+- Đổi `ORDER_KEY`/`ANSWERS_KEY` trong `main.js` thành `quiz_question_order_<slug>_v1` / `quiz_user_answers_<slug>_v1`.
+- Đổi 3 storage key trong `exam.html`; giữ popup Reset (`#reset-dialog`) và các nút reset.
+- Giữ `shared/mobile.css` + `shared/quiz-core.js`; trang luyện tập dùng 20 câu/trang, toolbar exam, popup Reset.
+- Trang kiểm tra giữ 20 câu/trang; danh sách câu trong `<details>` và giữ feedback xanh/đỏ giống practice.
 
 ## 8. Đăng ký lobby + README
 

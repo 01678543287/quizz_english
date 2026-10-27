@@ -29,7 +29,9 @@
     }
 
     function percent(subject) {
-        return subject.count ? Math.min(100, Math.round((subject.answered / subject.count) * 100)) : 0;
+        if (!subject.count) return 0;
+        const value = Math.round((subject.answered / subject.count) * 100);
+        return subject.answered > 0 ? Math.min(100, Math.max(1, value)) : 0;
     }
 
     const enriched = subjects.map(subject => ({
