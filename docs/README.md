@@ -48,6 +48,6 @@ Mở trực tiếp `index.html` cũng được, nhưng chạy server sẽ ổn �
 
 ## Trạng thái
 
-- 2 môn mới: Dược học cổ truyền (217 câu), Dược lâm sàng (305 câu).
-- Lobby "Sổ ôn bài" + giao diện mobile-first + motion đang chờ duyệt design trước khi triển khai.
-- Chưa có code sản phẩm nào được tạo cho 2 môn mới.
+- Đã triển khai 2 môn mới: Dược học cổ truyền (217 câu), Dược lâm sàng (305 câu).
+- Đã triển khai lobby "Sổ ôn bài", giao diện mobile-first và motion cho 2 môn mới.
+- Các môn cũ giữ nguyên giao diện; lobby là điểm vào chung.

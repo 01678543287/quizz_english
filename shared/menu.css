@@ -1,0 +1,451 @@
+/* ============================================================
+   Lobby "Sổ ôn bài" — mobile-first
+   ============================================================ */
+
+:root {
+    --paper: #FAF6EE;
+    --paper-2: #F3EDE2;
+    --surface: #FFFFFF;
+    --ink: #1B1A17;
+    --ink-2: #57534E;
+    --ink-3: #6F665C;
+    --line: #E3DACB;
+    --line-strong: #C9BDA9;
+
+    --teal: #0F766E;
+    --teal-strong: #115E59;
+    --teal-soft: #CCFBF1;
+    --amber: #B45309;
+    --highlighter: #FDE68A;
+
+    --accent-teal: #0F766E;
+    --accent-amber: #B45309;
+    --accent-indigo: #4338CA;
+    --accent-olive: #4D7C0F;
+    --accent-coral: #BE123C;
+
+    --font-display: ui-serif, "New York", Georgia, "Times New Roman", serif;
+    --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+    --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+    --radius-card: 10px;
+    --radius-pill: 999px;
+
+    --shadow-card: 0 1px 0 var(--line), 3px 3px 0 rgba(27, 26, 23, 0.06);
+    --shadow-lift: 0 1px 0 var(--line), 5px 5px 0 rgba(27, 26, 23, 0.08);
+
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body.lobby-page {
+    margin: 0;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+}
+
+body.lobby-page::before {
+    display: none;
+}
+
+body.lobby-page h1 {
+    margin: 0;
+    padding: 0;
+    background: none;
+    -webkit-text-fill-color: var(--ink);
+    color: var(--ink);
+    text-shadow: none;
+}
+
+body.lobby-page *:focus-visible {
+    outline: 3px solid var(--teal);
+    outline-offset: 2px;
+}
+
+.lobby {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: max(20px, env(safe-area-inset-top)) 20px calc(40px + env(safe-area-inset-bottom));
+}
+
+/* ---------- Top ---------- */
+
+.lobby-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.wordmark {
+    font-family: var(--font-display);
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.lobby-tag {
+    flex: 0 0 auto;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+}
+
+/* ---------- Hero ---------- */
+
+.lobby-hero {
+    margin: 32px 0 24px;
+    animation: rise 240ms var(--ease-out) both;
+}
+
+.eyebrow {
+    margin: 0 0 8px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal);
+}
+
+.lobby-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 8vw, 2.75rem);
+    font-weight: 600;
+    line-height: 1.06;
+    letter-spacing: -0.025em;
+    text-align: left;
+}
+
+.lobby-hero .hl {
+    background: linear-gradient(transparent 62%, var(--highlighter) 62%);
+    padding: 0 0.06em;
+}
+
+.hero-sub {
+    max-width: 34ch;
+    margin: 12px 0 0;
+    color: var(--ink-2);
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* ---------- Continue ---------- */
+
+#continue-slot {
+    margin-bottom: 28px;
+}
+
+.continue-card {
+    position: relative;
+    display: block;
+    padding: 18px 52px 18px 20px;
+    overflow: hidden;
+    border: 1px solid var(--teal);
+    border-radius: var(--radius-card);
+    background: var(--surface);
+    box-shadow: var(--shadow-card);
+    color: var(--ink);
+    text-decoration: none;
+    animation: rise 220ms var(--ease-out) 60ms both;
+}
+
+.continue-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 6px;
+    background: var(--accent);
+}
+
+.continue-eyebrow {
+    display: block;
+    margin-bottom: 4px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal);
+}
+
+.continue-name {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.continue-meta {
+    display: block;
+    margin-top: 2px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-3);
+}
+
+.continue-progress {
+    display: block;
+    height: 4px;
+    margin-top: 12px;
+    overflow: hidden;
+    border-radius: var(--radius-pill);
+    background: var(--paper-2);
+}
+
+.continue-progress > span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--accent);
+}
+
+.continue-arrow {
+    position: absolute;
+    top: 50%;
+    right: 18px;
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    color: var(--teal);
+    transform: translateY(-50%);
+}
+
+.continue-arrow svg,
+.subject-chevron svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* ---------- Subject list ---------- */
+
+.subject-section {
+    margin-top: 8px;
+}
+
+.section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.section-head h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+#progress-summary {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--ink-3);
+}
+
+.subjects-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.subject-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 6px 40px minmax(0, 1fr) 20px;
+    align-items: center;
+    gap: 12px;
+    min-height: 84px;
+    padding: 12px 14px 12px 0;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    background: var(--surface);
+    box-shadow: var(--shadow-card);
+    color: var(--ink);
+    text-decoration: none;
+    animation: rise 220ms var(--ease-out) both;
+    animation-delay: calc(var(--i, 0) * 40ms);
+    transition: transform 150ms var(--ease-out), box-shadow 150ms var(--ease-out);
+}
+
+.subject-tab {
+    align-self: stretch;
+    background: var(--accent);
+}
+
+.subject-icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--paper-2);
+    color: var(--accent);
+}
+
+.subject-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.subject-body {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.subject-name {
+    overflow: hidden;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.25;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.subject-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ink-3);
+}
+
+.subject-progress {
+    display: block;
+    height: 3px;
+    margin-top: 4px;
+    overflow: hidden;
+    border-radius: var(--radius-pill);
+    background: var(--paper-2);
+}
+
+.subject-progress > span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--accent);
+}
+
+.subject-chevron {
+    display: grid;
+    place-items: center;
+    color: var(--ink-3);
+}
+
+@media (hover: hover) {
+    .subject-card:hover,
+    .continue-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lift);
+    }
+}
+
+.subject-card:active,
+.continue-card:active {
+    transform: scale(0.985);
+}
+
+/* ---------- Tip ---------- */
+
+.lobby-tip {
+    margin-top: 28px;
+    padding: 16px;
+    border: 1px dashed var(--line-strong);
+    border-radius: var(--radius-card);
+}
+
+.lobby-tip h3 {
+    margin: 0 0 6px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--amber);
+}
+
+.lobby-tip p {
+    margin: 0;
+    color: var(--ink-2);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.privacy {
+    margin: 24px 0 0;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-align: center;
+    color: var(--ink-3);
+}
+
+/* ---------- Desktop ---------- */
+
+@media (min-width: 600px) {
+    .subjects-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1024px) {
+    .lobby {
+        padding-top: max(40px, env(safe-area-inset-top));
+    }
+
+    .lobby-top {
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .lobby-hero {
+        margin-top: 44px;
+    }
+
+    .subjects-list {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .subject-card {
+        min-height: 96px;
+    }
+}
+
+/* ---------- Motion ---------- */
+
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lobby-hero,
+    .continue-card,
+    .subject-card {
+        animation: none !important;
+        transform: none !important;
+    }
+
+    .subject-card,
+    .continue-card {
+        transition-duration: 120ms;
+        transition-property: background-color, border-color, color, opacity;
+    }
+}
