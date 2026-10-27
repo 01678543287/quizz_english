@@ -610,7 +610,7 @@ git commit -m "feat: add mobile-first duoc lam sang quiz pages"
 
 - [ ] **Step 1: Tạo `shared/subjects.js`**
 
-Chỉ 5 môn đang bật:
+Các môn đang bật (6 môn, gồm PCD thêm sau):
 
 ```js
 window.SUBJECTS = [

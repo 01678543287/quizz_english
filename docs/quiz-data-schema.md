@@ -1,6 +1,6 @@
 # Schema dữ liệu câu hỏi
 
-## 1. Kiểu phẳng (dùng cho 2 môn mới)
+## 1. Kiểu phẳng (dùng cho các môn mới)
 
 ```js
 const quizData = [

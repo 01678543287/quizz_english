@@ -11,6 +11,7 @@
 | Dược Lý 2 | 150 | `duocly-2/index.html` |
 | Dược Học Cổ Truyền | 217 | `duoc_hoc_co_truyen/index.html` |
 | Dược Lâm Sàng | 305 | `duoc_lam_sang/index.html` |
+| Pháp Chế Dược | 466 | `phap_che_duoc/index.html` |
 
 Các môn cũ vẫn còn trong repo nhưng không hiển thị trên lobby. Muốn bật lại, thêm entry vào `shared/subjects.js`.
 
@@ -30,6 +31,7 @@ english-quiz/
 │   └── images/
 ├── duoc_hoc_co_truyen/        # DHCT: index/exam/main/exam.js/quiz_data.js
 ├── duoc_lam_sang/             # DLS: index/exam/main/exam.js/quiz_data.js
+├── phap_che_duoc/             # PCD: index/exam/main/exam.js/quiz_data.js
 ├── duocly-2/                  # Dược Lý 2
 ├── baoche-2/                  # Bào Chế 2
 ├── tieng-anh-2/               # Tiếng Anh 2
@@ -40,7 +42,7 @@ english-quiz/
 ## Tính năng
 
 - **Lobby "Sổ Ôn Bài"**: thẻ môn có tab màu, icon SVG, số câu, tiến độ; card "Tiếp tục học" chọn môn có tỉ lệ làm cao nhất.
-- **Luyện tập 20 câu/trang** cho 2 môn mới: app bar + progress, option 56px, bottom bar, sheet danh sách câu.
+- **Luyện tập 20 câu/trang** cho các môn mới (DHCT, DLS, PCD): app bar + progress, option 56px, bottom bar, sheet danh sách câu.
 - **Giữ thứ tự câu khi refresh**; chỉ đảo khi bấm "Reset kết quả" (popup xác nhận Huỷ/Reset).
 - **Làm kiểm tra 40 câu** ngay từ toolbar đầu trang; trang kiểm tra có danh sách câu dạng details grid.
 - **Đáp án lưu theo `id` + key gốc**, nên refresh/đảo phương án không làm lệch đáp án.
@@ -71,5 +73,5 @@ node scripts/validate-quiz-data.mjs duoc_lam_sang/quiz_data.js 305
 - [Schema dữ liệu](docs/quiz-data-schema.md)
 - [Thiết kế UI/UX mobile-first](docs/design/mobile-ui.md)
 - [Thêm môn mới](docs/adding-a-subject.md)
-- [Design doc 2 môn mới](docs/superpowers/specs/2026-10-27-them-2-mon-hoc-design.md)
+- [Design doc các môn mới](docs/superpowers/specs/2026-10-27-them-2-mon-hoc-design.md)
 - [Kế hoạch triển khai](docs/superpowers/plans/2026-10-27-them-2-mon-hoc.md)

@@ -289,3 +289,10 @@ Storage key:
 | DLS Bài 8 câu 4 trùng A/B | Sửa thành `≥ 126mg/dl` và `< 126mg/dl` |
 | DHCT có 6 ghi chú "dấu đỏ", không phải 2 | Ghi cả 6 vào docs; 4 câu lệch chuẩn giữ nguyên đáp án nguồn (D8) |
 | PHẦN 2 câu 23 gần trùng PHẦN 3 câu 21 | Bỏ 1 câu → DHCT còn **217** |
+
+## 12. Mở rộng: Pháp chế dược
+
+- Nguồn `phap_che_duoc/PCD .docx`: 468 câu thô, dedupe 2 câu trùng nội dung → **466 câu**.
+- Dùng cùng template 20 câu/trang, popup Reset, toolbar "Làm kiểm tra 40 câu", exam details grid và feedback giống practice.
+- Storage key hậu tố `pcd_v1`; registry `shared/subjects.js` thêm entry `pcd` với accent plum.
+- Chi tiết nguồn/dedupe ở `docs/subjects/phap-che-duoc.md`.

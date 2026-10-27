@@ -160,7 +160,7 @@ Test bắt buộc: **430×932** (14 Pro Max), 393×852 (14 Pro), 375×812, 768×
 
 ```
 ┌──────────────────────────────────┐
-│ SỔ ÔN BÀI            DƯỢC · 5 môn│
+│ SỔ ÔN BÀI            DƯỢC · 6 môn│
 │                                  │
 │ Hôm nay,                         │
 │ học gì?                          │
@@ -190,7 +190,7 @@ Test bắt buộc: **430×932** (14 Pro Max), 393×852 (14 Pro), 375×812, 768×
 
 ### 4.2 Thành phần
 
-- **Wordmark**: "SỔ ÔN BÀI" (serif, chữ thường hoa đầu), bên phải là tag "DƯỢC · 5 môn".
+- **Wordmark**: "SỔ ÔN BÀI" (serif, chữ thường hoa đầu), bên phải là tag "DƯỢC · 6 môn".
 - **Greeting**: "Hôm nay, / học gì?" với highlight vàng dưới "học gì?" (pseudo-element `background: linear-gradient(transparent 60%, var(--highlighter) 60%)`).
 - **Continue card**: chỉ hiện khi có môn đã làm > 0 câu; hiện tên môn, `answered/total`, progress line, mũi tên. Bấm mở đúng môn.
 - **Subject card**:
@@ -246,7 +246,7 @@ Không có animation lặp vô hạn ở lobby.
 
 ### 5.1 Mô hình
 
-- **20 câu/trang** cho 2 môn mới (giống các môn cũ); phân trang Trước/Sau.
+- **20 câu/trang** cho các môn mới (giống các môn cũ); phân trang Trước/Sau.
 - Desktop ≥900px và cao ≥600px: sidebar grid câu hỏi cố định bên trái, nội dung bên phải.
 - Mobile/landscape thấp: sheet "Danh sách câu" mở từ bottom bar; chọn câu sẽ nhảy đúng trang và cuộn tới câu.
 - Order câu lấy từ `quiz_question_order_<subject>_v1`; refresh giữ nguyên; Reset mới đảo.

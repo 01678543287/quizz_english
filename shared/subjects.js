@@ -43,5 +43,14 @@ window.SUBJECTS = [
         accent: 'var(--accent-coral)',
         count: 305,
         storageKey: 'quiz_user_answers_dls_v1'
+    },
+    {
+        id: 'pcd',
+        name: 'Pháp Chế Dược',
+        path: '../phap_che_duoc/index.html',
+        icon: 'scale',
+        accent: 'var(--accent-plum)',
+        count: 466,
+        storageKey: 'quiz_user_answers_pcd_v1'
     }
 ];

@@ -9,6 +9,7 @@
 - [Thiết kế UI/UX mobile-first](design/mobile-ui.md)
 - [Dược học cổ truyền](subjects/duoc-hoc-co-truyen.md)
 - [Dược lâm sàng](subjects/duoc-lam-sang.md)
+- [Pháp chế dược](subjects/phap-che-duoc.md)
 - [Design doc: thêm 2 môn](superpowers/specs/2026-10-27-them-2-mon-hoc-design.md)
 - [Kế hoạch triển khai](superpowers/plans/2026-10-27-them-2-mon-hoc.md)
 
@@ -48,6 +49,6 @@ Mở trực tiếp `index.html` cũng được, nhưng chạy server sẽ ổn �
 
 ## Trạng thái
 
-- Đã triển khai 2 môn mới: Dược học cổ truyền (217 câu), Dược lâm sàng (305 câu).
-- Đã triển khai lobby "Sổ ôn bài", giao diện mobile-first và motion cho 2 môn mới.
+- Đã triển khai 3 môn mới: Dược học cổ truyền (217 câu), Dược lâm sàng (305 câu), Pháp chế dược (466 câu).
+- Đã triển khai lobby "Sổ ôn bài", giao diện mobile-first và motion cho các môn mới.
 - Các môn cũ giữ nguyên giao diện; lobby là điểm vào chung.
