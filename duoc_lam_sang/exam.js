@@ -321,7 +321,13 @@ function renderSidebar(selectedPage) {
     resetBtn.className = 'reset-btn';
     resetBtn.style.margin = '16px auto 0 auto';
     resetBtn.style.display = 'block';
-    resetBtn.onclick = resetUserAnswers;
+    resetBtn.onclick = () => {
+        if (typeof window.requestExamReset === 'function') {
+            window.requestExamReset(resetBtn);
+        } else {
+            resetUserAnswers();
+        }
+    };
     sidebar.appendChild(resetBtn);
 }
 

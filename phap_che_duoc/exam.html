@@ -61,6 +61,16 @@
         <aside id="sidebar"></aside>
     </section>
 
+    <div id="exam-reset-dialog-backdrop" class="dialog-backdrop" hidden></div>
+    <section id="exam-reset-dialog" class="dialog" role="dialog" aria-modal="true" aria-labelledby="exam-reset-dialog-title" tabindex="-1" hidden>
+        <h2 id="exam-reset-dialog-title">Reset kết quả?</h2>
+        <p>Toàn bộ đáp án đã chọn sẽ bị xoá. Bộ câu hỏi được giữ nguyên, phương án sẽ được xáo lại.</p>
+        <div class="dialog-actions">
+            <button id="exam-reset-cancel" class="btn-secondary" type="button">Huỷ</button>
+            <button id="exam-reset-confirm" class="btn-danger-solid" type="button">Reset</button>
+        </div>
+    </section>
+
     <nav class="bottom-bar exam-bottom" aria-label="Điều hướng trang kiểm tra">
         <button id="exam-prev" class="btn-ghost" type="button">Trước</button>
         <button id="exam-sheet-btn" class="btn-pill" type="button">Danh sách câu</button>
@@ -89,6 +99,7 @@
     <script src="../shared/exam-history.js"></script>
     <script src="exam.js"></script>
     <script src="../shared/exam-mobile.js"></script>
+    <script src="../shared/exam-reset-dialog.js"></script>
     <script src="../shared/back-to-top.js"></script>
 </body>
 
