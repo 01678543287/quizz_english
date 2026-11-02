@@ -346,7 +346,7 @@ function openResetDialog(trigger, mode = 'reset') {
         resetConfirm.textContent = 'Đảo câu hỏi';
     } else {
         resetDialogTitle.textContent = 'Reset kết quả?';
-        resetDialogText.textContent = 'Toàn bộ đáp án đã chọn sẽ bị xoá. Thứ tự câu được giữ nguyên.';
+        resetDialogText.textContent = 'Toàn bộ đáp án đã chọn sẽ bị xoá và danh sách câu trở về thứ tự ban đầu.';
         resetConfirm.textContent = 'Reset';
     }
 
@@ -386,12 +386,16 @@ function confirmReset() {
 function doResetAnswers() {
     userAnswers = {};
     writeJson(ANSWERS_KEY, userAnswers);
+
+    questionOrder = ids.slice();
+    writeJson(ORDER_KEY, questionOrder);
+
     currentPage = 1;
     streak = 0;
 
     closeSheet();
     renderPage();
-    liveRegion.textContent = 'Đã reset đáp án. Thứ tự câu giữ nguyên.';
+    liveRegion.textContent = 'Đã reset đáp án và đưa câu hỏi về thứ tự ban đầu.';
 }
 
 function doShuffleQuestions() {

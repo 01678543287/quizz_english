@@ -14,7 +14,7 @@
 Yêu cầu của chủ dự án:
 
 1. **Không dùng chọn chương/bài** — dữ liệu phẳng giống Dược Lý 2.
-2. **Trang luyện tập giữ nguyên thứ tự câu khi tải lại trang.** "Reset kết quả" chỉ xoá đáp án; "Đảo câu hỏi" mới đảo ngẫu nhiên thứ tự câu. Đáp án đã chọn không được mất khi refresh.
+2. **Trang luyện tập giữ nguyên thứ tự câu khi tải lại trang.** "Reset kết quả" xoá đáp án và trả câu hỏi về thứ tự gốc trong `quiz_data.js`; "Đảo câu hỏi" mới đảo ngẫu nhiên. Đáp án đã chọn không được mất khi refresh.
 3. Áp dụng skill UI/UX trong `.opencode` cho các điểm chạm của người dùng.
 4. Tạo bộ tài liệu dự án (`docs/`) theo chuẩn superpowers.
 5. **Giao diện mobile-first, tối ưu iPhone 14 Pro Max**: safe area, vùng chạm 44px, 20 câu một trang, sheet danh sách câu.
@@ -49,7 +49,7 @@ Yêu cầu của chủ dự án:
 |---|---|---|
 | D1 | Dữ liệu phẳng `const quizData = [...]`, không có `chapter` | Chủ dự án trả lời "không cần" chọn chương |
 | D2 | Mỗi câu có `id` ổn định; đáp án lưu theo `id` + **key gốc** A–D | Refresh đảo phương án mà vẫn giữ đúng lựa chọn |
-| D3 | Sinh thứ tự câu một lần, lưu vào localStorage; "Reset kết quả" chỉ xoá đáp án; "Đảo câu hỏi" mới sinh order mới | Refresh không đảo câu; tách hai hành động theo yêu cầu |
+| D3 | Sinh thứ tự câu một lần, lưu vào localStorage; "Reset kết quả" xoá đáp án + khôi phục order gốc; "Đảo câu hỏi" sinh order ngẫu nhiên | Refresh không đảo câu; Reset trả về thứ tự `quiz_data.js` |
 | D4 | Trang kiểm tra giữ nguyên: 40 câu ngẫu nhiên, lưu đề đang làm để refresh không mất bài | Tránh phá hành vi "làm dở thì tiếp tục" |
 | D5 | Dedupe DHCT theo nội dung câu; giữ bản xuất hiện đầu tiên | Loại 45 câu trùng khít + 1 câu gần trùng |
 | D6 | Giữ nguyên `shared/style.css`; thêm `shared/mobile.css`, `shared/menu.css`, `shared/subjects.js`, `shared/menu.js` | Không regression các môn cũ |
@@ -149,7 +149,7 @@ Quy tắc:
 
 - Lần đầu (chưa có order trong localStorage): sinh thứ tự ngẫu nhiên bằng Fisher–Yates, lưu mảng `id` vào localStorage.
 - Các lần tải sau: đọc lại order đã lưu; nếu order không hợp lệ (thiếu/thừa/trùng `id`, sai kiểu) thì sinh lại và lưu.
-- Chỉ nút **"Đảo câu hỏi"** mới sinh order mới (đồng thời xoá đáp án và về trang 1). **"Reset kết quả"** chỉ xoá đáp án, giữ order.
+- **"Reset kết quả"** xoá đáp án + khôi phục order gốc (id 1..N) + về trang 1. **"Đảo câu hỏi"** xoá đáp án + sinh order ngẫu nhiên + về trang 1.
 - Trong cùng phiên, chuyển câu/sidebar không đổi order.
 
 ### 5.2 Lưu đáp án
@@ -161,7 +161,7 @@ Quy tắc:
 - Key = `id` câu hỏi; value = **key gốc** của phương án đã chọn.
 - Phương án vẫn được đảo mỗi lần tải (giữ hành vi cũ), nhưng khi render so sánh theo key gốc nên đáp án luôn gắn đúng nội dung.
 - Sidebar hiển thị chữ cái **theo vị trí hiển thị** của phương án đã chọn, không phải key gốc.
-- "Reset kết quả": xoá object đáp án, giữ order, về trang 1. "Đảo câu hỏi": xoá object đáp án + sinh order mới + về trang 1.
+- "Reset kết quả": xoá object đáp án + `questionOrder = ids.slice()` + về trang 1. "Đảo câu hỏi": xoá object đáp án + sinh order mới + về trang 1.
 - Dữ liệu localStorage hỏng/khác schema → bỏ qua, bắt đầu object rỗng; không làm crash trang.
 
 ### 5.3 Giao diện & UX
@@ -251,7 +251,7 @@ Storage key:
 2. Mọi câu có 4 phương án khác rỗng, `answer` thuộc A–D, `id` duy nhất và liên tục 1..N.
 3. Không còn câu trùng hoàn toàn (cùng câu + cùng bộ phương án + cùng đáp án); DHCT không còn cặp gần trùng đã xác định.
 4. Refresh 3 lần: **thứ tự câu không đổi**; đáp án đã chọn vẫn nằm đúng câu và đúng nội dung phương án.
-5. "Reset kết quả": popup xác nhận; Huỷ giữ đáp án; Reset xoá đáp án, **thứ tự câu không đổi**, về trang 1. "Đảo câu hỏi": popup xác nhận; xoá đáp án + đổi thứ tự, về trang 1.
+5. "Reset kết quả": popup xác nhận; Huỷ giữ đáp án; Reset xoá đáp án, **trả thứ tự câu về gốc**, về trang 1. "Đảo câu hỏi": popup xác nhận; xoá đáp án + đổi thứ tự ngẫu nhiên, về trang 1.
 6. Trang kiểm tra tạo đúng 40 câu; refresh giữ nguyên đề đang làm; "Tạo đề mới" tạo đề khác.
 7. Lobby hiển thị 2 môn mới (DHCT, DLS) + các môn đang bật; card "Tiếp tục học" mở đúng môn; tiến độ khớp localStorage.
 8. Trên 430×932: không tràn ngang; app bar không bị Dynamic Island che; bottom bar không bị home indicator che; mọi nút ≥44px.
@@ -278,7 +278,7 @@ Storage key:
 | 2026-10-27 | Đổi trigger: giữ order khi refresh, chỉ đảo khi bấm "Reset kết quả" |
 | 2026-10-27 | Thêm hướng UI/UX mobile-first "Sổ ôn bài", lobby mới, motion + reduced motion |
 | 2026-10-27 | Đổi practice sang 20 câu/trang, thêm nút Làm kiểm tra + popup Reset, bỏ nền vàng nửa thân |
-| 2026-10-27 | Tách "Reset kết quả" (chỉ xoá đáp án) và "Đảo câu hỏi" (xoá + đảo ngẫu nhiên) |
+| 2026-10-27 | Tách "Reset kết quả" (xoá đáp án + trả thứ tự gốc) và "Đảo câu hỏi" (xoá + đảo ngẫu nhiên) |
 
 ## 11. Kết quả builder check (đã xử lý)
 

@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Thêm 2 môn học mới (DHCT 217 câu, DLS 305 câu) vào ứng dụng quiz, giữ thứ tự câu khi refresh; "Reset kết quả" chỉ xoá đáp án, "Đảo câu hỏi" mới đảo ngẫu nhiên.
+**Goal:** Thêm 2 môn học mới (DHCT 217 câu, DLS 305 câu) vào ứng dụng quiz, giữ thứ tự câu khi refresh; "Reset kết quả" xoá đáp án + trả thứ tự gốc, "Đảo câu hỏi" mới đảo ngẫu nhiên.
 
 **Architecture:** Giữ nguyên mô hình tĩnh hiện tại: mỗi môn là một thư mục gồm `index.html`, `exam.html`, `main.js`, `exam.js`, `quiz_data.js`. Tách logic thuần (shuffle, thứ tự câu, chuẩn hoá đáp án) vào `shared/quiz-core.js` để test bằng Node; mỗi môn copy template Dược Lý 2 và thay phần đọc dữ liệu. Thứ tự câu lưu trong localStorage; đáp án lưu theo `id` câu + key gốc A–D, không theo vị trí mảng.
 
@@ -20,7 +20,7 @@
 - Trang kiểm tra: đúng 40 câu, giữ đề qua refresh.
 - Không sửa file của các môn cũ; không sửa `shared/style.css`.
 - Toàn bộ UI text tiếng Việt, giữ văn phong hiện tại.
-- Trang luyện tập giữ nguyên order khi tải lại; "Reset kết quả" chỉ xoá đáp án, "Đảo câu hỏi" mới đảo câu và xoá đáp án; cả hai về trang 1.
+- Trang luyện tập giữ nguyên order khi tải lại; "Reset kết quả" xoá đáp án + trả order gốc, "Đảo câu hỏi" xoá đáp án + đảo ngẫu nhiên; cả hai về trang 1.
 - Đáp án phải gắn đúng câu và đúng nội dung phương án sau refresh.
 - Giao diện bám `docs/design/mobile-ui.md`: mobile-first 430×932, safe area, vùng chạm ≥44px, 20 câu/trang, bottom sheet.
 - Không dùng gradient tím/glassmorphism/emoji icon/card bo 24px; icon là inline SVG.
@@ -29,7 +29,7 @@
 
 ## Review Focus
 
-1. **Refresh giữa lúc làm bài:** thứ tự câu không đổi, đáp án đã chọn vẫn ở đúng câu và đúng phương án; "Reset kết quả" xoá đáp án nhưng giữ order; "Đảo câu hỏi" xoá đáp án + đổi order.
+1. **Refresh giữa lúc làm bài:** thứ tự câu không đổi, đáp án đã chọn vẫn ở đúng câu và đúng phương án; "Reset kết quả" xoá đáp án + trả order gốc; "Đảo câu hỏi" xoá đáp án + đổi order ngẫu nhiên.
 2. **localStorage hỏng hoặc dữ liệu kiểu cũ:** object rỗng, mảng, JSON lỗi, `id` lạ → trang vẫn render, không crash, không lưu rác.
 3. **Dedupe quá tay:** các câu gần giống nhưng khác nghĩa (tân ôn vs tân lương; "chậm lớn" của DLS) phải được giữ.
 4. **Câu thiếu phương án/trùng nhãn:** DHCT PHẦN 1 câu 18, PHẦN 2 câu 1; DLS Bài 8 câu 4 — phải có 4 phương án khác nhau và đáp án đúng.
@@ -407,7 +407,7 @@ git commit -m "feat: add duoc lam sang question bank"
 
 ### Task 5: Mobile practice + exam cho DHCT
 
-> Cập nhật 2026-11-02: practice 20 câu/trang; "Reset kết quả" chỉ xoá đáp án, giữ thứ tự; "Đảo câu hỏi" mới xoá đáp án + đảo ngẫu nhiên. Chi tiết UI theo `docs/design/mobile-ui.md`.
+> Cập nhật 2026-11-02: practice 20 câu/trang; "Reset kết quả" xoá đáp án + trả câu hỏi về thứ tự gốc; "Đảo câu hỏi" xoá đáp án + đảo ngẫu nhiên. Chi tiết UI theo `docs/design/mobile-ui.md`.
 
 **Files:**
 - Create: `shared/mobile.css`
@@ -502,7 +502,7 @@ Bắt buộc:
 - `goToQuestion(index)`: tính page, render nếu khác trang, đóng sheet, scroll tới `[data-index]` và focus block.
 - `goToPage(page)`: clamp, render, đóng sheet, scroll top.
 - Sheet: mở/đóng, focus trap, `Esc`; app bar reset icon, inline reset và sheet reset.
-- Reset/Đảo: **popup xác nhận** dùng chung `#reset-dialog` (Huỷ + hành động), focus trap, `Esc`; Reset chỉ xoá đáp án, Đảo câu hỏi xoá + đổi order, cả hai về trang 1.
+- Reset/Đảo: **popup xác nhận** dùng chung `#reset-dialog` (Huỷ + hành động), focus trap, `Esc`; Reset xoá đáp án + trả order gốc, Đảo câu hỏi xoá + đổi order ngẫu nhiên, cả hai về trang 1.
 - Toolbar `Làm kiểm tra 40 câu` link `exam.html` ở đầu `practice-main`.
 - Keyboard: `ArrowLeft/Right` chuyển trang; bỏ qua khi sheet/dialog mở hoặc có modifier.
 - Motion: đúng → success underline + check stamp + 6 mảnh giấy trong card; sai → shake 240ms; streak 3 → chip; reduced motion chỉ đổi màu/icon.
@@ -765,7 +765,7 @@ git commit -m "chore: finalize two new subjects"
 
 **Spec coverage:**
 - Dữ liệu phẳng, không chọn chương → Task 3/4/5/6.
-- Giữ order khi refresh; Reset chỉ xoá đáp án, Đảo câu hỏi mới đổi order → Task 1/5/6.
+- Giữ order khi refresh; Reset xoá đáp án + trả order gốc, Đảo câu hỏi mới đổi order ngẫu nhiên → Task 1/5/6.
 - 217/305 câu, dedupe, sửa lỗi → Task 3/4.
 - Mobile-first, 20 câu/trang, app bar, bottom bar, sheet → Task 5/6 + `docs/design/mobile-ui.md`.
 - Motion (press, sweep, stamp, shake, streak, sheet) + reduced motion → Task 5/6.

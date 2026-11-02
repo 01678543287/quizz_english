@@ -31,7 +31,7 @@ Một số môn giữ kèm file `.docx` gốc trong cùng thư mục. Không đ�
 - Mỗi môn có storage key riêng, ví dụ `quiz_user_answers_dhct_v1`.
 - `quiz_data.js` phải expose biến global `quizData` (flat) hoặc `window.quizData` (theo chương) để `main.js`/`exam.js` đọc được.
 - Không sửa `shared/style.css` cho từng môn; các trang mới dùng `shared/mobile.css`, lobby dùng `shared/menu.css`.
-- Trang luyện tập giữ thứ tự câu khi tải lại. **Reset kết quả** chỉ xoá đáp án; **Đảo câu hỏi** mới đảo ngẫu nhiên (có popup xác nhận). Đáp án lưu theo `id` câu, không theo vị trí.
+- Trang luyện tập giữ thứ tự câu khi tải lại. **Reset kết quả** xoá đáp án và trả thứ tự gốc; **Đảo câu hỏi** xoá đáp án và đảo ngẫu nhiên (có popup xác nhận). Đáp án lưu theo `id` câu, không theo vị trí.
 - Trang kiểm tra luôn bốc 40 câu ngẫu nhiên và giữ nguyên đề đang làm khi refresh.
 - Giao diện mới ưu tiên mobile (iPhone 14 Pro Max 430×932): safe area, vùng chạm ≥44px, 20 câu/trang, motion có fallback `prefers-reduced-motion`.
 - Môn mới phải thêm một entry vào `shared/subjects.js` để lobby hiển thị đúng tên, số câu và tiến độ.

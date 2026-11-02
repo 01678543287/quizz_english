@@ -116,7 +116,7 @@ Cập nhật danh sách môn trong `README.md` gốc và `docs/README.md`.
 
 - Mở trang luyện tập: đủ câu, chọn đáp án, tiến độ/sidebar đổi màu đúng.
 - Refresh 3 lần: **thứ tự câu giữ nguyên**, đáp án vẫn đúng câu.
-- Bấm "Reset kết quả": đáp án xoá, thứ tự câu giữ nguyên. Bấm "Đảo câu hỏi": đáp án xoá + thứ tự đổi.
+- Bấm "Reset kết quả": đáp án xoá + câu hỏi về thứ tự gốc. Bấm "Đảo câu hỏi": đáp án xoá + thứ tự đổi ngẫu nhiên.
 - Mở trang kiểm tra: đúng 40 câu, refresh không mất đề, "Tạo đề mới" đổi đề.
 - Mở lobby: card môn mới hiện đúng tên, số câu, tiến độ; "Tiếp tục học" mở đúng môn.
 - Kiểm tra 430×932: không tràn ngang, safe area, nút ≥44px, sheet danh sách câu hoạt động.

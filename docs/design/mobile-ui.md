@@ -249,7 +249,7 @@ Không có animation lặp vô hạn ở lobby.
 - **20 câu/trang** cho các môn mới (giống các môn cũ); phân trang Trước/Sau.
 - Desktop ≥900px và cao ≥600px: sidebar grid câu hỏi cố định bên trái, nội dung bên phải.
 - Mobile/landscape thấp: sheet "Danh sách câu" mở từ bottom bar; chọn câu sẽ nhảy đúng trang và cuộn tới câu.
-- Order câu lấy từ `quiz_question_order_<subject>_v1`; refresh giữ nguyên. **Reset kết quả** chỉ xoá đáp án; **Đảo câu hỏi** mới đảo ngẫu nhiên.
+- Order câu lấy từ `quiz_question_order_<subject>_v1`; refresh giữ nguyên. **Reset kết quả** xoá đáp án + trả thứ tự gốc; **Đảo câu hỏi** xoá đáp án + đảo ngẫu nhiên.
 - Đáp án lưu theo `id` + key gốc.
 - Mỗi trang có toolbar "Làm kiểm tra 40 câu" và nút Reset trên app bar; Reset mở popup xác nhận.
 
@@ -329,7 +329,7 @@ Không có animation lặp vô hạn ở lobby.
 ### 5.8 Reset
 
 - Nút Reset có ở 3 nơi: icon app bar, nút trong sheet, nút dưới danh sách câu.
-- **Reset kết quả**: mở popup xác nhận; Reset chỉ xoá đáp án, **giữ nguyên thứ tự câu**, về trang 1.
+- **Reset kết quả**: mở popup xác nhận; Reset xoá đáp án, **trả câu hỏi về thứ tự gốc trong `quiz_data.js`**, về trang 1.
 - **Đảo câu hỏi**: mở popup xác nhận; xoá đáp án + đảo ngẫu nhiên thứ tự câu, về trang 1.
 - Popup dùng chung `role="dialog"`, backdrop, nút Huỷ + hành động; `Esc` đóng, focus trap.
 - Popup có focus trap, `Esc` đóng, focus trả về nút đã bấm; không dùng `confirm()` của trình duyệt.

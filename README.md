@@ -43,7 +43,7 @@ english-quiz/
 
 - **Lobby "Sổ Ôn Bài"**: thẻ môn có tab màu, icon SVG, số câu, tiến độ; card "Tiếp tục học" chọn môn có tỉ lệ làm cao nhất.
 - **Luyện tập 20 câu/trang** cho các môn mới (DHCT, DLS, PCD): app bar + progress, option 56px, bottom bar, sheet danh sách câu.
-- **Giữ thứ tự câu khi refresh**: **Reset kết quả** chỉ xoá đáp án; **Đảo câu hỏi** mới đảo ngẫu nhiên và xoá đáp án.
+- **Giữ thứ tự câu khi refresh**: **Reset kết quả** xoá đáp án và trả câu hỏi về thứ tự gốc trong `quiz_data.js`; **Đảo câu hỏi** xoá đáp án và đảo ngẫu nhiên.
 - **Làm kiểm tra 40 câu** ngay từ toolbar đầu trang; trang kiểm tra có danh sách câu dạng details grid.
 - **Đáp án lưu theo `id` + key gốc**, nên refresh/đảo phương án không làm lệch đáp án.
 - **Kiểm tra 40 câu ngẫu nhiên**, giữ đề khi refresh, "Tạo đề mới" đổi đề.
