@@ -30,6 +30,15 @@
         </div>
     </div>
 
+    <div class="exam-coverage" aria-live="polite">
+        <div class="coverage-row">
+            <span id="coverage-cycle">Đang tải…</span>
+            <span id="coverage-hint"></span>
+        </div>
+        <div class="coverage-track" aria-hidden="true"><div id="coverage-fill"></div></div>
+        <div id="coverage-count" class="coverage-count">Đang tính độ phủ…</div>
+    </div>
+
     <details class="exam-nav">
         <summary>Danh sách câu</summary>
         <aside id="sidebar"></aside>
@@ -46,6 +55,12 @@
         });
     </script>
 
+    <button id="back-to-top" class="back-to-top" type="button" aria-label="Lên đầu trang" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m18 15-6-6-6 6" />
+        </svg>
+    </button>
+
     <script src="quiz_data.js"></script>
     <script>
         function createNewExam() {
@@ -57,6 +72,7 @@
     </script>
     <script src="exam.js"></script>
     <script src="../shared/enhance-ux.js"></script>
+    <script src="../shared/back-to-top.js"></script>
 </body>
 
 </html>

@@ -407,7 +407,7 @@ git commit -m "feat: add duoc lam sang question bank"
 
 ### Task 5: Mobile practice + exam cho DHCT
 
-> Cập nhật 2026-11-02: practice 20 câu/trang; "Reset kết quả" xoá đáp án + trả câu hỏi về thứ tự gốc; "Đảo câu hỏi" xoá đáp án + đảo ngẫu nhiên. Chi tiết UI theo `docs/design/mobile-ui.md`.
+> Cập nhật 2026-11-02: practice 20 câu/trang; "Reset kết quả" xoá đáp án + trả câu hỏi về thứ tự gốc; "Đảo câu hỏi" xoá đáp án + đảo ngẫu nhiên. Trang kiểm tra có coverage 100%: mỗi đề đúng 5 câu lặp + 35 câu mới, hiển thị "Đề x/n" + độ phủ, sau n đề reset chu kỳ và shuffle lại toàn bộ câu hỏi. Chi tiết UI theo `docs/design/mobile-ui.md`.
 
 **Files:**
 - Create: `shared/mobile.css`
@@ -540,7 +540,7 @@ Mở `http://localhost:8000/duoc_hoc_co_truyen/index.html`:
 - Mọi nút ≥44×44 (kiểm tra `getBoundingClientRect`).
 - Có đúng 20 `.question-card`/trang; app bar hiện `Trang 1/11`.
 - Chọn đáp án câu 1, ghi nội dung; refresh 3 lần: order giữ nguyên, đáp án đúng câu.
-- Reset: bấm icon/nút → popup xác nhận; Huỷ giữ đáp án; Reset xoá đáp án, order đổi, về trang 1.
+- Reset/Đảo: bấm icon/nút → popup xác nhận; Huỷ giữ đáp án; Reset xoá đáp án + trả order gốc; Đảo câu hỏi xoá + đổi order ngẫu nhiên; cả hai về trang 1.
 - Toolbar `Làm kiểm tra 40 câu` mở `exam.html`.
 - Sheet: mở bằng nút, chọn câu nhảy đúng trang/câu, `Esc` đóng, focus về nút.
 - Reduced motion: không còn shake/confetti/sheet trượt; vẫn thấy đúng/sai.
@@ -743,7 +743,7 @@ Expected: chỉ có file mới của 2 môn, `shared/menu.html`, `shared/menu.cs
 
 - Lobby 430×932: 1 cột, card đúng tên/số câu/tiến độ; "Tiếp tục học" đúng môn.
 - Vào từng môn mới, làm 3 câu, refresh: order giữ nguyên, đáp án đúng câu.
-- Bấm Reset: xác nhận 2 bước, đáp án xoá, order đổi, về trang 1.
+- Bấm "Reset kết quả": popup xác nhận; đáp án xoá, order về gốc, về trang 1. Bấm "Đảo câu hỏi": popup xác nhận; đáp án xoá + order đổi ngẫu nhiên.
 - Sheet: mở/đóng bằng chạm, `Esc`, nút đóng; focus không thoát ra ngoài.
 - Mọi nút ≥44×44; `document.documentElement.scrollWidth === window.innerWidth` ở 430, 393, 375.
 - 430×932: app bar không bị Dynamic Island che; bottom bar không bị home indicator che.

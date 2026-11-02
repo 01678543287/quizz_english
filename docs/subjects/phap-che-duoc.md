@@ -45,3 +45,4 @@ Không có câu nào thiếu phương án/đáp án; không có phương án tr�
 - `quiz_question_order_pcd_v1`
 - `quiz_user_answers_pcd_v1`
 - `quiz_exam_indexes_pcd_v1`, `quiz_exam_shuffled_options_pcd_v1`, `quiz_exam_answers_pcd_v1`
+- `quiz_exam_seen_pcd_v1`, `quiz_exam_cycle_pcd_v1` (coverage đề kiểm tra)

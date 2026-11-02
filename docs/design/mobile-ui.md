@@ -434,3 +434,4 @@ Nguyên tắc:
   - `#main-layout` chỉ dùng cho exam; practice dùng grid riêng.
 - Trang cũ giữ nguyên giao diện; lobby mới là điểm vào chung.
 - Trang kiểm tra (`exam.html`) giữ logic 20 câu/trang; danh sách câu nằm trong `<details>` (6 ô mobile / 10 ô desktop, 44px, hàng ngang 1..40), mở ra xem score + Reset. Đáp án lưu ngay khi bấm; không dùng hiệu ứng tim/phân bay; reduced motion tắt animation của trang.
+- **Phủ 100% câu hỏi:** mỗi đề 40 câu, trong đó **đúng 5 câu lặp** từ các đề trước + 35 câu mới (đề đầu 40 câu mới). `n = 1 + ceil((N-40)/35)` (DHCT 7, DLS 9, PCD 14). Panel hiển thị "Đề x/n", "Cần n đề để phủ 100%", "Đã phủ y/N câu (z%)"; hết n đề hiện "Chu kỳ hoàn tất"; đề tiếp theo reset chu kỳ và shuffle lại toàn bộ câu hỏi, không tái sử dụng đề của chu kỳ trước.

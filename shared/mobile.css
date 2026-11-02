@@ -681,6 +681,43 @@ body.dialog-open {
   cursor: default;
 }
 
+.back-to-top {
+  position: fixed;
+  right: 16px;
+  bottom: calc(96px + env(safe-area-inset-bottom));
+  z-index: 35;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--teal-strong);
+  box-shadow: var(--shadow-card);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.back-to-top[hidden] {
+  display: none;
+}
+
+.back-to-top svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+body.exam-page .back-to-top {
+  bottom: calc(20px + env(safe-area-inset-bottom));
+}
+
 /* ---------- Question sheet ---------- */
 
 .sheet-backdrop {
@@ -914,6 +951,51 @@ body.sheet-open {
   min-height: 44px;
   padding: 0 14px;
   text-decoration: none;
+}
+
+.exam-coverage {
+  max-width: 760px;
+  margin: 0 auto 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+}
+
+.coverage-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-3);
+}
+
+#coverage-cycle {
+  color: var(--teal-strong);
+  font-weight: 700;
+}
+
+.coverage-track {
+  height: 4px;
+  margin: 8px 0 6px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: var(--paper-2);
+}
+
+#coverage-fill {
+  height: 100%;
+  width: 0;
+  background: var(--teal);
+  transition: width 240ms var(--ease-out);
+}
+
+.coverage-count {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-2);
 }
 
 body.exam-page #main-layout {
@@ -1200,6 +1282,10 @@ body.exam-page input[type="number"] {
 
   .option-btn.is-correct::before {
     transform: scaleX(1);
+    transition: none;
+  }
+
+  #coverage-fill {
     transition: none;
   }
 

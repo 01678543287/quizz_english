@@ -80,6 +80,7 @@ Order lưu dạng mảng số:
 - Lưu thứ tự phương án đã đảo: `quiz_exam_shuffled_options_<subject>_v1`.
 - Lưu đáp án đã chọn: `quiz_exam_answers_<subject>_v1`.
 - Refresh giữ nguyên đề; nút "Tạo đề mới" xoá 3 key rồi reload.
+- Phủ 100%: mỗi đề 40 câu, gồm **đúng 5 câu lặp** từ các đề trước + 35 câu mới (đề đầu 40 câu mới); `n = 1 + ceil((N-40)/35)`. Lưu `quiz_exam_seen_<subject>_v1` (mảng index đã xuất hiện) và `quiz_exam_cycle_<subject>_v1` (số đề đã tạo trong chu kỳ). Sau n đề, lần tạo đề tiếp theo reset seen/cycle và shuffle lại toàn bộ câu hỏi; chu kỳ mới không tái sử dụng đề của chu kỳ trước.
 
 ## 5. Kiểm tra dữ liệu
 

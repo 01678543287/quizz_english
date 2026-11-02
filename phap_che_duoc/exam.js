@@ -15,6 +15,93 @@ function shuffleArray(arr) {
 // Lấy hoặc tạo mới bộ câu hỏi thi
 const examIndexesKey = 'quiz_exam_indexes_pcd_v1';
 const shuffledOptionsKey = 'quiz_exam_shuffled_options_pcd_v1';
+const seenKey = 'quiz_exam_seen_pcd_v1';
+const cycleKey = 'quiz_exam_cycle_pcd_v1';
+
+function getCycleLength() {
+    const total = quizData.length;
+    if (total <= EXAM_QUESTION_COUNT) return 1;
+    const minNewPerExam = EXAM_QUESTION_COUNT - 5; // hard-code 5 câu lặp
+    return 1 + Math.ceil((total - EXAM_QUESTION_COUNT) / minNewPerExam);
+}
+
+function getSeen() {
+    try {
+        const arr = JSON.parse(localStorage.getItem(seenKey) || '[]');
+        if (!Array.isArray(arr)) return [];
+        return arr.filter(i => Number.isInteger(i) && i >= 0 && i < quizData.length);
+    } catch {
+        return [];
+    }
+}
+
+function setSeen(arr) {
+    try {
+        localStorage.setItem(seenKey, JSON.stringify([...new Set(arr)]));
+    } catch {}
+}
+
+function getCycleCount() {
+    try {
+        const value = Number(localStorage.getItem(cycleKey));
+        return Number.isInteger(value) && value >= 0 ? value : 0;
+    } catch {
+        return 0;
+    }
+}
+
+function setCycleCount(value) {
+    try {
+        localStorage.setItem(cycleKey, String(value));
+    } catch {}
+}
+
+function createCoverageExam() {
+    const total = quizData.length;
+    const cycleLength = getCycleLength();
+    let seen = getSeen();
+    let cycle = getCycleCount();
+
+    if (cycle >= cycleLength || seen.length >= total) {
+        seen = [];
+        cycle = 0;
+        setSeen([]);
+        setCycleCount(0);
+    }
+
+    // Hard-code 5 câu lặp từ các đề cũ; phần còn lại lấy từ câu chưa xuất hiện.
+    const seenSet = new Set(seen);
+    const seenPool = [];
+    const unseen = [];
+    for (let i = 0; i < total; i++) {
+        if (seenSet.has(i)) seenPool.push(i);
+        else unseen.push(i);
+    }
+    shuffleArray(seenPool);
+    shuffleArray(unseen);
+
+    const repeatCount = seenPool.length ? Math.min(5, seenPool.length) : 0;
+    const selected = seenPool.slice(0, repeatCount);
+    const newCount = Math.min(EXAM_QUESTION_COUNT - selected.length, unseen.length);
+    selected.push(...unseen.slice(0, newCount));
+
+    if (selected.length < EXAM_QUESTION_COUNT) {
+        const selectedSet = new Set(selected);
+        const fillers = seenPool.filter(i => !selectedSet.has(i));
+        for (let i = 0; selected.length < EXAM_QUESTION_COUNT && i < fillers.length; i++) {
+            selected.push(fillers[i]);
+        }
+    }
+
+    while (selected.length < EXAM_QUESTION_COUNT && total > 0) {
+        selected.push(Math.floor(Math.random() * total));
+    }
+
+    setSeen([...seen, ...selected]);
+    setCycleCount(cycle + 1);
+    shuffleArray(selected);
+    return selected;
+}
 
 function getExamIndexes() {
     try {
@@ -26,15 +113,44 @@ function getExamIndexes() {
             }
         }
     } catch {}
-    // Tạo mới nếu chưa có
-    let arr = Array.from({length: quizData.length}, (_, i) => i);
-    shuffleArray(arr);
-    arr = arr.slice(0, EXAM_QUESTION_COUNT);
-    localStorage.setItem(examIndexesKey, JSON.stringify(arr));
+    const arr = createCoverageExam();
+    try {
+        localStorage.setItem(examIndexesKey, JSON.stringify(arr));
+    } catch {}
     return arr;
 }
 const examIndexes = getExamIndexes();
 const examQuizData = examIndexes.map(i => quizData[i]);
+
+function updateCoverage() {
+    const total = quizData.length;
+    const cycleLength = getCycleLength();
+    const seen = getSeen();
+    const cycle = Math.min(getCycleCount(), cycleLength);
+    const percent = total ? Math.min(100, Math.round((seen.length / total) * 100)) : 0;
+
+    const cycleEl = document.getElementById('coverage-cycle');
+    const hintEl = document.getElementById('coverage-hint');
+    const countEl = document.getElementById('coverage-count');
+    const fillEl = document.getElementById('coverage-fill');
+    if (!cycleEl) return;
+
+    cycleEl.textContent = `Đề ${cycle}/${cycleLength}`;
+    if (hintEl) hintEl.textContent = `Cần ${cycleLength} đề để phủ 100%`;
+    if (countEl) {
+        const suffix = cycle >= cycleLength || seen.length >= total
+            ? ' · Chu kỳ hoàn tất, đề tiếp theo bắt đầu lại'
+            : '';
+        countEl.textContent = `Đã phủ ${seen.length}/${total} câu (${percent}%)${suffix}`;
+    }
+    if (fillEl) fillEl.style.width = `${percent}%`;
+}
+
+if (getCycleCount() === 0 && examIndexes.length) {
+    if (!getSeen().length) setSeen(examIndexes);
+    setCycleCount(1);
+}
+updateCoverage();
 
 function getShuffledOptions() {
     try {

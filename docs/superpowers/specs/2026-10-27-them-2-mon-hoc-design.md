@@ -50,7 +50,7 @@ Yêu cầu của chủ dự án:
 | D1 | Dữ liệu phẳng `const quizData = [...]`, không có `chapter` | Chủ dự án trả lời "không cần" chọn chương |
 | D2 | Mỗi câu có `id` ổn định; đáp án lưu theo `id` + **key gốc** A–D | Refresh đảo phương án mà vẫn giữ đúng lựa chọn |
 | D3 | Sinh thứ tự câu một lần, lưu vào localStorage; "Reset kết quả" xoá đáp án + khôi phục order gốc; "Đảo câu hỏi" sinh order ngẫu nhiên | Refresh không đảo câu; Reset trả về thứ tự `quiz_data.js` |
-| D4 | Trang kiểm tra giữ nguyên: 40 câu ngẫu nhiên, lưu đề đang làm để refresh không mất bài | Tránh phá hành vi "làm dở thì tiếp tục" |
+| D4 | Trang kiểm tra: 40 câu ngẫu nhiên, đúng 5 câu lặp từ đề trước + 35 câu mới; sau `n = 1 + ceil((N-40)/35)` đề phủ 100%; lưu đề đang làm để refresh không mất bài | Tránh phá hành vi "làm dở thì tiếp tục"; tránh câu hiếm không bao giờ xuất hiện |
 | D5 | Dedupe DHCT theo nội dung câu; giữ bản xuất hiện đầu tiên | Loại 45 câu trùng khít + 1 câu gần trùng |
 | D6 | Giữ nguyên `shared/style.css`; thêm `shared/mobile.css`, `shared/menu.css`, `shared/subjects.js`, `shared/menu.js` | Không regression các môn cũ |
 | D7 | Tài liệu đặt trong `docs/`; design + plan theo `docs/superpowers/` | Theo chuẩn superpowers |
@@ -187,6 +187,7 @@ Chi tiết đầy đủ ở [`docs/design/mobile-ui.md`](../../design/mobile-ui.
 - Đề được lưu qua refresh (indexes, option order, answers) để làm dở không mất.
 - Nút "Tạo đề mới" xoá 3 key và tải lại trang.
 - Danh sách câu nằm trong `<details class="exam-nav">`: hàng 6 ô mobile / 10 ô desktop, mỗi ô 44px, một ô/câu, hàng ngang 1..40; mở ra xem score + Reset.
+- **Coverage 100%:** mỗi đề 40 câu, gồm **đúng 5 câu lặp** từ các đề trước + 35 câu mới (đề đầu 40 câu mới). `n = 1 + ceil((N-40)/35)` (DHCT 7, DLS 9, PCD 14). Panel hiển thị `Đề x/n`, `Cần n đề để phủ 100%`, `Đã phủ y/N câu`; hết chu kỳ hiện "Chu kỳ hoàn tất"; đề sau reset `seen/cycle` và shuffle lại toàn bộ câu hỏi, không tái sử dụng đề chu kỳ trước.
 - Đáp án được lưu ngay khi bấm và các option bị disable; không còn delay 600ms chỉ để chạy hiệu ứng.
 - Trang exam mới không dùng hiệu ứng tim/phân bay; `prefers-reduced-motion` tắt animation của h1/main-layout/question-block.
 - Áp dụng app bar, option full-width, safe-area và typography mobile từ `shared/mobile.css`.
@@ -243,7 +244,7 @@ Storage key:
 |---|---|---|
 | Thứ tự câu | `quiz_question_order_dhct_v1` | `quiz_question_order_dls_v1` |
 | Đáp án luyện tập | `quiz_user_answers_dhct_v1` | `quiz_user_answers_dls_v1` |
-| Đề kiểm tra | `quiz_exam_indexes_dhct_v1`, `quiz_exam_shuffled_options_dhct_v1`, `quiz_exam_answers_dhct_v1` | tương tự `dls_v1` |
+| Đề kiểm tra | `quiz_exam_indexes_dhct_v1`, `quiz_exam_shuffled_options_dhct_v1`, `quiz_exam_answers_dhct_v1`; coverage: `quiz_exam_seen_dhct_v1`, `quiz_exam_cycle_dhct_v1` | tương tự `dls_v1` |
 
 ## 8. Tiêu chí nghiệm thu
 
@@ -252,7 +253,7 @@ Storage key:
 3. Không còn câu trùng hoàn toàn (cùng câu + cùng bộ phương án + cùng đáp án); DHCT không còn cặp gần trùng đã xác định.
 4. Refresh 3 lần: **thứ tự câu không đổi**; đáp án đã chọn vẫn nằm đúng câu và đúng nội dung phương án.
 5. "Reset kết quả": popup xác nhận; Huỷ giữ đáp án; Reset xoá đáp án, **trả thứ tự câu về gốc**, về trang 1. "Đảo câu hỏi": popup xác nhận; xoá đáp án + đổi thứ tự ngẫu nhiên, về trang 1.
-6. Trang kiểm tra tạo đúng 40 câu; refresh giữ nguyên đề đang làm; "Tạo đề mới" tạo đề khác.
+6. Trang kiểm tra tạo đúng 40 câu; refresh giữ nguyên đề đang làm; "Tạo đề mới" tạo đề khác. Sau `n = 1 + ceil((N-40)/35)` đề, 100% câu hỏi đã xuất hiện; panel hiển thị đúng `Đề x/n` và độ phủ; đề tiếp theo reset chu kỳ và shuffle lại toàn bộ câu hỏi.
 7. Lobby hiển thị 2 môn mới (DHCT, DLS) + các môn đang bật; card "Tiếp tục học" mở đúng môn; tiến độ khớp localStorage.
 8. Trên 430×932: không tràn ngang; app bar không bị Dynamic Island che; bottom bar không bị home indicator che; mọi nút ≥44px.
 9. Motion: đúng/sai có phản hồi rõ; bật `prefers-reduced-motion` thì không còn translate/shake/confetti, vẫn thấy đúng/sai.
@@ -279,6 +280,7 @@ Storage key:
 | 2026-10-27 | Thêm hướng UI/UX mobile-first "Sổ ôn bài", lobby mới, motion + reduced motion |
 | 2026-10-27 | Đổi practice sang 20 câu/trang, thêm nút Làm kiểm tra + popup Reset, bỏ nền vàng nửa thân |
 | 2026-10-27 | Tách "Reset kết quả" (xoá đáp án + trả thứ tự gốc) và "Đảo câu hỏi" (xoá + đảo ngẫu nhiên) |
+| 2026-10-27 | Thêm coverage 100% cho đề kiểm tra: ưu tiên câu chưa xuất hiện, hiển thị Đề x/n + độ phủ, reset chu kỳ sau n đề |
 
 ## 11. Kết quả builder check (đã xử lý)
 
