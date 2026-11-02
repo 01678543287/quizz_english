@@ -22,6 +22,13 @@ const desktopGrid = document.getElementById('desktop-grid');
 const resetBtn = document.getElementById('reset-btn');
 const resetInlineBtn = document.getElementById('reset-inline-btn');
 const resetTopBtn = document.getElementById('reset-top-btn');
+const resetSidebarBtn = document.getElementById('reset-sidebar-btn');
+const shuffleTopBtn = document.getElementById('shuffle-top-btn');
+const shuffleInlineBtn = document.getElementById('shuffle-inline-btn');
+const shuffleSheetBtn = document.getElementById('shuffle-sheet-btn');
+const shuffleSidebarBtn = document.getElementById('shuffle-sidebar-btn');
+const resetDialogTitle = document.getElementById('reset-dialog-title');
+const resetDialogText = document.getElementById('reset-dialog-text');
 const resetDialog = document.getElementById('reset-dialog');
 const resetBackdrop = document.getElementById('reset-dialog-backdrop');
 const resetCancel = document.getElementById('reset-cancel');
@@ -59,7 +66,9 @@ let currentPage = 1;
 let streak = 0;
 let lastFocused = null;
 let lastResetTrigger = null;
-const resetButtons = [resetBtn, resetInlineBtn, resetTopBtn].filter(Boolean);
+const resetButtons = [resetBtn, resetInlineBtn, resetTopBtn, resetSidebarBtn].filter(Boolean);
+const shuffleButtons = [shuffleTopBtn, shuffleInlineBtn, shuffleSheetBtn, shuffleSidebarBtn].filter(Boolean);
+let dialogMode = 'reset';
 
 const optionCache = new Map();
 let reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -329,7 +338,18 @@ function closeSheet() {
     }
 }
 
-function openResetDialog(trigger) {
+function openResetDialog(trigger, mode = 'reset') {
+    dialogMode = mode;
+    if (mode === 'shuffle') {
+        resetDialogTitle.textContent = 'Đảo câu hỏi?';
+        resetDialogText.textContent = 'Toàn bộ đáp án đã chọn sẽ bị xoá và thứ tự câu sẽ được đảo ngẫu nhiên.';
+        resetConfirm.textContent = 'Đảo câu hỏi';
+    } else {
+        resetDialogTitle.textContent = 'Reset kết quả?';
+        resetDialogText.textContent = 'Toàn bộ đáp án đã chọn sẽ bị xoá. Thứ tự câu được giữ nguyên.';
+        resetConfirm.textContent = 'Reset';
+    }
+
     lastResetTrigger = trigger || null;
     resetDialog.hidden = false;
     resetBackdrop.hidden = false;
@@ -352,12 +372,29 @@ function confirmReset() {
     resetBackdrop.hidden = true;
     document.body.classList.remove('dialog-open');
     lastResetTrigger = null;
-    doReset();
+
+    if (dialogMode === 'shuffle') {
+        doShuffleQuestions();
+    } else {
+        doResetAnswers();
+    }
+
     if (resetTopBtn) resetTopBtn.focus({ preventScroll: true });
     else if (sheetBtn) sheetBtn.focus({ preventScroll: true });
 }
 
-function doReset() {
+function doResetAnswers() {
+    userAnswers = {};
+    writeJson(ANSWERS_KEY, userAnswers);
+    currentPage = 1;
+    streak = 0;
+
+    closeSheet();
+    renderPage();
+    liveRegion.textContent = 'Đã reset đáp án. Thứ tự câu giữ nguyên.';
+}
+
+function doShuffleQuestions() {
     userAnswers = {};
     writeJson(ANSWERS_KEY, userAnswers);
 
@@ -370,7 +407,7 @@ function doReset() {
 
     closeSheet();
     renderPage();
-    liveRegion.textContent = 'Đã reset. Thứ tự câu đã được đảo.';
+    liveRegion.textContent = 'Đã đảo câu hỏi và reset đáp án.';
 }
 
 prevBtn.addEventListener('click', () => goToPage(currentPage - 1));
@@ -378,7 +415,8 @@ nextBtn.addEventListener('click', () => goToPage(currentPage + 1));
 sheetBtn.addEventListener('click', openSheet);
 sheetClose.addEventListener('click', closeSheet);
 sheetBackdrop.addEventListener('click', closeSheet);
-resetButtons.forEach(button => button.addEventListener('click', () => openResetDialog(button)));
+resetButtons.forEach(button => button.addEventListener('click', () => openResetDialog(button, 'reset')));
+shuffleButtons.forEach(button => button.addEventListener('click', () => openResetDialog(button, 'shuffle')));
 resetCancel.addEventListener('click', () => closeResetDialog());
 resetConfirm.addEventListener('click', confirmReset);
 resetBackdrop.addEventListener('click', () => closeResetDialog());

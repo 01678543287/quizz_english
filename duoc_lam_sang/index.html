@@ -41,16 +41,16 @@
                 </svg>
                 Làm kiểm tra 40 câu
             </a>
+            <button id="shuffle-top-btn" class="toolbar-shuffle" type="button">Đảo câu hỏi</button>
         </div>
         <div id="question-card"></div>
-        <div class="practice-actions">
-            <a class="action-link" href="exam.html">Làm kiểm tra 40 câu</a>
-            <button id="reset-inline-btn" class="action-danger" type="button">Reset kết quả</button>
-        </div>
     </main>
 
     <aside id="desktop-sidebar" class="desktop-sidebar" aria-label="Danh sách câu">
         <h2 class="sidebar-heading">Danh sách câu</h2>
+        <div class="sidebar-actions">
+            <button id="reset-sidebar-btn" class="action-danger" type="button">Reset kết quả</button>
+        </div>
         <div id="desktop-grid" class="sheet-grid"></div>
     </aside>
 
@@ -78,6 +78,7 @@
         <div id="sheet-grid" class="sheet-grid"></div>
         <div class="sheet-actions">
             <a class="btn-secondary" href="exam.html">Làm kiểm tra</a>
+            <button id="shuffle-sheet-btn" class="btn-secondary" type="button">Đảo câu hỏi</button>
             <button id="reset-btn" class="btn-danger" type="button">Reset kết quả</button>
         </div>
     </section>
@@ -85,7 +86,7 @@
     <div id="reset-dialog-backdrop" class="dialog-backdrop" hidden></div>
     <section id="reset-dialog" class="dialog" role="dialog" aria-modal="true" aria-labelledby="reset-dialog-title" tabindex="-1" hidden>
         <h2 id="reset-dialog-title">Reset kết quả?</h2>
-        <p>Toàn bộ đáp án đã chọn sẽ bị xoá và thứ tự câu sẽ đảo lại.</p>
+        <p id="reset-dialog-text">Toàn bộ đáp án đã chọn sẽ bị xoá. Thứ tự câu được giữ nguyên.</p>
         <div class="dialog-actions">
             <button id="reset-cancel" class="btn-secondary" type="button">Huỷ</button>
             <button id="reset-confirm" class="btn-danger-solid" type="button">Reset</button>

@@ -249,7 +249,7 @@ Không có animation lặp vô hạn ở lobby.
 - **20 câu/trang** cho các môn mới (giống các môn cũ); phân trang Trước/Sau.
 - Desktop ≥900px và cao ≥600px: sidebar grid câu hỏi cố định bên trái, nội dung bên phải.
 - Mobile/landscape thấp: sheet "Danh sách câu" mở từ bottom bar; chọn câu sẽ nhảy đúng trang và cuộn tới câu.
-- Order câu lấy từ `quiz_question_order_<subject>_v1`; refresh giữ nguyên; Reset mới đảo.
+- Order câu lấy từ `quiz_question_order_<subject>_v1`; refresh giữ nguyên. **Reset kết quả** chỉ xoá đáp án; **Đảo câu hỏi** mới đảo ngẫu nhiên.
 - Đáp án lưu theo `id` + key gốc.
 - Mỗi trang có toolbar "Làm kiểm tra 40 câu" và nút Reset trên app bar; Reset mở popup xác nhận.
 
@@ -281,7 +281,7 @@ Không có animation lặp vô hạn ở lobby.
 - Nút back 44×44, icon arrow-left, `aria-label="Về menu"`.
 - Tên môn 15px, truncate 1 dòng.
 - Số `Trang x/y` mono.
-- Nút Reset icon 44×44 (rotate-ccw), `aria-label="Reset kết quả"`.
+- Nút Reset icon 44×44 (rotate-ccw), `aria-label="Reset kết quả"`; nút **Đảo câu hỏi** ở toolbar đầu trang.
 - Progress line 4px dưới app bar: `currentPage / totalPages`.
 - Nền `--paper`, viền dưới 1px `--line`; sticky top, có safe-area top.
 - Dưới app bar: toolbar `Làm kiểm tra 40 câu` (pill teal, 44px).
@@ -329,8 +329,9 @@ Không có animation lặp vô hạn ở lobby.
 ### 5.8 Reset
 
 - Nút Reset có ở 3 nơi: icon app bar, nút trong sheet, nút dưới danh sách câu.
-- Bấm: mở **popup xác nhận** (`role="dialog"`, backdrop, tiêu đề "Reset kết quả?", nội dung cảnh báo, nút Huỷ + Reset).
-- Huỷ → đóng popup, giữ nguyên đáp án; Reset → xoá đáp án, đảo order, về trang 1.
+- **Reset kết quả**: mở popup xác nhận; Reset chỉ xoá đáp án, **giữ nguyên thứ tự câu**, về trang 1.
+- **Đảo câu hỏi**: mở popup xác nhận; xoá đáp án + đảo ngẫu nhiên thứ tự câu, về trang 1.
+- Popup dùng chung `role="dialog"`, backdrop, nút Huỷ + hành động; `Esc` đóng, focus trap.
 - Popup có focus trap, `Esc` đóng, focus trả về nút đã bấm; không dùng `confirm()` của trình duyệt.
 
 ### 5.9 Motion practice
