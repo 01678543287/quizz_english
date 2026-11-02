@@ -197,6 +197,11 @@ body.exam-page h1 {
   cursor: pointer;
 }
 
+.toolbar-shuffle:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
 .toolbar-exam {
   display: inline-flex;
   align-items: center;
@@ -647,8 +652,9 @@ body.dialog-open {
 
 .btn-ghost {
   justify-self: start;
-  border: 1px solid transparent;
-  background: transparent;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--surface);
   color: var(--ink-2);
 }
 

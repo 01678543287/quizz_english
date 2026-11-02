@@ -28,7 +28,8 @@
     <div class="exam-head">
         <div class="exam-toolbar">
             <a class="toolbar-exam" href="index.html">Về luyện tập</a>
-            <button class="toolbar-shuffle" type="button" onclick="createNewExam()">Tạo đề mới</button>
+            <button id="exam-prev-exam" class="toolbar-shuffle" type="button" disabled>Đề trước</button>
+            <button id="exam-next-exam" class="toolbar-shuffle" type="button" disabled>Đề sau</button>
         </div>
     </div>
 
@@ -74,13 +75,18 @@
 
     <script src="quiz_data.js"></script>
     <script>
-        function createNewExam() {
-            localStorage.removeItem('quiz_exam_indexes_dhct_v1');
-            localStorage.removeItem('quiz_exam_shuffled_options_dhct_v1');
-            localStorage.removeItem('quiz_exam_answers_dhct_v1');
-            window.location.reload();
-        }
+        window.EXAM_HISTORY_CONFIG = {
+            indexes: 'quiz_exam_indexes_dhct_v1',
+            options: 'quiz_exam_shuffled_options_dhct_v1',
+            answers: 'quiz_exam_answers_dhct_v1',
+            seen: 'quiz_exam_seen_dhct_v1',
+            cycle: 'quiz_exam_cycle_dhct_v1',
+            history: 'quiz_exam_history_dhct_v1',
+            cursor: 'quiz_exam_history_cursor_dhct_v1',
+            pending: 'quiz_exam_history_pending_dhct_v1'
+        };
     </script>
+    <script src="../shared/exam-history.js"></script>
     <script src="exam.js"></script>
     <script src="../shared/exam-mobile.js"></script>
     <script src="../shared/back-to-top.js"></script>

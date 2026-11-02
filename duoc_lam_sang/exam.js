@@ -17,6 +17,15 @@ const examIndexesKey = 'quiz_exam_indexes_dls_v1';
 const shuffledOptionsKey = 'quiz_exam_shuffled_options_dls_v1';
 const seenKey = 'quiz_exam_seen_dls_v1';
 const cycleKey = 'quiz_exam_cycle_dls_v1';
+const historyKey = 'quiz_exam_history_dls_v1';
+const historyCursorKey = 'quiz_exam_history_cursor_dls_v1';
+
+function clearExamHistory() {
+    try {
+        localStorage.removeItem(historyKey);
+        localStorage.removeItem(historyCursorKey);
+    } catch {}
+}
 
 function getCycleLength() {
     const total = quizData.length;
@@ -67,6 +76,7 @@ function createCoverageExam() {
         cycle = 0;
         setSeen([]);
         setCycleCount(0);
+        clearExamHistory();
     }
 
     // Hard-code 5 câu lặp từ các đề cũ; phần còn lại lấy từ câu chưa xuất hiện.
@@ -595,6 +605,7 @@ function showPaperBits(block) {
 }
 
 function renderPage(page) {
+    currentPage = page;
     renderSidebar(page);
     container.innerHTML = '';
     container.appendChild(renderJumpToQuestion());
