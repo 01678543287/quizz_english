@@ -28,7 +28,7 @@ Yêu cầu của chủ dự án:
 - Không thiết kế lại giao diện các môn cũ; lobby mới là điểm vào chung.
 - Không sửa `shared/style.css`; thêm `shared/mobile.css` + `shared/menu.css`.
 - Không sửa logic hoặc dữ liệu của các môn cũ.
-- Trang kiểm tra giữ logic chấm điểm và 20 câu/trang; chỉ đổi presentation: app bar, option mobile, danh sách câu dạng details grid, lưu đáp án ngay và tắt hiệu ứng bay khi reduced motion.
+- Trang kiểm tra giữ logic chấm điểm và 20 câu/trang; presentation dùng shell mobile giống practice: app bar Trang x/y, toolbar, bottom bar, sheet danh sách câu; desktop ≥900px/cao ≥600px chuyển sheet thành sidebar trái 300px và ẩn nút Danh sách câu; lưu đáp án ngay và tắt hiệu ứng bay khi reduced motion.
 - Không thêm backend, tài khoản, đồng bộ đám mây, spaced repetition.
 - Không giữ cố định thứ tự phương án; phương án vẫn đảo mỗi lần tải.
 
@@ -186,7 +186,7 @@ Chi tiết đầy đủ ở [`docs/design/mobile-ui.md`](../../design/mobile-ui.
 - Giữ `EXAM_QUESTION_COUNT = 40`; giữ 20 câu/trang (không đổi logic chấm điểm).
 - Đề được lưu qua refresh (indexes, option order, answers) để làm dở không mất.
 - Nút "Tạo đề mới" xoá 3 key và tải lại trang.
-- Danh sách câu nằm trong `<details class="exam-nav">`: hàng 6 ô mobile / 10 ô desktop, mỗi ô 44px, một ô/câu, hàng ngang 1..40; mở ra xem score + Reset.
+- Danh sách câu nằm trong sheet `#exam-sheet` (mở từ bottom bar): hàng 6 ô mobile / 10 ô desktop, mỗi ô 44px, một ô/câu, hàng ngang 1..40; score + Reset trong sheet.
 - **Coverage 100%:** mỗi đề 40 câu, gồm **đúng 5 câu lặp** từ các đề trước + 35 câu mới (đề đầu 40 câu mới). `n = 1 + ceil((N-40)/35)` (DHCT 7, DLS 9, PCD 14). Panel hiển thị `Đề x/n`, `Cần n đề để phủ 100%`, `Đã phủ y/N câu`; hết chu kỳ hiện "Chu kỳ hoàn tất"; đề sau reset `seen/cycle` và shuffle lại toàn bộ câu hỏi, không tái sử dụng đề chu kỳ trước.
 - Đáp án được lưu ngay khi bấm và các option bị disable; không còn delay 600ms chỉ để chạy hiệu ứng.
 - Trang exam mới không dùng hiệu ứng tim/phân bay; `prefers-reduced-motion` tắt animation của h1/main-layout/question-block.
@@ -296,6 +296,6 @@ Storage key:
 ## 12. Mở rộng: Pháp chế dược
 
 - Nguồn `phap_che_duoc/PCD .docx`: 468 câu thô, dedupe 2 câu trùng nội dung → **466 câu**.
-- Dùng cùng template 20 câu/trang, popup Reset, toolbar "Làm kiểm tra 40 câu", exam details grid và feedback giống practice.
+- Dùng cùng template 20 câu/trang, popup Reset, toolbar "Làm kiểm tra 40 câu", exam shell mobile (app bar/bottom bar/sheet) và feedback giống practice.
 - Storage key hậu tố `pcd_v1`; registry `shared/subjects.js` thêm entry `pcd` với accent plum.
 - Chi tiết nguồn/dedupe ở `docs/subjects/phap-che-duoc.md`.

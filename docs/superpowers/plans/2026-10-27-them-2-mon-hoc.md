@@ -515,7 +515,7 @@ Copy từ `duocly-2`, giữ nguyên `#main-layout`, `#sidebar`, `#quiz-container
 - Thêm app bar (back, tên môn, "40 câu") phía trên.
 - Đổi title/H1: "KIỂM TRA DƯỢC HỌC CỔ TRUYỀN (40 câu ngẫu nhiên)".
 - Đổi 3 storage key: `quiz_exam_indexes_dhct_v1`, `quiz_exam_shuffled_options_dhct_v1`, `quiz_exam_answers_dhct_v1`.
-- Bọc `#sidebar` trong `<details class="exam-nav">`; render 40 ô một hàng ngang 1..40 (6 cột mobile / 10 desktop, 44px); giữ 20 câu/trang.
+- Bọc `#sidebar` trong sheet `#exam-sheet` (mở từ bottom bar); render 40 ô một hàng ngang 1..40 (6 cột mobile / 10 desktop, 44px); giữ 20 câu/trang.
 - Lưu đáp án ngay khi bấm, disable 4 option; bỏ delay 600ms chỉ để chạy hiệu ứng.
 - Bỏ hiệu ứng tim/phân bay; `prefers-reduced-motion` tắt animation h1/main-layout/question-block.
 

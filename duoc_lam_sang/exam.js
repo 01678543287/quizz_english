@@ -317,6 +317,7 @@ function renderSidebar(selectedPage) {
 
 function renderJumpToQuestion() {
     const nav = document.createElement('div');
+    nav.className = 'exam-jump-nav';
     nav.style.display = 'flex';
     nav.style.justifyContent = 'center';
     nav.style.gap = '10px';
@@ -361,6 +362,7 @@ function renderJumpToQuestion() {
 
 function renderPagination(page) {
     const nav = document.createElement('div');
+    nav.className = 'exam-pagination';
     nav.style.display = 'flex';
     nav.style.justifyContent = 'center';
     nav.style.gap = '10px';
@@ -603,7 +605,7 @@ function renderPage(page) {
         const block = document.createElement('div');
         block.className = 'question-block';
         block.style.position = 'relative';
-        block.innerHTML = `<div class="question-text">Q${i + 1}: ${q.question}</div>`;
+        block.innerHTML = `<div class="question-label">Câu ${i + 1}</div><h2 class="question-text">${q.question}</h2>`;
 
         const buttons = {};
         const opts = shuffledOptions[i].options;
@@ -611,13 +613,21 @@ function renderPage(page) {
 
         ['A', 'B', 'C', 'D'].forEach((letter, idx) => {
             const btn = document.createElement('button');
-            btn.textContent = `${letter}. ${opts[idx].value}`;
             btn.className = 'option-btn';
+
+            const letterEl = document.createElement('span');
+            letterEl.className = 'letter';
+            letterEl.textContent = letter;
+
+            const textEl = document.createElement('span');
+            textEl.className = 'option-text';
+            textEl.textContent = opts[idx].value;
 
             const icon = document.createElement('span');
             icon.className = 'option-icon';
             icon.setAttribute('aria-hidden', 'true');
-            btn.appendChild(icon);
+
+            btn.append(letterEl, textEl, icon);
 
             if (userAnswers[i]) {
                 btn.disabled = true;
@@ -668,6 +678,7 @@ function renderPage(page) {
         container.appendChild(block);
     }
     container.appendChild(renderPagination(page));
+    document.dispatchEvent(new CustomEvent('exam-page-rendered', { detail: { page } }));
 }
 
 renderPage(currentPage);

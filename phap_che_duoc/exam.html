@@ -18,15 +18,17 @@
                 <path d="m12 19-7-7 7-7" />
             </svg>
         </a>
-        <div class="app-bar-title">Pháp Chế Dược</div>
-        <div class="app-bar-count">40 câu</div>
+        <div class="app-bar-title">Kiểm tra · Pháp Chế Dược</div>
+        <div class="app-bar-count">Trang <span id="exam-page-num">1</span>/<span id="exam-page-total">2</span></div>
+        <div class="progress-track" role="progressbar" aria-label="Tiến độ trang kiểm tra" aria-valuemin="1" aria-valuemax="2" aria-valuenow="1">
+            <div id="exam-progress-fill" class="progress-fill"></div>
+        </div>
     </header>
 
     <div class="exam-head">
-        <h1>Kiểm tra 40 câu ngẫu nhiên</h1>
-        <div class="exam-actions">
-            <a class="reset-btn" href="index.html">Về luyện tập</a>
-            <button class="reset-btn" type="button" onclick="createNewExam()">Tạo đề mới</button>
+        <div class="exam-toolbar">
+            <a class="toolbar-exam" href="index.html">Về luyện tập</a>
+            <button class="toolbar-shuffle" type="button" onclick="createNewExam()">Tạo đề mới</button>
         </div>
     </div>
 
@@ -39,21 +41,30 @@
         <div id="coverage-count" class="coverage-count">Đang tính độ phủ…</div>
     </div>
 
-    <details class="exam-nav">
-        <summary>Danh sách câu</summary>
-        <aside id="sidebar"></aside>
-    </details>
-
     <div id="main-layout">
         <div id="quiz-container"></div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const nav = document.querySelector('.exam-nav');
-            if (nav && window.innerWidth >= 900) nav.open = true;
-        });
-    </script>
+    <div id="exam-sheet-backdrop" class="sheet-backdrop" hidden></div>
+    <section id="exam-sheet" class="sheet exam-sheet" role="dialog" aria-modal="true" aria-labelledby="exam-sheet-title" tabindex="-1" hidden>
+        <div class="sheet-handle" aria-hidden="true"></div>
+        <div class="sheet-head">
+            <h2 id="exam-sheet-title">Danh sách câu</h2>
+            <button id="exam-sheet-close" class="icon-btn" type="button" aria-label="Đóng danh sách câu">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M18 6 6 18" />
+                    <path d="m6 6 12 12" />
+                </svg>
+            </button>
+        </div>
+        <aside id="sidebar"></aside>
+    </section>
+
+    <nav class="bottom-bar exam-bottom" aria-label="Điều hướng trang kiểm tra">
+        <button id="exam-prev" class="btn-ghost" type="button">Trước</button>
+        <button id="exam-sheet-btn" class="btn-pill" type="button">Danh sách câu</button>
+        <button id="exam-next" class="btn-primary" type="button">Sau</button>
+    </nav>
 
     <button id="back-to-top" class="back-to-top" type="button" aria-label="Lên đầu trang" hidden>
         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -71,7 +82,7 @@
         }
     </script>
     <script src="exam.js"></script>
-    <script src="../shared/enhance-ux.js"></script>
+    <script src="../shared/exam-mobile.js"></script>
     <script src="../shared/back-to-top.js"></script>
 </body>
 
