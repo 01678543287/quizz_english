@@ -127,8 +127,9 @@ body.lobby-page *:focus-visible {
 }
 
 .lobby-hero .hl {
-    background: linear-gradient(transparent 62%, var(--highlighter) 62%);
-    padding: 0 0.06em;
+    background: none;
+    padding: 0;
+    border-radius: 0;
 }
 
 .hero-sub {
